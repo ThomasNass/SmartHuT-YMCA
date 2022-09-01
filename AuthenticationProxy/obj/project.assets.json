@@ -2218,19 +2218,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tn900\\.nuget\\packages\\": {}
+    "C:\\Users\\kimkr\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tn900\\Documents\\Code\\AuthenticationProxy\\AuthenticationProxy.csproj",
+      "projectUniqueName": "C:\\Users\\kimkr\\Desktop\\SmartHuT-YMCA\\AuthenticationProxy\\AuthenticationProxy.csproj",
       "projectName": "AuthenticationProxy",
-      "projectPath": "C:\\Users\\tn900\\Documents\\Code\\AuthenticationProxy\\AuthenticationProxy.csproj",
-      "packagesPath": "C:\\Users\\tn900\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tn900\\Documents\\Code\\AuthenticationProxy\\obj\\",
+      "projectPath": "C:\\Users\\kimkr\\Desktop\\SmartHuT-YMCA\\AuthenticationProxy\\AuthenticationProxy.csproj",
+      "packagesPath": "C:\\Users\\kimkr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kimkr\\Desktop\\SmartHuT-YMCA\\AuthenticationProxy\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\tn900\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kimkr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2275,12 +2279,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.13, 5.0.13]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2289,7 +2287,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
