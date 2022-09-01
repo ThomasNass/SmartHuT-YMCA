@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c985b55b-6d47-4a70-8068-34557ec78cd2": {
+      "ProjectGuid": "c985b55b-6d47-4a70-8068-34557ec78cd2",
+      "DisplayName": "AuthenticationProxy",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
