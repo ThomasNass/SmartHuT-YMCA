@@ -9,6 +9,16 @@ namespace API.AuthTest.Controllers
     [Route("[controller]")]
     public class SmartHutController :ControllerBase
     {
+        
+        [HttpGet]
+        [Route("token")]
+        public string GetMyToken()
+        {
+            var user = this.User;
+            var token = user.FindFirst("jwtToken");
+            return token.Value.ToString();
+        }
+
         [HttpGet]
         [Route("BuildingInfo/GetMyBuilding")]
         public async Task<IActionResult> GetMyBuilding()
