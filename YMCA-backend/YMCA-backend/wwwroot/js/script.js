@@ -1,4 +1,16 @@
-﻿
+﻿const localHost = `${window.location.protocol}//${window.location.host}`;
+
+const getUser = async () => {
+    try {
+        const response = await fetch(`${localHost}/User`);
+        const data = await response.json();
+
+        return data;
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
 
 const getBuilding = async (headers) => {
     try {
@@ -12,15 +24,11 @@ const getBuilding = async (headers) => {
     }
 }
 
-
-
 const getToken = async () => {
     try {
-        let response = await fetch("https://localhost:5000/SmartHut/token");
-        let data = await response.text();
+        let user = await getUser();
 
-        console.log(data);
-        return data;
+        return user.token;
     }
     catch (e) {
         console.log(e)
@@ -31,7 +39,7 @@ const getDevicesBuilding = async (id, headers) => {
     try {
         let response = await fetch(`https://api.smarthut.se/buildinginfo/${id}/true`, { headers: headers });
         let data = await response.json();
-        console.log(data);
+
         return data;
     }
     catch (e) {
@@ -57,32 +65,24 @@ getAll();
 
 // SignalR
 
-const initializeSignalRConnection = (url, accessToken) => {
-    console.log(url)
+const initializeSignalRConnection = async (accessToken, url) => {
     const connection = new signalR.HubConnectionBuilder()
         .withUrl(url, {
-            accessTokenFactory: () => { return accessToken }
-,
+            accessTokenFactory: () => accessToken
         })
         .configureLogging(signalR.LogLevel.Trace)
         .build();
-
-    console.log(connection);
-
-   /* connection.on("newTelemetry", (obj) => {
-        console.log(obj)
-    });
-
-    connection.start().catch(error => console.error(error.toString()));*/
 
     return connection;
 }
 
 const negotiate = async () => {
+    const user = await getUser();
+
     const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate",
         {
             headers: {
-                'X-MS-SIGNALR-USERID': 'nath21ul@student.ju.se'
+                'X-MS-SIGNALR-USERID': user.email
             }
         }).catch((error) => console.log(error))
 
@@ -91,18 +91,16 @@ const negotiate = async () => {
     return data;
 }
 
+const startSignalR = async () => {
+    const { accessToken, url } = await negotiate();
 
+    const connection = await initializeSignalRConnection(accessToken, url);
 
-const getSignalR = async () => {
+    connection.on("newTelemetry", (array) => console.log(array))
 
-    const data = await negotiate();
+    connection.on("alarmNeutralized", (msg) => console.log(msg));
 
-    const connection = initializeSignalRConnection(data.url, data.accessToken);
-    connection.on('newTelemetry', (obj) => { console.log(obj) })
-    connection.start()
-        
-        .catch(error => console.error(error.toString()));
-
+    connection.start().catch((error) => console.error(error.toString()));
 }
 
-getSignalR();
+startSignalR();
