@@ -69,17 +69,12 @@ app.UseCors(x => x
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath,"StaticFiles")),
-    RequestPath="/StaticFiles"
-});
 
 app.MapControllers();
 
