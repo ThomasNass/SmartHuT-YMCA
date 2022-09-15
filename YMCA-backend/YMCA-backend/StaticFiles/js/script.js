@@ -20,7 +20,7 @@ const getToken = async () => {
     try {
         let response = await fetch("https://localhost:5000/SmartHut/token");
         let data = await response.text();
-        
+
         console.log(data);
         return data;
     }
@@ -29,7 +29,7 @@ const getToken = async () => {
     }
 }
 
-const getDevicesBuilding = async (id,headers) => {
+const getDevicesBuilding = async (id, headers) => {
     try {
         let response = await fetch(`https://api.smarthut.se/buildinginfo/${id}/true`, { headers: headers });
         let data = await response.json();
@@ -55,4 +55,43 @@ const getAll = async () => {
 
 }
 
-getAll();
+//getAll();
+
+// SignalR
+
+const initializeSignalRConnection = (url, accessToken) => {
+    console.log(url)
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl(url, {
+            accessTokenFactory: () => { return accessToken }
+,
+        })
+        .configureLogging(signalR.LogLevel.Trace)
+        .build();
+
+    console.log("Hej..................................................");
+
+    connection.on("newTelemetry", () => {
+        console.log("Hej..................................................");
+    });
+
+    connection.start().catch(error => console.error(error.toString()));
+
+    return connection;
+}
+
+const negotiate = async () => {
+    const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate",
+        {
+            headers: {
+                'X-MS-SIGNALR-USERID': 'krki21cn@student.ju.'
+            }
+        }).catch((error) => console.log(error))
+
+    const data = await response.json();
+
+    initializeSignalRConnection(data.url, data.accessToken);
+}
+
+
+negotiate();
