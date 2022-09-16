@@ -1,7 +1,7 @@
 ﻿//data ska vara datan som kommer ifrån anropet till smarthut/buildingInfo/id
 //import data from "../data.json";
 
-export const formattedData = () => {
+ const formattedData = (data) => {
     let tempArray = [];
     data.devices.forEach(device => {
 
@@ -61,3 +61,5 @@ function removeFirstWord(str) {
 
     return str.substring(indexOfSpace + 1);
 }
+
+export default formattedData;

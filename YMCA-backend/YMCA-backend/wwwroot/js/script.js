@@ -1,4 +1,6 @@
-﻿const localHost = `${window.location.protocol}//${window.location.host}`;
+﻿import formattedData from "./sort-devices-by-room.js"
+
+const localHost = `${window.location.protocol}//${window.location.host}`;
 
 const getUser = async () => {
     try {
@@ -57,6 +59,9 @@ const getAll = async () => {
 
     const buildingWithDevices = await getDevicesBuilding(building.id, headers)
 
+    const sorted = formattedData(buildingWithDevices);
+
+    console.log(sorted)
     console.log(buildingWithDevices)
 
 }
