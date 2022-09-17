@@ -11,7 +11,7 @@ För [Campus Värnamo, Webbutvecklare .NET](https://www.varnamo.se/campusvarnamo
 
 *Patch:* `./YMCA/YMCA-frontend`
 
- **Kör `npm install` i rotmappen för *YMCA-frontend innan du börjar***
+ **Kör `npm install` i rotmappen för *YMCA-frontend innan du börjar***  
 I mappen YMCA-frontend React-projektet som utgör hela utvecklingen av klientgränssnittet. 
 Här kan du starta projektet på en lokal server, fristående från YMCA-backend genom `npm start`.
 
