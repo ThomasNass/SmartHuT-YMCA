@@ -1,10 +1,10 @@
 # YMCA
 Ett grupparbete gjort av
 
-[Rami Alqanbar](https://github.com/AlqanbarRami),
-[Kim Kristiansson](https://github.com/kimkristianssonJU),
-[Thomas Näss](https://github.com/ThomasNass),
-[Sara Linda Maria Rados](https://github.com/sararados)
+[Rami Alqanbar](https://github.com/AlqanbarRami)  
+[Kim Kristiansson](https://github.com/kimkristianssonJU)  
+[Thomas Näss](https://github.com/ThomasNass)  
+[Sara Linda Maria Rados](https://github.com/sararados)  
 
 För [Campus Värnamo, Webbutvecklare .NET](https://www.varnamo.se/campusvarnamo/utbildning/utbildningsarkiv/webbutvecklarenet.5.f0c3e6e174960600f056fb.html)
 # Frontend
