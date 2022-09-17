@@ -52,7 +52,7 @@ Namngivningen går att omformatera i `package.json`
 
 Läs mer i källor och material.
 
-*Källor och material:*
+*Källor och material:*  
 HMR (Hot Module Replacemnet): https://en.parceljs.org/hmr.html  
 CLI (Command-Line Interface): https://en.parceljs.org/cli.html  
 CSS Modules (Parcel): https://parceljs.org/languages/css#css-modules
