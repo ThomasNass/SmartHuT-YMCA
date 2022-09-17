@@ -1,0 +1,26 @@
+{
+  "name": "ymca-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html -",
+    "build": "parcel build src/index.html --dist-dir ../YMCA-backend/wwwroot",
+    "watch": "parcel watch src/index.html --dist-dir ../YMCA-backend/wwwroot"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "pattern": "YMCA-[hash]-[name]-[local]"
+    }
+  }
+}

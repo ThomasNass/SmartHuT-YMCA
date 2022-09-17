@@ -1,0 +1,8 @@
+/* Denna fil finns bara för test och
+ska därför raderas från projektet senare */
+
+.header {
+    background-color: yellow;
+    border: 2px solid black;
+    text-align: center;
+}
