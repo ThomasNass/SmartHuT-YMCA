@@ -2,7 +2,7 @@
 
 const localHost = `${window.location.protocol}//${window.location.host}`;
 
-const getUser = async () => {
+export const getUser = async () => {
     try {
         const response = await fetch(`${localHost}/User`);
         const data = await response.json();
