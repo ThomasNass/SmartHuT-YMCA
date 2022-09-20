@@ -5,8 +5,8 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html -",
-    "build": "parcel build src/index.html --dist-dir ../YMCA-backend/wwwroot",
-    "watch": "parcel watch src/index.html --dist-dir ../YMCA-backend/wwwroot"
+    "build": "parcel build src/index.html --dist-dir ../YMCA-backend/wwwroot --no-autoinstall",
+    "watch": "parcel watch src/index.html --dist-dir ../YMCA-backend/wwwroot --no-autoinstall"
   },
   "author": "",
   "license": "ISC",

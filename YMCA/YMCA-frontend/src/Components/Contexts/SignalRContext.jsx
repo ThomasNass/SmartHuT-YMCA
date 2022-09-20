@@ -3,10 +3,10 @@ import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const SignalRContext = React.createContext({
     newTelemetry: [],
-    alarmNetralized: null
+    alarmNetralized: null,
 });
 
-const SignalRContextProvider = (props) => {
+export const SignalRContextProvider = (props) => {
     const [newTelemetry, setNewTelemetry] = useState([]);
     const [alarmNeutralized, setAlarmNeutralized] = useState([]);
 
@@ -24,38 +24,33 @@ const SignalRContextProvider = (props) => {
         return data;
     };
 
-    const initializeSignalRConnection = async (accessToken, url) => {
-        const connection = new HubConnectionBuilder()
-            .withUrl(url, {
-                accessTokenFactory: () => accessToken,
-            })
-            .configureLogging(LogLevel.Trace)
-            .build();
-
-        return connection;
-    };
-
-    const startSignalR = async () => {
-        const { accessToken, url } = await negotiate();
-
-        const connection = await initializeSignalRConnection(accessToken, url);
-
-        connection.on("newTelemetry", (newTelemetry) => {
-            setNewTelemetry(newTelemetry);
-        });
-
-        connection.on("alarmNeutralized", (msg) => console.log(msg));
-
-        connection.start().catch((error) => console.error(error.toString()));
-    };
-
     useEffect(() => {
-        startSignalR();
-    }, [])
+        (async () => {
+            const { accessToken, url } = await negotiate();
+
+            const connection = new HubConnectionBuilder()
+                .withUrl(url, {
+                    accessTokenFactory: () => accessToken,
+                })
+                .configureLogging(LogLevel.Trace)
+                .build();
+
+            connection.on("newTelemetry", (newTelemetry) => {
+                setNewTelemetry(newTelemetry);
+                console.log(newTelemetry);
+            });
+
+            connection.on("alarmNeutralized", (msg) => console.log(msg));
+
+            connection
+                .start()
+                .catch((error) => console.error(error.toString()));
+        })();
+    }, []);
 
     const contextValue = {
         newTelemetry: newTelemetry,
-        alarmNetralized: alarmNeutralized
+        alarmNetralized: alarmNeutralized,
     };
 
     return (
@@ -65,4 +60,4 @@ const SignalRContextProvider = (props) => {
     );
 };
 
-export default SignalRContextProvider; 
+export default SignalRContext;

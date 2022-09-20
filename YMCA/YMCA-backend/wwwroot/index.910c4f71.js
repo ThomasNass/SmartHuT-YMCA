@@ -2908,11 +2908,10 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _app = require("./App");
 var _appDefault = parcelHelpers.interopDefault(_app);
 var _signalRContext = require("./Components/Contexts/SignalRContext");
-var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
 const container = document.getElementById("root");
 const root = (0, _clientDefault.default).createRoot(container);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signalRContextDefault.default), {
+    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signalRContext.SignalRContextProvider), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
             lineNumber: 11,
@@ -27096,16 +27095,23 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _appModuleCss = require("./App.module.css");
+var _signalRContext = require("./Components/Contexts/SignalRContext");
+var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
+var _s = $RefreshSig$();
 const App = ()=>{
+    _s();
+    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
+    console.log(signalRContext);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
         className: _appModuleCss["header"],
         children: "App Component"
     }, void 0, false, {
         fileName: "src/App.jsx",
-        lineNumber: 6,
+        lineNumber: 9,
         columnNumber: 9
     }, undefined);
 };
+_s(App, "V+QJ9Wx2Y8/4xAWNcqjyXCYxN70=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27116,7 +27122,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"c4nSm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Components/Contexts/SignalRContext":"iLTUn"}],"c4nSm":[function(require,module,exports) {
 module.exports["header"] = `YMCA-uEldNa-App-module-header`;
 
 },{}],"gkKU3":[function(require,module,exports) {
@@ -27278,6 +27284,7 @@ $parcel$ReactRefreshHelpers$bcf4.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SignalRContextProvider", ()=>SignalRContextProvider);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -27300,23 +27307,19 @@ const SignalRContextProvider = (props)=>{
         const data = await response.json();
         return data;
     };
-    const initializeSignalRConnection = async (accessToken, url)=>{
-        const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(url, {
-            accessTokenFactory: ()=>accessToken
-        }).configureLogging((0, _signalr.LogLevel).Trace).build();
-        return connection;
-    };
-    const startSignalR = async ()=>{
-        const { accessToken , url  } = await negotiate();
-        const connection = await initializeSignalRConnection(accessToken, url);
-        connection.on("newTelemetry", (newTelemetry)=>{
-            setNewTelemetry(newTelemetry);
-        });
-        connection.on("alarmNeutralized", (msg)=>console.log(msg));
-        connection.start().catch((error)=>console.error(error.toString()));
-    };
     (0, _react.useEffect)(()=>{
-        startSignalR();
+        (async ()=>{
+            const { accessToken , url  } = await negotiate();
+            const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(url, {
+                accessTokenFactory: ()=>accessToken
+            }).configureLogging((0, _signalr.LogLevel).Trace).build();
+            connection.on("newTelemetry", (newTelemetry)=>{
+                setNewTelemetry(newTelemetry);
+                console.log(newTelemetry);
+            });
+            connection.on("alarmNeutralized", (msg)=>console.log(msg));
+            connection.start().catch((error)=>console.error(error.toString()));
+        })();
     }, []);
     const contextValue = {
         newTelemetry: newTelemetry,
@@ -27327,13 +27330,13 @@ const SignalRContextProvider = (props)=>{
         children: props.children
     }, void 0, false, {
         fileName: "src/Components/Contexts/SignalRContext.jsx",
-        lineNumber: 62,
+        lineNumber: 57,
         columnNumber: 9
     }, undefined);
 };
 _s(SignalRContextProvider, "ccjYoCe4JRWahD2bF0GQF/1lhVU=");
 _c = SignalRContextProvider;
-exports.default = SignalRContextProvider;
+exports.default = SignalRContext;
 var _c;
 $RefreshReg$(_c, "SignalRContextProvider");
 
