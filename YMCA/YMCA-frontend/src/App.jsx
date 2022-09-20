@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as classes from "./App.module.css";
+import Connect from "./Connect.jsx";
+import data from "./data.json"
+// import getAll from "./js/script.js";
 
 const App = () => {
-    console.log(classes);
+    const devices = data
+    // useEffect(() => {
+    //     (async () => {
+    //         console.log("in sorting")
+    //         const sortedDevices = await getAll();
+    //         console.log(sortedDevices)
+    //         setDevices(...sortedDevices);
+
+    //     })
+    // }, [])
+
+
+
     return (
-        <h1 className={classes["header"]}>App Component</h1>
+        <>
+            <h1 className={classes["header"]}>App Component</h1>
+            <Connect devices={devices} />
+
+        </>
     );
 };
 

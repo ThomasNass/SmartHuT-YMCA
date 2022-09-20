@@ -1,0 +1,32 @@
+[
+    {
+        "humidityMin": 30,
+        "humidityMax": 70,
+        "humidityId": "5b576b7d-070d-4457-9acb-1054f0169521",
+        "name": "Conference room 2",
+        "tempMin": 19,
+        "tempMax": 22,
+        "tempId": "c487b36f-0005-4b0b-9f54-1ec354efdc1e"
+    },
+    {
+        "tempMin": 19,
+        "tempMax": 22,
+        "tempId": "c45e0a8e-ec95-47c7-8b85-28d6a6d3224a",
+        "name": "Conference room 1"
+    },
+    {
+        "humidityMin": 30,
+        "humidityMax": 70,
+        "humidityId": "cb241607-69f9-4a59-a039-36b872db77bc",
+        "name": "Conference room 3",
+        "tempMin": 19,
+        "tempMax": 22,
+        "tempId": "97a29186-15c5-4119-a784-60eecf78a254"
+    },
+    {
+        "tempMin": 25,
+        "tempMax": 28,
+        "tempId": "9f686edb-94a2-4787-9a00-43a0134b2f99",
+        "name": "swimming pool 1"
+    }
+]

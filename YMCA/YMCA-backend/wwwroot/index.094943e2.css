@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  background-color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+}
+
+html, #app, .content-div {
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  height: 8%;
+  z-index: 1;
+  background-color: red;
+  position: sticky;
+  top: 0%;
+}
+
+.device {
+  text-align: center;
+  width: 30%;
+  height: 30%;
+  background-color: #fff;
+  border-bottom: 1px solid #00000062;
+  border-right: 1px solid #00000063;
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+}
+
+.device-data {
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.data-div {
+  text-align: center;
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.modal-div {
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.modal-button-div {
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .device {
+    width: 90%;
+    height: 33%;
+    border-right: none;
+  }
+
+  .device:last-of-type {
+    border: none;
+  }
+}
+
+@keyframes color_change {
+  from {
+    background-color: #000;
+  }
+
+  to {
+    color: #000;
+    background-color: #ff0;
+  }
+}
+
+.alert-div {
+  color: #fff;
+  -ms-animation: color_change .3s infinite alternate;
+  background-color: #00f;
+  border: 5px solid #fff;
+  flex-direction: column;
+  animation: color_change .3s infinite alternate;
+  display: flex;
+  position: relative;
+}
+
+
+
+/*# sourceMappingURL=index.094943e2.css.map */
