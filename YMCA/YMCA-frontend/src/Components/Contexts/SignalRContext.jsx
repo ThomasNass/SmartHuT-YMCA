@@ -21,36 +21,51 @@ export const SignalRContextProvider = (props) => {
         ).catch((error) => console.log(error)); // Bör göra en respons till användaren också
 
         const data = await response.json();
+
+        localStorage.setItem("negotiation", JSON.stringify(data));
         return data;
     };
-
+    
     useEffect(() => {
         (async () => {
-            const { accessToken, url } = await negotiate();
+            let negotiation = null;
+            localStorage.clear();
+            
+            if (!localStorage.getItem("negotiation")) {
+                negotiation = await negotiate();
+            }
+            else {
+                negotiation = JSON.parse(localStorage.getItem("negotiation"));
+            }
+
 
             const connection = new HubConnectionBuilder()
-                .withUrl(url, {
-                    accessTokenFactory: () => accessToken,
+                .withUrl(negotiation.url, {
+                    accessTokenFactory: () => negotiation.accessToken,
                 })
+                .withAutomaticReconnect()
                 .configureLogging(LogLevel.Trace)
                 .build();
 
-            connection.on("newTelemetry", (newTelemetry) => {
-                setNewTelemetry(newTelemetry);
-                console.log(newTelemetry);
-            });
-
-            connection.on("alarmNeutralized", (msg) => console.log(msg));
-
             connection
                 .start()
+                .then(() => {
+                    connection.on("newTelemetry", (newTelemetry) => {
+                        setNewTelemetry(newTelemetry);
+                        console.log(newTelemetry);
+                    });
+
+                    connection.on("alarmNeutralized", (msg) =>
+                        console.log(msg)
+                    );
+                })
                 .catch((error) => console.error(error.toString()));
         })();
     }, []);
 
     const contextValue = {
         newTelemetry: newTelemetry,
-        alarmNetralized: alarmNeutralized,
+        alarmNetralized: alarmNeutralized
     };
 
     return (

@@ -18,7 +18,7 @@ const getBuilding = async (headers) => {
     try {
         let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", { headers: headers });
         let data = await response.json();
-        console.log(data);
+
         return data;
     }
     catch (e) {
@@ -49,7 +49,7 @@ const getDevicesBuilding = async (id, headers) => {
     }
 }
 
-const getAll = async () => {
+export const getAll = async () => {
     const token = await getToken();
 
     const headers = {
@@ -58,15 +58,30 @@ const getAll = async () => {
     const building = await getBuilding(headers);
 
     const buildingWithDevices = await getDevicesBuilding(building.id, headers)
-
-    const sorted = formattedData(buildingWithDevices);
-
-    console.log(sorted)
-    console.log(buildingWithDevices)
-
+    console.log(buildingWithDevices);
+    return buildingWithDevices
 }
 
-getAll();
+export const getBuildingDevices = async () => {
+    const token = await getToken();
+
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    }
+    
+    const building = await getBuilding(headers);
+
+    try {
+        
+        let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, { headers });
+        let data = await response.json();
+
+        return data;
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
 
 // SignalR
 
@@ -107,5 +122,3 @@ const startSignalR = async () => {
 
     connection.start().catch((error) => console.error(error.toString()));
 }
-
-startSignalR();
