@@ -2,7 +2,7 @@
 import { CgLogOff} from 'react-icons/cg';
 import { FaHistory} from 'react-icons/fa';
 import { BsWind} from 'react-icons/bs';
-import style from '../css/Navbar.module.css';
+import style from './css/Navbar.module.css';
 import { AiFillWarning} from 'react-icons/Ai';
 
 function Navbar() {

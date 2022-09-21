@@ -11,7 +11,7 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     background-color: rgb(30, 128, 247);
     display: flex;
-    overflow-x: auto;
+ 
     justify-content: space-around;
   }
 /* ikonerna*/
