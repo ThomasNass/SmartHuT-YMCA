@@ -27333,7 +27333,6 @@ const Connect = (props)=>{
     (0, _react.useEffect)(()=>{
         if (connection) {
             connection.on("newTelemetry", (newTelemetry)=>{
-                console.log(newTelemetry);
                 setTelemetry(...newTelemetry);
             });
             connection.on("alarmNeutralized", (msg)=>console.log(msg));
@@ -27349,20 +27348,20 @@ const Connect = (props)=>{
                     telemetry: telemetry
                 }, void 0, false, {
                     fileName: "src/Connect.jsx",
-                    lineNumber: 62,
+                    lineNumber: 61,
                     columnNumber: 17
                 }, undefined)),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deviceJsxDefault.default), {
                 telemetry: telemetry
             }, void 0, false, {
                 fileName: "src/Connect.jsx",
-                lineNumber: 64,
+                lineNumber: 63,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/Connect.jsx",
-        lineNumber: 60,
+        lineNumber: 59,
         columnNumber: 9
     }, undefined);
 };
@@ -29934,6 +29933,7 @@ class JsonHubProtocol {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getAll", ()=>getAll);
+parcelHelpers.export(exports, "restoreAlarm", ()=>restoreAlarm);
 parcelHelpers.export(exports, "negotiate", ()=>negotiate);
 parcelHelpers.export(exports, "startSignalR", ()=>startSignalR);
 var _sortDevicesByRoomJs = require("./sort-devices-by-room.js");
@@ -29992,8 +29992,18 @@ const getAll = async ()=>{
     console.log(buildingWithDevices);
     return sorted;
 };
-// getAll();
-// SignalR
+const restoreAlarm = async (deviceId)=>{
+    const response = await fetch("https://smarthut.azurewebsites.net/api/restorealarm", {
+        method: "POST",
+        body: JSON.stringify({
+            "deviceId": deviceId,
+            "userName": "nath21ul@student.ju.se" // Get email from getUser() function 
+        })
+    });
+    const data = response;
+    console.log(data);
+    return data;
+};
 const initializeSignalRConnection = async (accessToken, url)=>{
     const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(url, {
         accessTokenFactory: ()=>accessToken
@@ -30122,6 +30132,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _scriptJs = require("./js/script.js");
 var _s = $RefreshSig$();
 const MappedDevice = (props)=>{
     _s();
@@ -30160,14 +30171,14 @@ const MappedDevice = (props)=>{
     }
     function onClick(e) {
         if (e.target.value == "temp") {
-            setTempValue((tempMax + tempMin) / 2);
-            setTempTooLow(false);
-            setTempTooHigh(false);
+            (0, _scriptJs.restoreAlarm)(props.device.tempId);
+            if (e.target.name == "high") setTempTooHigh(false);
+            else setTempTooLow(false);
         }
         if (e.target.value == "humidity") {
-            setHumidityValue((humidityMax + humidityMin) / 2);
-            setHumidityTooHigh(false);
-            setHumidityTooLow(false);
+            (0, _scriptJs.restoreAlarm)(props.device.humidityId);
+            if (e.target.name == "high") setHumidityTooHigh(false);
+            else setHumidityTooLow(false);
         }
         checkTemp();
     }
@@ -30178,7 +30189,7 @@ const MappedDevice = (props)=>{
                 children: props.device.name
             }, void 0, false, {
                 fileName: "src/mapped-device.jsx",
-                lineNumber: 70,
+                lineNumber: 78,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30192,7 +30203,7 @@ const MappedDevice = (props)=>{
                                 children: "Temperatur"
                             }, void 0, false, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 73,
+                                lineNumber: 80,
                                 columnNumber: 40
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -30202,53 +30213,55 @@ const MappedDevice = (props)=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 74,
+                                lineNumber: 81,
                                 columnNumber: 17
                             }, undefined),
                             tempTooHigh ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "alert-div",
                                 children: [
-                                    "F\xd6R H\xd6GT ",
+                                    "F\xd6R H\xd6GT",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                         className: "alert-button",
+                                        name: "high",
                                         value: "temp",
                                         onClick: onClick,
                                         children: " \xc5terst\xe4ll"
                                     }, void 0, false, {
                                         fileName: "src/mapped-device.jsx",
-                                        lineNumber: 75,
-                                        columnNumber: 70
+                                        lineNumber: 84,
+                                        columnNumber: 25
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 75,
-                                columnNumber: 34
+                                lineNumber: 83,
+                                columnNumber: 21
                             }, undefined) : null,
                             tempTooLow ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "alert-div",
                                 children: [
-                                    "F\xd6R L\xc5GT ",
+                                    "F\xd6R L\xc5GT",
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                         className: "alert-button",
+                                        name: "low",
                                         value: "temp",
                                         onClick: onClick,
                                         children: "\xc5terst\xe4ll"
                                     }, void 0, false, {
                                         fileName: "src/mapped-device.jsx",
-                                        lineNumber: 77,
-                                        columnNumber: 69
+                                        lineNumber: 92,
+                                        columnNumber: 25
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 77,
-                                columnNumber: 33
+                                lineNumber: 91,
+                                columnNumber: 21
                             }, undefined) : null
                         ]
                     }, void 0, true, {
                         fileName: "src/mapped-device.jsx",
-                        lineNumber: 73,
+                        lineNumber: 80,
                         columnNumber: 13
                     }, undefined),
                     humidityMax != undefined ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -30259,7 +30272,7 @@ const MappedDevice = (props)=>{
                                     children: "Luftfuktighet "
                                 }, void 0, false, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 84,
+                                    lineNumber: 102,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -30269,7 +30282,7 @@ const MappedDevice = (props)=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 85,
+                                    lineNumber: 103,
                                     columnNumber: 25
                                 }, undefined),
                                 humidityTooHigh ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30279,17 +30292,18 @@ const MappedDevice = (props)=>{
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                             className: "alert-button",
                                             value: "humidity",
+                                            name: "high",
                                             onClick: onClick,
                                             children: " \xc5terst\xe4ll"
                                         }, void 0, false, {
                                             fileName: "src/mapped-device.jsx",
-                                            lineNumber: 87,
+                                            lineNumber: 105,
                                             columnNumber: 65
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 87,
+                                    lineNumber: 105,
                                     columnNumber: 29
                                 }, undefined) : null,
                                 humidityTooLow ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30299,36 +30313,37 @@ const MappedDevice = (props)=>{
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                             className: "alert-button",
                                             value: "humidity",
+                                            name: "low",
                                             onClick: onClick,
                                             children: "\xc5terst\xe4ll"
                                         }, void 0, false, {
                                             fileName: "src/mapped-device.jsx",
-                                            lineNumber: 93,
+                                            lineNumber: 114,
                                             columnNumber: 33
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 92,
+                                    lineNumber: 113,
                                     columnNumber: 29
                                 }, undefined) : null
                             ]
                         }, void 0, true, {
                             fileName: "src/mapped-device.jsx",
-                            lineNumber: 83,
+                            lineNumber: 101,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false) : null
                 ]
             }, void 0, true, {
                 fileName: "src/mapped-device.jsx",
-                lineNumber: 71,
+                lineNumber: 79,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/mapped-device.jsx",
-        lineNumber: 69,
+        lineNumber: 77,
         columnNumber: 12
     }, undefined);
 // return <div>
@@ -30351,7 +30366,7 @@ $RefreshReg$(_c, "MappedDevice");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aLYkf":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./js/script.js":"dV6cC"}],"aLYkf":[function(require,module,exports) {
 module.exports = JSON.parse('[{"humidityMin":30,"humidityMax":70,"humidityId":"5b576b7d-070d-4457-9acb-1054f0169521","name":"Conference room 2","tempMin":19,"tempMax":22,"tempId":"c487b36f-0005-4b0b-9f54-1ec354efdc1e"},{"tempMin":19,"tempMax":22,"tempId":"c45e0a8e-ec95-47c7-8b85-28d6a6d3224a","name":"Conference room 1"},{"humidityMin":30,"humidityMax":70,"humidityId":"cb241607-69f9-4a59-a039-36b872db77bc","name":"Conference room 3","tempMin":19,"tempMax":22,"tempId":"97a29186-15c5-4119-a784-60eecf78a254"},{"tempMin":25,"tempMax":28,"tempId":"9f686edb-94a2-4787-9a00-43a0134b2f99","name":"swimming pool 1"}]');
 
 },{}]},["1xC6H","ggwcl","8lqZg"], "8lqZg", "parcelRequire2aa7")

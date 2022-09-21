@@ -73,6 +73,20 @@ export const getAll = async () => {
 
 // SignalR
 
+
+export const restoreAlarm = async (deviceId) => {
+    const response = await fetch("https://smarthut.azurewebsites.net/api/restorealarm", {
+        method: 'POST',
+        body: JSON.stringify({
+            "deviceId": deviceId,   // Send deviceId from another component via props.
+            "userName": "nath21ul@student.ju.se"                // Get email from getUser() function 
+        })
+    })
+    const data = response;
+    console.log(data)
+    return data;
+}
+
 const initializeSignalRConnection = async (accessToken, url) => {
     const connection = new HubConnectionBuilder()
         .withUrl(url, {

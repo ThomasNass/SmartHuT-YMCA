@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { restoreAlarm } from "./js/script.js";
 
 const MappedDevice = (props) => {
 
@@ -53,14 +54,21 @@ const MappedDevice = (props) => {
 
     function onClick(e) {
         if (e.target.value == "temp") {
-            setTempValue((tempMax + tempMin) / 2)
-            setTempTooLow(false)
-            setTempTooHigh(false)
+            restoreAlarm(props.device.tempId)
+            if (e.target.name == "high") {
+                setTempTooHigh(false)
+            }
+            else setTempTooLow(false)
+
         }
         if (e.target.value == "humidity") {
-            setHumidityValue((humidityMax + humidityMin) / 2)
-            setHumidityTooHigh(false)
-            setHumidityTooLow(false)
+            restoreAlarm(props.device.humidityId)
+            if (e.target.name == "high") {
+                setHumidityTooHigh(false)
+            }
+            else setHumidityTooLow(false)
+
+
         }
         checkTemp()
     }
@@ -69,33 +77,50 @@ const MappedDevice = (props) => {
     return <div className='device'>
         <p>{props.device.name}</p>
         <div className='device-data'>
-
             <div className='data-div'> <p>Temperatur</p>
                 <p>{tempValue}°C</p>
-                {(tempTooHigh) ? <div className='alert-div'>FÖR HÖGT <button className='alert-button' value={"temp"} onClick={onClick}> Återställ</button></div> : null}
-
-                {(tempTooLow) ? <div className='alert-div'>FÖR LÅGT <button className='alert-button' value={"temp"} onClick={onClick}>Återställ</button></div> : null}
-
+                {(tempTooHigh) ?
+                    <div className='alert-div'>FÖR HÖGT
+                        <button className='alert-button' name="high" value={"temp"} onClick={onClick}> Återställ
+                        </button>
+                    </div>
+                    :
+                    null
+                }
+                {(tempTooLow) ?
+                    <div className='alert-div'>FÖR LÅGT
+                        <button className='alert-button' name="low" value={"temp"} onClick={onClick}>Återställ
+                        </button>
+                    </div>
+                    :
+                    null
+                }
             </div>
-
             {(humidityMax != undefined) ?
                 <>
                     <div className='data-div'>
                         <p>Luftfuktighet </p>
                         <p>{humidityValue}%</p>
                         {(humidityTooHigh) ?
-                            <div className='alert-div'>FÖR HÖGT <button className='alert-button' value={"humidity"} onClick={onClick}> Återställ</button></div>
-                            : null}
-
+                            <div className='alert-div'>FÖR HÖGT <button className='alert-button' value={"humidity"} name={"high"} onClick={onClick}> Återställ
+                            </button>
+                            </div>
+                            :
+                            null
+                        }
                         {(humidityTooLow)
                             ?
                             <div className='alert-div'>FÖR LÅGT
-                                <button className='alert-button' value={"humidity"} onClick={onClick}>Återställ</button>
+                                <button className='alert-button' value={"humidity"} name={"low"} onClick={onClick}>Återställ</button>
                             </div>
-                            : null}
+                            :
+                            null
+                        }
                     </div>
                 </>
-                : null}
+                :
+                null
+            }
         </div>
     </div>;
 

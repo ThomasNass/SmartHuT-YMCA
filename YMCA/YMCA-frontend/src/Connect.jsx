@@ -45,7 +45,6 @@ const Connect = (props) => {
     useEffect(() => {
         if (connection) {
             connection.on('newTelemetry', newTelemetry => {
-                console.log(newTelemetry)
                 setTelemetry(...newTelemetry);
             });
 
