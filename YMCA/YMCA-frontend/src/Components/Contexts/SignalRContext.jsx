@@ -27,40 +27,39 @@ export const SignalRContextProvider = (props) => {
     };
     
     useEffect(() => {
-        (async () => {
-            let negotiation = null;
-            localStorage.clear();
+        // (async () => {
+        //     let negotiation = null;
             
-            if (!localStorage.getItem("negotiation")) {
-                negotiation = await negotiate();
-            }
-            else {
-                negotiation = JSON.parse(localStorage.getItem("negotiation"));
-            }
+        //     if (!localStorage.getItem("negotiation")) {
+        //         negotiation = await negotiate();
+        //     }
+        //     else {
+        //         negotiation = JSON.parse(localStorage.getItem("negotiation"));
+        //     }
 
 
-            const connection = new HubConnectionBuilder()
-                .withUrl(negotiation.url, {
-                    accessTokenFactory: () => negotiation.accessToken,
-                })
-                .withAutomaticReconnect()
-                .configureLogging(LogLevel.Trace)
-                .build();
+        //     const connection = new HubConnectionBuilder()
+        //         .withUrl(negotiation.url, {
+        //             accessTokenFactory: () => negotiation.accessToken,
+        //         })
+        //         .withAutomaticReconnect()
+        //         .configureLogging(LogLevel.Trace)
+        //         .build();
 
-            connection
-                .start()
-                .then(() => {
-                    connection.on("newTelemetry", (newTelemetry) => {
-                        setNewTelemetry(newTelemetry);
-                        console.log(newTelemetry);
-                    });
+        //     connection
+        //         .start()
+        //         .then(() => {
+        //             connection.on("newTelemetry", (newTelemetry) => {
+        //                 setNewTelemetry(newTelemetry);
+        //                 console.log(newTelemetry);
+        //             });
 
-                    connection.on("alarmNeutralized", (msg) =>
-                        console.log(msg)
-                    );
-                })
-                .catch((error) => console.error(error.toString()));
-        })();
+        //             connection.on("alarmNeutralized", (msg) =>
+        //                 console.log(msg)
+        //             );
+        //         })
+        //         .catch((error) => console.error(error.toString()));
+        // })();
     }, []);
 
     const contextValue = {

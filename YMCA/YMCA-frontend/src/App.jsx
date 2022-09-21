@@ -1,26 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import * as classes from "./App.module.css";
-import SignalRContext from "./Components/Contexts/SignalRContext";
-import useDevice from "./Components/Hooks/useDevice";
-import { getBuildingDevices } from "./js/script";
-import Device from "./Components/Device";
+import Building from "./Components/Building/Building";
 
 const App = () => {
-    const [devices, setDevices] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            setDevices(await getBuildingDevices());
-        })();
-    }, []);
-
     return (
         <>
-            <h1 className={classes["header"]}>
-                {devices.length > 0 && devices.map((device, key) => (
-                    <Device device={device} key={device.id} />
-                ))}
-            </h1>
+            <h1 className={classes["header"]}>App Component</h1>
+            <Building />
         </>
     );
 };

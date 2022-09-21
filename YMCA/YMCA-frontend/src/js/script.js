@@ -14,6 +14,26 @@ export const getUser = async () => {
     }
 }
 
+export const getUnit = async (id) => {
+    try {
+        const token = await getToken();
+
+        const headers = {
+            "Authorization": `Bearer ${token}`
+        }
+
+        const response = await fetch("https://api.smarthut.se/Unit/", {headers});
+        const data = await response.json();
+        console.log(data);
+
+
+        return data.find((unit) => unit.id.toLowerCase() === id.toLowerCase());
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
+
 const getBuilding = async (headers) => {
     try {
         let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", { headers: headers });
@@ -68,11 +88,11 @@ export const getBuildingDevices = async () => {
     const headers = {
         "Authorization": `Bearer ${token}`
     }
-    
+
     const building = await getBuilding(headers);
 
     try {
-        
+
         let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, { headers });
         let data = await response.json();
 

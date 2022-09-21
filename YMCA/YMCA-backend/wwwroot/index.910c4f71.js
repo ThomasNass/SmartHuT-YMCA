@@ -27095,40 +27095,27 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _appModuleCss = require("./App.module.css");
-var _signalRContext = require("./Components/Contexts/SignalRContext");
-var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
-var _useDevice = require("./Components/Hooks/useDevice");
-var _useDeviceDefault = parcelHelpers.interopDefault(_useDevice);
-var _script = require("./js/script");
-var _device = require("./Components/Device");
-var _deviceDefault = parcelHelpers.interopDefault(_device);
-var _s = $RefreshSig$();
+var _building = require("./Components/Building/Building");
+var _buildingDefault = parcelHelpers.interopDefault(_building);
 const App = ()=>{
-    _s();
-    const [devices, setDevices] = (0, _react.useState)([]);
-    (0, _react.useEffect)(()=>{
-        (async ()=>{
-            setDevices(await (0, _script.getBuildingDevices)());
-        })();
-    }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-            className: _appModuleCss["header"],
-            children: devices.length > 0 && devices.map((device, key)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deviceDefault.default), {
-                    device: device
-                }, device.id, false, {
-                    fileName: "src/App.jsx",
-                    lineNumber: 21,
-                    columnNumber: 21
-                }, undefined))
-        }, void 0, false, {
-            fileName: "src/App.jsx",
-            lineNumber: 19,
-            columnNumber: 13
-        }, undefined)
-    }, void 0, false);
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                className: _appModuleCss["header"],
+                children: "App Component"
+            }, void 0, false, {
+                fileName: "src/App.jsx",
+                lineNumber: 8,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buildingDefault.default), {}, void 0, false, {
+                fileName: "src/App.jsx",
+                lineNumber: 9,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true);
 };
-_s(App, "+pBxWusV5TorQrWXgdafIbYrAiQ=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27139,7 +27126,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Components/Contexts/SignalRContext":"iLTUn","./js/script":"dV6cC","./Components/Device":"3BoKy","./Components/Hooks/useDevice":"hK3sQ"}],"c4nSm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Components/Building/Building":"jkbYy"}],"c4nSm":[function(require,module,exports) {
 module.exports["header"] = `YMCA-uEldNa-App-module-header`;
 
 },{}],"gkKU3":[function(require,module,exports) {
@@ -27292,7 +27279,480 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"iLTUn":[function(require,module,exports) {
+},{"react-refresh/runtime":"786KC"}],"jkbYy":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$46eb = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$46eb.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _script = require("../../js/script");
+var _room = require("./Room/Room");
+var _roomDefault = parcelHelpers.interopDefault(_room);
+var _buildingModuleCss = require("./Building.module.css");
+var _s = $RefreshSig$();
+const Building = ()=>{
+    _s();
+    const [rooms, setRooms] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        (async ()=>{
+            const devices = await (0, _script.getBuildingDevices)();
+            const filteredRoom = createRooms(devices).sort((a, b)=>a.name - b.name);
+            console.log(filteredRoom);
+            setRooms(filteredRoom);
+        })();
+    }, []);
+    const onAlarmChangeHandler = (room)=>{
+        setRooms((prevRooms)=>{
+            return prevRooms.map((obj)=>{
+                if (obj.name === room.name) return {
+                    ...obj,
+                    isAlarm: room.isAlarm
+                };
+                return obj;
+            }).sort((a, b)=>b.isAlarm - a.isAlarm);
+        });
+    };
+    const createRooms = (devices)=>{
+        const tempRooms = [];
+        devices.forEach((device)=>{
+            const roomName = device.name.substr(device.name.indexOf(" ") + 1);
+            tempRooms.some((obj)=>obj.name.includes(roomName)) || tempRooms.push(device);
+        });
+        return tempRooms.map((tempRoom)=>{
+            const roomName = tempRoom.name.substr(tempRoom.name.indexOf(" ") + 1);
+            const filteredDevices = devices.filter((device)=>device.name.includes(roomName)).sort((a, b)=>a.name - b.name);
+            return {
+                name: roomName,
+                devices: filteredDevices.map((device)=>{
+                    return {
+                        ...device,
+                        isAlarm: false
+                    };
+                }),
+                isAlarm: false
+            };
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: _buildingModuleCss.container,
+            children: rooms.length > 0 && rooms.map((room, key)=>{
+                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _roomDefault.default), {
+                    onAlarmChange: onAlarmChangeHandler,
+                    room: room
+                }, key, false, {
+                    fileName: "src/Components/Building/Building.jsx",
+                    lineNumber: 71,
+                    columnNumber: 29
+                }, undefined);
+            })
+        }, void 0, false, {
+            fileName: "src/Components/Building/Building.jsx",
+            lineNumber: 67,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false);
+};
+_s(Building, "pVIe8tJm1V/hStRMkuwTtBQhqgo=");
+_c = Building;
+exports.default = Building;
+var _c;
+$RefreshReg$(_c, "Building");
+
+  $parcel$ReactRefreshHelpers$46eb.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../js/script":"dV6cC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Room/Room":"k8kVt","./Building.module.css":"dx3A3"}],"dV6cC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getUser", ()=>getUser);
+parcelHelpers.export(exports, "getUnit", ()=>getUnit);
+parcelHelpers.export(exports, "getAll", ()=>getAll);
+parcelHelpers.export(exports, "getBuildingDevices", ()=>getBuildingDevices);
+var _sortDevicesByRoomJs = require("./sort-devices-by-room.js");
+var _sortDevicesByRoomJsDefault = parcelHelpers.interopDefault(_sortDevicesByRoomJs);
+const localHost = `${window.location.protocol}//${window.location.host}`;
+const getUser = async ()=>{
+    try {
+        const response = await fetch(`${localHost}/User`);
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+};
+const getUnit = async (id)=>{
+    try {
+        const token = await getToken();
+        const headers = {
+            "Authorization": `Bearer ${token}`
+        };
+        const response = await fetch("https://api.smarthut.se/Unit/", {
+            headers
+        });
+        const data = await response.json();
+        console.log(data);
+        return data.find((unit)=>unit.id.toLowerCase() === id.toLowerCase());
+    } catch (e) {
+        console.error(e);
+    }
+};
+const getBuilding = async (headers)=>{
+    try {
+        let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", {
+            headers: headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getToken = async ()=>{
+    try {
+        let user = await getUser();
+        return user.token;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getDevicesBuilding = async (id, headers)=>{
+    try {
+        let response = await fetch(`https://api.smarthut.se/buildinginfo/${id}/true`, {
+            headers: headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getAll = async ()=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const building = await getBuilding(headers);
+    const buildingWithDevices = await getDevicesBuilding(building.id, headers);
+    console.log(buildingWithDevices);
+    return buildingWithDevices;
+};
+const getBuildingDevices = async ()=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const building = await getBuilding(headers);
+    try {
+        let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, {
+            headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+// SignalR
+const initializeSignalRConnection = async (accessToken, url)=>{
+    const connection = new signalR.HubConnectionBuilder().withUrl(url, {
+        accessTokenFactory: ()=>accessToken
+    }).configureLogging(signalR.LogLevel.Trace).build();
+    return connection;
+};
+const negotiate = async ()=>{
+    const user = await getUser();
+    const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
+        headers: {
+            "X-MS-SIGNALR-USERID": user.email
+        }
+    }).catch((error)=>console.log(error));
+    const data = await response.json();
+    return data;
+};
+const startSignalR = async ()=>{
+    const { accessToken , url  } = await negotiate();
+    const connection = await initializeSignalRConnection(accessToken, url);
+    connection.on("newTelemetry", (array)=>console.log(array));
+    connection.on("alarmNeutralized", (msg)=>console.log(msg));
+    connection.start().catch((error)=>console.error(error.toString()));
+};
+
+},{"./sort-devices-by-room.js":"2J6dx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2J6dx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//data ska vara datan som kommer ifrån anropet till smarthut/buildingInfo/id
+//import data from "../data.json";
+const formattedData = (data)=>{
+    let tempArray = [];
+    data.devices.forEach((device)=>{
+        //Skapar nya objekt där namnet är utan temp/humidity samt att min/max har ändrats så att de är specifika för metrictype så att de senare kan slås samman
+        let newDevice = {};
+        if (device.metricType == 1) {
+            newDevice.tempMin = device.minValue;
+            newDevice.tempMax = device.maxValue;
+            newDevice.tempId = device.id;
+        }
+        if (device.metricType == 2) {
+            newDevice.humidityMin = device.minValue;
+            newDevice.humidityMax = device.maxValue;
+            newDevice.humidityId = device.id;
+        }
+        newDevice.name = removeFirstWord(device.name);
+        tempArray.push(newDevice);
+    });
+    //här slås objekten samman i arrayen
+    let temp2 = [];
+    for(let i = 0; i < tempArray.length; i++){
+        for(let j = tempArray.length - 1; 0 < j; j--)if (tempArray[i].name == tempArray[j].name) {
+            let obj = {
+                ...tempArray[i],
+                ...tempArray[j]
+            };
+            temp2.push(obj);
+            break;
+        }
+    }
+    //Här filtreras dubbletter bort
+    for(let i1 = 0; i1 < temp2.length; i1++)for(let j1 = temp2.length - 1; 0 < j1; j1--){
+        if (temp2[i1].name == temp2[j1].name) {
+            if (Object.keys(temp2[i1]).length > Object.keys(temp2[j1]).length) temp2.splice(j1, 1);
+        }
+    }
+    console.log(temp2);
+    return temp2;
+};
+//tar bort första ordet i namnet; dvs temperature/humidity
+function removeFirstWord(str) {
+    const indexOfSpace = str.indexOf(" ");
+    if (indexOfSpace === -1) return "";
+    return str.substring(indexOfSpace + 1);
+}
+exports.default = formattedData;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"k8kVt":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$fde0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$fde0.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _device = require("./Device/Device");
+var _deviceDefault = parcelHelpers.interopDefault(_device);
+var _roomModuleCss = require("./Room.module.css");
+const Room = (props)=>{
+    const onAlarmChangeHandler = (isAlarm)=>{
+        props.room.isAlarm = isAlarm;
+        props.onAlarmChange(props.room);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: _roomModuleCss.container,
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    className: _roomModuleCss.header,
+                    children: props.room.isAlarm ? `${props.room.name} LARM!` : `${props.room.name}`
+                }, void 0, false, {
+                    fileName: "src/Components/Building/Room/Room.jsx",
+                    lineNumber: 14,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: _roomModuleCss.devices,
+                    children: props.room && props.room.devices.map((device, key)=>{
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deviceDefault.default), {
+                            onAlarmChange: onAlarmChangeHandler,
+                            device: device
+                        }, key, false, {
+                            fileName: "src/Components/Building/Room/Room.jsx",
+                            lineNumber: 23,
+                            columnNumber: 33
+                        }, undefined);
+                    })
+                }, void 0, false, {
+                    fileName: "src/Components/Building/Room/Room.jsx",
+                    lineNumber: 19,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/Components/Building/Room/Room.jsx",
+            lineNumber: 13,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false);
+};
+_c = Room;
+exports.default = Room;
+var _c;
+$RefreshReg$(_c, "Room");
+
+  $parcel$ReactRefreshHelpers$fde0.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Device/Device":"gVY4v","./Room.module.css":"lvq8E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gVY4v":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$778a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$778a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _useDevice = require("../../../Hooks/useDevice");
+var _useDeviceDefault = parcelHelpers.interopDefault(_useDevice);
+var _deviceModuleCss = require("./Device.module.css");
+var _s = $RefreshSig$();
+const Device = (props)=>{
+    _s();
+    const { currentValue: currentValue , isAlarm: isAlarm , resetAlarm: resetAlarm , metricType , unit , testAlarm ,  } = (0, _useDeviceDefault.default)(props.device);
+    (0, _react.useEffect)(()=>{
+        props.onAlarmChange(isAlarm);
+    }, [
+        isAlarm
+    ]);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: metricType
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 21,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "Nuvarande v\xe4rde: ",
+                    currentValue,
+                    unit.unit
+                ]
+            }, void 0, true, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 22,
+                columnNumber: 13
+            }, undefined),
+            isAlarm && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: resetAlarm,
+                children: "\xc5terst\xe4ll"
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 26,
+                columnNumber: 25
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: testAlarm,
+                children: "Testa larm"
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 27,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/Components/Building/Room/Device/Device.jsx",
+        lineNumber: 20,
+        columnNumber: 9
+    }, undefined);
+};
+_s(Device, "dXYITqRlM3R+RtEMmU9FgHnDPJQ=", false, function() {
+    return [
+        (0, _useDeviceDefault.default)
+    ];
+});
+_c = Device;
+exports.default = Device;
+var _c;
+$RefreshReg$(_c, "Device");
+
+  $parcel$ReactRefreshHelpers$778a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../Hooks/useDevice":"hK3sQ","./Device.module.css":"6zCwq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hK3sQ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$789e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$789e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _script = require("../../js/script");
+var _signalRContext = require("../Contexts/SignalRContext");
+var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
+var _s = $RefreshSig$();
+const useDevice = (device)=>{
+    _s();
+    const [currentValue, setCurrentValue] = (0, _react.useState)("Inga v\xe4rden");
+    const [isAlarm, setIsAlarm] = (0, _react.useState)(false);
+    const [metricType, setMetricType] = (0, _react.useState)("");
+    const [unit, setUnit] = (0, _react.useState)({});
+    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
+    const validateValue = (value)=>{
+        if (value > device.maxValue || value < device.minValue) setIsAlarm(true);
+    };
+    (0, _react.useEffect)(()=>{
+        device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
+        (async ()=>{
+            console.log(await (0, _script.getUnit)(device.unitId));
+            setUnit(await (0, _script.getUnit)(device.unitId));
+        })();
+    }, []);
+    (0, _react.useEffect)(()=>{
+        signalRContext.newTelemetry.filter((telemetry)=>{
+            if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
+                setCurrentValue(telemetry.value);
+                validateValue(telemetry.value);
+            }
+        });
+    }, [
+        signalRContext.newTelemetry
+    ]);
+    const resetAlarm = ()=>{
+        setIsAlarm(false);
+    };
+    const testAlarm = ()=>{
+        setIsAlarm(true);
+    };
+    return {
+        currentValue,
+        isAlarm: isAlarm,
+        metricType,
+        resetAlarm,
+        unit,
+        testAlarm
+    };
+};
+_s(useDevice, "I+e2cjmQA4VsXSUkKWk+yvRi5do=");
+exports.default = useDevice;
+
+  $parcel$ReactRefreshHelpers$789e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","../../js/script":"dV6cC","../Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iLTUn":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$bcf4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27326,22 +27786,34 @@ const SignalRContextProvider = (props)=>{
         return data;
     };
     (0, _react.useEffect)(()=>{
-        (async ()=>{
-            let negotiation = null;
-            localStorage.clear();
-            if (!localStorage.getItem("negotiation")) negotiation = await negotiate();
-            else negotiation = JSON.parse(localStorage.getItem("negotiation"));
-            const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(negotiation.url, {
-                accessTokenFactory: ()=>negotiation.accessToken
-            }).withAutomaticReconnect().configureLogging((0, _signalr.LogLevel).Trace).build();
-            connection.start().then(()=>{
-                connection.on("newTelemetry", (newTelemetry)=>{
-                    setNewTelemetry(newTelemetry);
-                    console.log(newTelemetry);
-                });
-                connection.on("alarmNeutralized", (msg)=>console.log(msg));
-            }).catch((error)=>console.error(error.toString()));
-        })();
+    // (async () => {
+    //     let negotiation = null;
+    //     if (!localStorage.getItem("negotiation")) {
+    //         negotiation = await negotiate();
+    //     }
+    //     else {
+    //         negotiation = JSON.parse(localStorage.getItem("negotiation"));
+    //     }
+    //     const connection = new HubConnectionBuilder()
+    //         .withUrl(negotiation.url, {
+    //             accessTokenFactory: () => negotiation.accessToken,
+    //         })
+    //         .withAutomaticReconnect()
+    //         .configureLogging(LogLevel.Trace)
+    //         .build();
+    //     connection
+    //         .start()
+    //         .then(() => {
+    //             connection.on("newTelemetry", (newTelemetry) => {
+    //                 setNewTelemetry(newTelemetry);
+    //                 console.log(newTelemetry);
+    //             });
+    //             connection.on("alarmNeutralized", (msg) =>
+    //                 console.log(msg)
+    //             );
+    //         })
+    //         .catch((error) => console.error(error.toString()));
+    // })();
     }, []);
     const contextValue = {
         newTelemetry: newTelemetry,
@@ -27352,7 +27824,7 @@ const SignalRContextProvider = (props)=>{
         children: props.children
     }, void 0, false, {
         fileName: "src/Components/Contexts/SignalRContext.jsx",
-        lineNumber: 72,
+        lineNumber: 71,
         columnNumber: 9
     }, undefined);
 };
@@ -29920,278 +30392,16 @@ class JsonHubProtocol {
     }
 }
 
-},{"./IHubProtocol":"i4JLH","./ILogger":"e8deM","./ITransport":"57ni4","./Loggers":"1B6CY","./TextMessageFormat":"1g148","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dV6cC":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getUser", ()=>getUser);
-parcelHelpers.export(exports, "getAll", ()=>getAll);
-parcelHelpers.export(exports, "getBuildingDevices", ()=>getBuildingDevices);
-var _sortDevicesByRoomJs = require("./sort-devices-by-room.js");
-var _sortDevicesByRoomJsDefault = parcelHelpers.interopDefault(_sortDevicesByRoomJs);
-const localHost = `${window.location.protocol}//${window.location.host}`;
-const getUser = async ()=>{
-    try {
-        const response = await fetch(`${localHost}/User`);
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.error(e);
-    }
-};
-const getBuilding = async (headers)=>{
-    try {
-        let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", {
-            headers: headers
-        });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};
-const getToken = async ()=>{
-    try {
-        let user = await getUser();
-        return user.token;
-    } catch (e) {
-        console.log(e);
-    }
-};
-const getDevicesBuilding = async (id, headers)=>{
-    try {
-        let response = await fetch(`https://api.smarthut.se/buildinginfo/${id}/true`, {
-            headers: headers
-        });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};
-const getAll = async ()=>{
-    const token = await getToken();
-    const headers = {
-        "Authorization": `Bearer ${token}`
-    };
-    const building = await getBuilding(headers);
-    const buildingWithDevices = await getDevicesBuilding(building.id, headers);
-    console.log(buildingWithDevices);
-    return buildingWithDevices;
-};
-const getBuildingDevices = async ()=>{
-    const token = await getToken();
-    const headers = {
-        "Authorization": `Bearer ${token}`
-    };
-    const building = await getBuilding(headers);
-    try {
-        let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, {
-            headers
-        });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};
-// SignalR
-const initializeSignalRConnection = async (accessToken, url)=>{
-    const connection = new signalR.HubConnectionBuilder().withUrl(url, {
-        accessTokenFactory: ()=>accessToken
-    }).configureLogging(signalR.LogLevel.Trace).build();
-    return connection;
-};
-const negotiate = async ()=>{
-    const user = await getUser();
-    const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
-        headers: {
-            "X-MS-SIGNALR-USERID": user.email
-        }
-    }).catch((error)=>console.log(error));
-    const data = await response.json();
-    return data;
-};
-const startSignalR = async ()=>{
-    const { accessToken , url  } = await negotiate();
-    const connection = await initializeSignalRConnection(accessToken, url);
-    connection.on("newTelemetry", (array)=>console.log(array));
-    connection.on("alarmNeutralized", (msg)=>console.log(msg));
-    connection.start().catch((error)=>console.error(error.toString()));
-};
+},{"./IHubProtocol":"i4JLH","./ILogger":"e8deM","./ITransport":"57ni4","./Loggers":"1B6CY","./TextMessageFormat":"1g148","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6zCwq":[function(require,module,exports) {
 
-},{"./sort-devices-by-room.js":"2J6dx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2J6dx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-//data ska vara datan som kommer ifrån anropet till smarthut/buildingInfo/id
-//import data from "../data.json";
-const formattedData = (data)=>{
-    let tempArray = [];
-    data.devices.forEach((device)=>{
-        //Skapar nya objekt där namnet är utan temp/humidity samt att min/max har ändrats så att de är specifika för metrictype så att de senare kan slås samman
-        let newDevice = {};
-        if (device.metricType == 1) {
-            newDevice.tempMin = device.minValue;
-            newDevice.tempMax = device.maxValue;
-            newDevice.tempId = device.id;
-        }
-        if (device.metricType == 2) {
-            newDevice.humidityMin = device.minValue;
-            newDevice.humidityMax = device.maxValue;
-            newDevice.humidityId = device.id;
-        }
-        newDevice.name = removeFirstWord(device.name);
-        tempArray.push(newDevice);
-    });
-    //här slås objekten samman i arrayen
-    let temp2 = [];
-    for(let i = 0; i < tempArray.length; i++){
-        for(let j = tempArray.length - 1; 0 < j; j--)if (tempArray[i].name == tempArray[j].name) {
-            let obj = {
-                ...tempArray[i],
-                ...tempArray[j]
-            };
-            temp2.push(obj);
-            break;
-        }
-    }
-    //Här filtreras dubbletter bort
-    for(let i1 = 0; i1 < temp2.length; i1++)for(let j1 = temp2.length - 1; 0 < j1; j1--){
-        if (temp2[i1].name == temp2[j1].name) {
-            if (Object.keys(temp2[i1]).length > Object.keys(temp2[j1]).length) temp2.splice(j1, 1);
-        }
-    }
-    console.log(temp2);
-    return temp2;
-};
-//tar bort första ordet i namnet; dvs temperature/humidity
-function removeFirstWord(str) {
-    const indexOfSpace = str.indexOf(" ");
-    if (indexOfSpace === -1) return "";
-    return str.substring(indexOfSpace + 1);
-}
-exports.default = formattedData;
+},{}],"lvq8E":[function(require,module,exports) {
+module.exports["container"] = `YMCA-v40VSa-Room-module-container`;
+module.exports["devices"] = `YMCA-v40VSa-Room-module-devices`;
+module.exports["header"] = `YMCA-v40VSa-Room-module-header`;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3BoKy":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$cce4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$cce4.prelude(module);
+},{}],"dx3A3":[function(require,module,exports) {
+module.exports["container"] = `YMCA-ZdBa8G-Building-module-container`;
 
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _useDevice = require("./Hooks/useDevice");
-var _useDeviceDefault = parcelHelpers.interopDefault(_useDevice);
-var _s = $RefreshSig$();
-const Device = (props)=>{
-    _s();
-    const { currentValue: currentValue , isAlarm: isAlarm , reset: resetAlarm  } = (0, _useDeviceDefault.default)(props.device);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: props.device.name
-            }, void 0, false, {
-                fileName: "src/Components/Device.jsx",
-                lineNumber: 15,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: [
-                    "Nuvarande v\xe4rde: ",
-                    currentValue
-                ]
-            }, void 0, true, {
-                fileName: "src/Components/Device.jsx",
-                lineNumber: 16,
-                columnNumber: 13
-            }, undefined),
-            isAlarm && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onClick: resetAlarm,
-                children: "\xc5terst\xe4ll"
-            }, void 0, false, {
-                fileName: "src/Components/Device.jsx",
-                lineNumber: 17,
-                columnNumber: 25
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/Components/Device.jsx",
-        lineNumber: 14,
-        columnNumber: 9
-    }, undefined);
-};
-_s(Device, "fHXZDDoEcscq8SR8fBGSAUCsIkw=", false, function() {
-    return [
-        (0, _useDeviceDefault.default)
-    ];
-});
-_c = Device;
-exports.default = Device;
-var _c;
-$RefreshReg$(_c, "Device");
-
-  $parcel$ReactRefreshHelpers$cce4.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Hooks/useDevice":"hK3sQ"}],"hK3sQ":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$789e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$789e.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _signalRContext = require("../Contexts/SignalRContext");
-var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
-var _s = $RefreshSig$();
-const useDevice = (device)=>{
-    _s();
-    const [currentValue, setCurrentValue] = (0, _react.useState)("Inga v\xe4rden");
-    const [isAlarm, setIsAlarm] = (0, _react.useState)(false);
-    const [metricType, setMetricType] = (0, _react.useState)("");
-    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
-    const validateValue = (value)=>{
-        if (value > device.maxValue || value < device.minValue) setIsAlarm(true);
-    };
-    (0, _react.useEffect)(()=>{
-        device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
-    }, []);
-    (0, _react.useEffect)(()=>{
-        signalRContext.newTelemetry.filter((telemetry)=>{
-            if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
-                setCurrentValue(telemetry.value);
-                validateValue(telemetry.value);
-            }
-        });
-    }, [
-        signalRContext.newTelemetry
-    ]);
-    const resetAlarm = ()=>{
-        setIsAlarm(false);
-    };
-    return {
-        currentValue,
-        isError: isAlarm,
-        metricType,
-        resetAlarm
-    };
-};
-_s(useDevice, "v1AOrCwDYZvaZxWpuv8EnemRSIE=");
-exports.default = useDevice;
-
-  $parcel$ReactRefreshHelpers$789e.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","../Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","eeyqb","8lqZg"], "8lqZg", "parcelRequire2aa7")
+},{}]},["1xC6H","eeyqb","8lqZg"], "8lqZg", "parcelRequire2aa7")
 
 //# sourceMappingURL=index.910c4f71.js.map

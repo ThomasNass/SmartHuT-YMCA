@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { getUnit } from "../../js/script";
 import SignalRContext from "../Contexts/SignalRContext";
 
 const useDevice = (device) => {
     const [currentValue, setCurrentValue] = useState("Inga värden");
     const [isAlarm, setIsAlarm] = useState(false);
     const [metricType, setMetricType] = useState("");
+    const [unit, setUnit] = useState({});
 
     const signalRContext = useContext(SignalRContext);
 
@@ -18,6 +20,11 @@ const useDevice = (device) => {
         device.metricType == 1
             ? setMetricType("Temperatur")
             : setMetricType("Luftfuktighet");
+        
+        (async () => {
+            console.log(await getUnit(device.unitId));
+            setUnit(await getUnit(device.unitId));
+        })();
     }, []);
 
     useEffect(() => {
@@ -33,11 +40,17 @@ const useDevice = (device) => {
         setIsAlarm(false);
     };
 
+    const testAlarm = () => {
+        setIsAlarm(true);
+    };
+
     return {
         currentValue,
-        isAlarm: isAlarm
+        isAlarm: isAlarm,
         metricType,
         resetAlarm,
+        unit,
+        testAlarm
     };
 };
 
