@@ -54,6 +54,7 @@ const Connect = (props) => {
                 const id = msg.split(str).pop().trim().split(" ").shift();
                 setResetId(id);
                 console.log(id)
+                console.log(msg)
             });
 
             connection.start().catch(e => console.log('Connection failed: ', e));
@@ -63,7 +64,7 @@ const Connect = (props) => {
 
 
     return (
-        <div id="google_translate_element">
+        <div>
             {devices.map((device) =>
                 <MappedDevice device={device} resetId={resetId} key={device.tempId} telemetry={telemetry} />
             )}
