@@ -9,39 +9,31 @@ const Building = () => {
     useEffect(() => {
         (async () => {
             const devices = await getBuildingDevices();
-            const filteredRoom = createRooms(devices);
+            const filteredRoom = createRoomObjects(devices);
             setRooms(filteredRoom);
         })();
     }, []);
 
+    useEffect(() => {
+        console.log('Components')
+    }, [rooms]);
 
     const onAlarmChangeHandler = (roomName, isAlarm) => {
-        const tempRooms = rooms.map((room) => {
-            if (room.name === roomName) {
-                return { ...room, isAlarm: isAlarm };
-            }
-            return room;
+        setRooms((prevRooms) => {
+            return prevRooms
+                .map((room) => {
+                    if (room.name === roomName) {
+                        return { ...room, isAlarm: isAlarm };
+                    }
+                    return room;
+                })
+                .sort((a, b) =>
+                    b.isAlarm - a.isAlarm
+                )
         });
-        console.log("TempRooms ", tempRooms);
-        const tempSortedRooms = tempRooms.sort((a, b) => b.isAlarm - a.isAlarm);
-        console.log("TempSortedRooms ", tempSortedRooms);
-
-        setRooms(tempRooms);
-        // setRooms((prevRooms) => {
-        //     return prevRooms
-        //         .map((room) => {
-        //             if (room.name === roomName) {
-        //                 return { ...room, isAlarm: isAlarm };
-        //             }
-        //             return room;
-        //         })
-        //         .sort((a, b) =>
-        //             a.isAlarm - b.isAlarm
-        //         )
-        // });
     };
 
-    const createRooms = (devices) => {
+    const createRoomObjects = (devices) => {
         const tempRooms = [];
 
         devices.forEach((device) => {
@@ -66,7 +58,7 @@ const Building = () => {
                 devices: filteredDevices.map((device) => {
                     return { ...device, isAlarm: false };
                 }),
-                isAlarm: false,
+                isAlarm: false
             };
         });
     };
@@ -74,13 +66,13 @@ const Building = () => {
     return (
         <>
             <div className={styles.container}>
-                {rooms.length > 0 &&
-                    rooms.map((room, key) => {
+                {rooms.length > 1 &&
+                    rooms.map((room) => {
                         return (
                             <Room
                                 onAlarmChange={onAlarmChangeHandler}
                                 room={room}
-                                key={key}
+                                key={room.name}
                             />
                         );
                     })}

@@ -3,7 +3,6 @@ import Device from "./Device/Device";
 import * as styles from "./Room.module.css";
 
 const Room = (props) => {
-    const [alarmCounter, setAlarmCounter] = useState(0);
     const [room, setRoom] = useState({})
     const [devices, setDevices] = useState([]);
     const [isAlarm, setIsAlarm] = useState(false);
@@ -26,12 +25,7 @@ const Room = (props) => {
         setAlarmCounter(0);
         setDevices(props.room.devices);
         setRoom(props.room);
-        console.log('ok');
     }, []);
-
-    const checkIfAnyAlarm = () => {
-        devices.some((device) => device.isAlarm);
-    };
 
     const changeDeviceAlarmState = (deviceId, newIsAlarm) => {
         setDevices((prevDevices) =>
@@ -45,10 +39,6 @@ const Room = (props) => {
         );
 
     };
-
-    useEffect(() => {
-        console.log('larmetar ' + isAlarm);
-    }, [isAlarm]);
 
     return (
         <>

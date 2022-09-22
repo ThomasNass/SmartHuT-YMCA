@@ -2914,12 +2914,12 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signalRContext.SignalRContextProvider), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 11,
+            lineNumber: 12,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.js",
-        lineNumber: 10,
+        lineNumber: 11,
         columnNumber: 9
     }, undefined)
 }, void 0, false));
@@ -27105,12 +27105,12 @@ const App = ()=>{
                 children: "App Component"
             }, void 0, false, {
                 fileName: "src/App.jsx",
-                lineNumber: 8,
+                lineNumber: 9,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buildingDefault.default), {}, void 0, false, {
                 fileName: "src/App.jsx",
-                lineNumber: 9,
+                lineNumber: 10,
                 columnNumber: 13
             }, undefined)
         ]
@@ -27152,36 +27152,27 @@ const Building = ()=>{
     (0, _react.useEffect)(()=>{
         (async ()=>{
             const devices = await (0, _script.getBuildingDevices)();
-            const filteredRoom = createRooms(devices);
+            const filteredRoom = createRoomObjects(devices);
             setRooms(filteredRoom);
         })();
     }, []);
+    (0, _react.useEffect)(()=>{
+        console.log("Components");
+    }, [
+        rooms
+    ]);
     const onAlarmChangeHandler = (roomName, isAlarm)=>{
-        const tempRooms = rooms.map((room)=>{
-            if (room.name === roomName) return {
-                ...room,
-                isAlarm: isAlarm
-            };
-            return room;
+        setRooms((prevRooms)=>{
+            return prevRooms.map((room)=>{
+                if (room.name === roomName) return {
+                    ...room,
+                    isAlarm: isAlarm
+                };
+                return room;
+            }).sort((a, b)=>b.isAlarm - a.isAlarm);
         });
-        console.log("TempRooms ", tempRooms);
-        const tempSortedRooms = tempRooms.sort((a, b)=>b.isAlarm - a.isAlarm);
-        console.log("TempSortedRooms ", tempSortedRooms);
-        setRooms(tempRooms);
-    // setRooms((prevRooms) => {
-    //     return prevRooms
-    //         .map((room) => {
-    //             if (room.name === roomName) {
-    //                 return { ...room, isAlarm: isAlarm };
-    //             }
-    //             return room;
-    //         })
-    //         .sort((a, b) =>
-    //             a.isAlarm - b.isAlarm
-    //         )
-    // });
     };
-    const createRooms = (devices)=>{
+    const createRoomObjects = (devices)=>{
         const tempRooms = [];
         devices.forEach((device)=>{
             const roomName = device.name.substr(device.name.indexOf(" ") + 1);
@@ -27205,24 +27196,24 @@ const Building = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: _buildingModuleCss.container,
-            children: rooms.length > 0 && rooms.map((room, key)=>{
+            children: rooms.length > 1 && rooms.map((room)=>{
                 return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _roomDefault.default), {
                     onAlarmChange: onAlarmChangeHandler,
                     room: room
-                }, key, false, {
+                }, room.name, false, {
                     fileName: "src/Components/Building/Building.jsx",
-                    lineNumber: 80,
+                    lineNumber: 72,
                     columnNumber: 29
                 }, undefined);
             })
         }, void 0, false, {
             fileName: "src/Components/Building/Building.jsx",
-            lineNumber: 76,
+            lineNumber: 68,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
-_s(Building, "pVIe8tJm1V/hStRMkuwTtBQhqgo=");
+_s(Building, "maaZ5AaE3fd7snx/7wTE9rdhDNs=");
 _c = Building;
 exports.default = Building;
 var _c;
@@ -27447,7 +27438,6 @@ var _roomModuleCss = require("./Room.module.css");
 var _s = $RefreshSig$();
 const Room = (props)=>{
     _s();
-    const [alarmCounter, setAlarmCounter] = (0, _react.useState)(0);
     const [room, setRoom] = (0, _react.useState)({});
     const [devices, setDevices] = (0, _react.useState)([]);
     const [isAlarm, setIsAlarm] = (0, _react.useState)(false);
@@ -27470,11 +27460,7 @@ const Room = (props)=>{
         setAlarmCounter(0);
         setDevices(props.room.devices);
         setRoom(props.room);
-        console.log("ok");
     }, []);
-    const checkIfAnyAlarm = ()=>{
-        devices.some((device)=>device.isAlarm);
-    };
     const changeDeviceAlarmState = (deviceId, newIsAlarm)=>{
         setDevices((prevDevices)=>prevDevices.map((d)=>{
                 if (deviceId == d.id) return {
@@ -27484,11 +27470,6 @@ const Room = (props)=>{
                 return d;
             }));
     };
-    (0, _react.useEffect)(()=>{
-        console.log("larmetar " + isAlarm);
-    }, [
-        isAlarm
-    ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: _roomModuleCss.container,
@@ -27498,7 +27479,7 @@ const Room = (props)=>{
                     children: isAlarm ? `${props.room.name} LARM!` : `${props.room.name}`
                 }, void 0, false, {
                     fileName: "src/Components/Building/Room/Room.jsx",
-                    lineNumber: 56,
+                    lineNumber: 46,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27509,24 +27490,24 @@ const Room = (props)=>{
                             device: device
                         }, key, false, {
                             fileName: "src/Components/Building/Room/Room.jsx",
-                            lineNumber: 65,
+                            lineNumber: 55,
                             columnNumber: 33
                         }, undefined);
                     })
                 }, void 0, false, {
                     fileName: "src/Components/Building/Room/Room.jsx",
-                    lineNumber: 61,
+                    lineNumber: 51,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/Components/Building/Room/Room.jsx",
-            lineNumber: 55,
+            lineNumber: 45,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
-_s(Room, "qI/kxahDQzBXc2CpR/1lTrE5ss8=");
+_s(Room, "x1XoIETVbEJUVbqcuVKGcUSi7bs=");
 _c = Room;
 exports.default = Room;
 var _c;
@@ -27664,7 +27645,6 @@ const useDevice = (device)=>{
     };
     const testAlarm = ()=>{
         setIsAlarm(true);
-        console.log("nej");
     };
     return {
         currentValue,

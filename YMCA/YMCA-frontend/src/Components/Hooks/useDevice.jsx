@@ -43,7 +43,6 @@ const useDevice = (device) => {
 
     const testAlarm = () => {
         setIsAlarm(true);
-        console.log('nej');
     };
 
     return {
