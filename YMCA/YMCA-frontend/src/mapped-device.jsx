@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { restoreAlarm } from "./js/script.js";
+import { restoreAlarm, getAlarmLogs } from "./js/script.js";
 
 const MappedDevice = (props) => {
 
@@ -8,12 +8,21 @@ const MappedDevice = (props) => {
     const tempMax = props.device.tempMax;
     const humidityMax = props.device.humidityMax;
     const humidityMin = props.device.humidityMin;
-    const [tempTooLow, setTempTooLow] = useState(false)
-    const [tempTooHigh, setTempTooHigh] = useState(false)
-    const [humidityTooLow, setHumidityTooLow] = useState(false)
-    const [humidityTooHigh, setHumidityTooHigh] = useState(false)
-    const [tempValue, setTempValue] = useState(25)
-    const [humidityValue, setHumidityValue] = useState(30);
+    const [tempAlarm, setTempAlarm] = useState(false)
+    const [humidityAlarm, setHumidityAlarm] = useState(false)
+    const [tempValue, setTempValue] = useState()
+    const [humidityValue, setHumidityValue] = useState();
+
+    useEffect(() => {
+        (async () => {
+            const tempState = await getAlarmLogs(props.device.tempId);
+            setTempAlarm(tempState)
+            if (props.device.humidityId != undefined) {
+                const humidityState = await getAlarmLogs(props.device.humidityId);
+                setHumidityAlarm(humidityState)
+            }
+        })();
+    }, [])
 
     useEffect(() => {
         let deviceId = telemetry.deviceId
@@ -34,39 +43,26 @@ const MappedDevice = (props) => {
     }, [telemetry])
 
     function checkTemp() {
-        if (tempValue < tempMin) {
-            setTempTooLow(true)
+        if (tempValue < tempMin || tempMax < tempValue) {
+            setTempAlarm(true)
         }
 
-        if (tempValue > tempMax) {
-            setTempTooHigh(true)
+        if (humidityValue < humidityMin || humidityMax < humidityValue) {
+            setHumidityAlarm(true)
         }
 
-        if (humidityValue < humidityMin) {
-            setHumidityTooLow(true)
-        }
-
-        if (humidityValue > humidityMax) {
-            setHumidityTooHigh(true)
-        }
 
     }
 
     function onClick(e) {
         if (e.target.value == "temp") {
             restoreAlarm(props.device.tempId)
-            if (e.target.name == "high") {
-                setTempTooHigh(false)
-            }
-            else setTempTooLow(false)
+            setTempAlarm(false)
 
         }
         if (e.target.value == "humidity") {
             restoreAlarm(props.device.humidityId)
-            if (e.target.name == "high") {
-                setHumidityTooHigh(false)
-            }
-            else setHumidityTooLow(false)
+            setHumidityAlarm(false)
 
 
         }
@@ -75,12 +71,10 @@ const MappedDevice = (props) => {
 
     function resetAlarm(id) {
         if (id == props.device.tempId) {
-            setTempTooHigh(false)
-            setTempTooLow(false)
+            setTempAlarm(false)
         }
         if (id == props.device.humidityId) {
-            setHumidityTooHigh(false)
-            setHumidityTooLow(false)
+            setHumidityAlarm(false)
         }
     }
 
@@ -90,39 +84,23 @@ const MappedDevice = (props) => {
         <div className='device-data'>
             <div className='data-div'> <p>Temperatur</p>
                 <p>{tempValue}°C</p>
-                {(tempTooHigh) ?
-                    <div className='alert-div'>FÖR HÖGT
-                        <button className='alert-button' name="high" value={"temp"} onClick={onClick}> Återställ
-                        </button>
-                    </div>
-                    :
-                    null
-                }
-                {(tempTooLow) ?
-                    <div className='alert-div'>FÖR LÅGT
-                        <button className='alert-button' name="low" value={"temp"} onClick={onClick}>Återställ
+                {(tempAlarm) ?
+                    <div className='alert-div'>{(tempMax < tempValue) ? "FÖR HÖGT" : "FÖR LÅGT"}
+                        <button className='alert-button' value={"temp"} onClick={onClick}> Återställ
                         </button>
                     </div>
                     :
                     null
                 }
             </div>
-            {(humidityMax != undefined) ?
+            {(props.device.humidityId != undefined) ?
                 <>
                     <div className='data-div'>
                         <p>Luftfuktighet </p>
                         <p>{humidityValue}%</p>
-                        {(humidityTooHigh) ?
-                            <div className='alert-div'>FÖR HÖGT <button className='alert-button' value={"humidity"} name={"high"} onClick={onClick}> Återställ
+                        {(humidityAlarm) ?
+                            <div className='alert-div'>{(humidityMax < humidityValue) ? "FÖR HÖGT" : "FÖR LÅGT"}<button className='alert-button' value={"humidity"} name={"high"} onClick={onClick}> Återställ
                             </button>
-                            </div>
-                            :
-                            null
-                        }
-                        {(humidityTooLow)
-                            ?
-                            <div className='alert-div'>FÖR LÅGT
-                                <button className='alert-button' value={"humidity"} name={"low"} onClick={onClick}>Återställ</button>
                             </div>
                             :
                             null

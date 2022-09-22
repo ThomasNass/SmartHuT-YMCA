@@ -11,9 +11,7 @@ const Connect = (props) => {
     const [telemetry, setTelemetry] = useState([]);
     const [resetId, setResetId] = useState("")
     const devices = props.devices;
-    // const latestChat = useRef(null);
-
-    // latestChat.current = chat;
+    const [show, setShow] = useState(true)
 
     useEffect(() => {
         (async () => {
@@ -62,14 +60,19 @@ const Connect = (props) => {
     }, [connection]);
 
 
+    function flip() {
+        setShow(!show)
+    }
 
-    return (
-        <div>
+    return (<>
+        <div className={`${show ? "" : "content"}`}>
             {devices.map((device) =>
                 <MappedDevice device={device} resetId={resetId} key={device.tempId} telemetry={telemetry} />
             )}
             <Device telemetry={telemetry} />
         </div>
+        <button onClick={flip}> FLIP</button>
+    </>
     );
 };
 
