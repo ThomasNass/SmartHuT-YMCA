@@ -28,7 +28,7 @@ const MappedDevice = (props) => {
                 setHumidityValue(rounded)
             }
         }
-
+        resetAlarm(props.resetId);
         checkTemp();
 
     }, [telemetry])
@@ -71,6 +71,17 @@ const MappedDevice = (props) => {
 
         }
         checkTemp()
+    }
+
+    function resetAlarm(id) {
+        if (id == props.device.tempId) {
+            setTempTooHigh(false)
+            setTempTooLow(false)
+        }
+        if (id == props.device.humidityId) {
+            setHumidityTooHigh(false)
+            setHumidityTooLow(false)
+        }
     }
 
 

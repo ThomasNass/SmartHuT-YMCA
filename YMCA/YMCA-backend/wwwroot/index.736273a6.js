@@ -27112,6 +27112,7 @@ const App = ()=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _connectJsxDefault.default), {
+                id: "google_translate_element",
                 devices: devices
             }, void 0, false, {
                 fileName: "src/App.jsx",
@@ -27306,6 +27307,7 @@ const Connect = (props)=>{
     _s();
     const [connection, setConnection] = (0, _react.useState)(null);
     const [telemetry, setTelemetry] = (0, _react.useState)([]);
+    const [resetId, setResetId] = (0, _react.useState)("");
     const devices = props.devices;
     // const latestChat = useRef(null);
     // latestChat.current = chat;
@@ -27335,37 +27337,45 @@ const Connect = (props)=>{
             connection.on("newTelemetry", (newTelemetry)=>{
                 setTelemetry(...newTelemetry);
             });
-            connection.on("alarmNeutralized", (msg)=>console.log(msg));
+            //Alarm restored on device with id 
+            connection.on("alarmNeutralized", (msg)=>{
+                const str = "Alarm restored on device with id ";
+                const id = msg.split(str).pop().trim().split(" ").shift();
+                setResetId(id);
+                console.log(id);
+            });
             connection.start().catch((e)=>console.log("Connection failed: ", e));
         }
     }, [
         connection
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        id: "google_translate_element",
         children: [
             devices.map((device)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mappedDeviceJsxDefault.default), {
                     device: device,
+                    resetId: resetId,
                     telemetry: telemetry
-                }, void 0, false, {
+                }, device.tempId, false, {
                     fileName: "src/Connect.jsx",
-                    lineNumber: 61,
+                    lineNumber: 68,
                     columnNumber: 17
                 }, undefined)),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deviceJsxDefault.default), {
                 telemetry: telemetry
             }, void 0, false, {
                 fileName: "src/Connect.jsx",
-                lineNumber: 63,
+                lineNumber: 70,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/Connect.jsx",
-        lineNumber: 59,
+        lineNumber: 66,
         columnNumber: 9
     }, undefined);
 };
-_s(Connect, "OxrFosAlOnBh+XhRPaddY9Z1BS8=");
+_s(Connect, "bPsR+3KZbYCr130X0g9kykWkWB4=");
 _c = Connect;
 exports.default = Connect;
 var _c;
@@ -30159,6 +30169,7 @@ const MappedDevice = (props)=>{
                 setHumidityValue(rounded1);
             }
         }
+        resetAlarm(props.resetId);
         checkTemp();
     }, [
         telemetry
@@ -30182,6 +30193,16 @@ const MappedDevice = (props)=>{
         }
         checkTemp();
     }
+    function resetAlarm(id) {
+        if (id == props.device.tempId) {
+            setTempTooHigh(false);
+            setTempTooLow(false);
+        }
+        if (id == props.device.humidityId) {
+            setHumidityTooHigh(false);
+            setHumidityTooLow(false);
+        }
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "device",
         children: [
@@ -30189,7 +30210,7 @@ const MappedDevice = (props)=>{
                 children: props.device.name
             }, void 0, false, {
                 fileName: "src/mapped-device.jsx",
-                lineNumber: 78,
+                lineNumber: 89,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30203,7 +30224,7 @@ const MappedDevice = (props)=>{
                                 children: "Temperatur"
                             }, void 0, false, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 80,
+                                lineNumber: 91,
                                 columnNumber: 40
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -30213,7 +30234,7 @@ const MappedDevice = (props)=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 81,
+                                lineNumber: 92,
                                 columnNumber: 17
                             }, undefined),
                             tempTooHigh ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30228,13 +30249,13 @@ const MappedDevice = (props)=>{
                                         children: " \xc5terst\xe4ll"
                                     }, void 0, false, {
                                         fileName: "src/mapped-device.jsx",
-                                        lineNumber: 84,
+                                        lineNumber: 95,
                                         columnNumber: 25
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 83,
+                                lineNumber: 94,
                                 columnNumber: 21
                             }, undefined) : null,
                             tempTooLow ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30249,19 +30270,19 @@ const MappedDevice = (props)=>{
                                         children: "\xc5terst\xe4ll"
                                     }, void 0, false, {
                                         fileName: "src/mapped-device.jsx",
-                                        lineNumber: 92,
+                                        lineNumber: 103,
                                         columnNumber: 25
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/mapped-device.jsx",
-                                lineNumber: 91,
+                                lineNumber: 102,
                                 columnNumber: 21
                             }, undefined) : null
                         ]
                     }, void 0, true, {
                         fileName: "src/mapped-device.jsx",
-                        lineNumber: 80,
+                        lineNumber: 91,
                         columnNumber: 13
                     }, undefined),
                     humidityMax != undefined ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -30272,7 +30293,7 @@ const MappedDevice = (props)=>{
                                     children: "Luftfuktighet "
                                 }, void 0, false, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 113,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -30282,7 +30303,7 @@ const MappedDevice = (props)=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 103,
+                                    lineNumber: 114,
                                     columnNumber: 25
                                 }, undefined),
                                 humidityTooHigh ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30297,13 +30318,13 @@ const MappedDevice = (props)=>{
                                             children: " \xc5terst\xe4ll"
                                         }, void 0, false, {
                                             fileName: "src/mapped-device.jsx",
-                                            lineNumber: 105,
+                                            lineNumber: 116,
                                             columnNumber: 65
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 105,
+                                    lineNumber: 116,
                                     columnNumber: 29
                                 }, undefined) : null,
                                 humidityTooLow ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -30318,32 +30339,32 @@ const MappedDevice = (props)=>{
                                             children: "\xc5terst\xe4ll"
                                         }, void 0, false, {
                                             fileName: "src/mapped-device.jsx",
-                                            lineNumber: 114,
+                                            lineNumber: 125,
                                             columnNumber: 33
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/mapped-device.jsx",
-                                    lineNumber: 113,
+                                    lineNumber: 124,
                                     columnNumber: 29
                                 }, undefined) : null
                             ]
                         }, void 0, true, {
                             fileName: "src/mapped-device.jsx",
-                            lineNumber: 101,
+                            lineNumber: 112,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false) : null
                 ]
             }, void 0, true, {
                 fileName: "src/mapped-device.jsx",
-                lineNumber: 79,
+                lineNumber: 90,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/mapped-device.jsx",
-        lineNumber: 77,
+        lineNumber: 88,
         columnNumber: 12
     }, undefined);
 // return <div>

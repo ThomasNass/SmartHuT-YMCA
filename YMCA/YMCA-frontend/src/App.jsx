@@ -21,7 +21,7 @@ const App = () => {
     return (
         <>
             <h1 className={classes["header"]}>App Component</h1>
-            <Connect devices={devices} />
+            <Connect id="google_translate_element" devices={devices} />
 
         </>
     );

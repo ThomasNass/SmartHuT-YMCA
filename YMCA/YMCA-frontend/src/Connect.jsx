@@ -9,6 +9,7 @@ import MappedDevice from './mapped-device.jsx';
 const Connect = (props) => {
     const [connection, setConnection] = useState(null);
     const [telemetry, setTelemetry] = useState([]);
+    const [resetId, setResetId] = useState("")
     const devices = props.devices;
     // const latestChat = useRef(null);
 
@@ -47,18 +48,24 @@ const Connect = (props) => {
             connection.on('newTelemetry', newTelemetry => {
                 setTelemetry(...newTelemetry);
             });
-
-            connection.on("alarmNeutralized", (msg) => console.log(msg));
+            //Alarm restored on device with id 
+            connection.on("alarmNeutralized", (msg) => {
+                const str = "Alarm restored on device with id "
+                const id = msg.split(str).pop().trim().split(" ").shift();
+                setResetId(id);
+                console.log(id)
+            });
 
             connection.start().catch(e => console.log('Connection failed: ', e));
         }
     }, [connection]);
 
 
+
     return (
-        <div>
+        <div id="google_translate_element">
             {devices.map((device) =>
-                <MappedDevice device={device} telemetry={telemetry} />
+                <MappedDevice device={device} resetId={resetId} key={device.tempId} telemetry={telemetry} />
             )}
             <Device telemetry={telemetry} />
         </div>
