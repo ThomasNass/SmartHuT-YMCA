@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.YMCA-uEldNa-App-module-header {
+  text-align: center;
+  background-color: #ff0;
+  border: 2px solid #000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.YMCA-R7Uvjq-history-module-containerHistory {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  display: flex;
+}
+
+.YMCA-R7Uvjq-history-module-roomName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.YMCA-R7Uvjq-history-module-sensorType {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.YMCA-R7Uvjq-history-module-mainDivHistory {
+  width: 45%;
+  border-bottom: 2px solid;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+}
+
+.YMCA-R7Uvjq-history-module-headerDivHistory {
+  width: 100%;
+  border-radius: 25px;
+  justify-content: start;
+  align-items: center;
+  display: flex;
+}
+
+.YMCA-R7Uvjq-history-module-historyInfo {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  justify-items: start;
+  display: flex;
+}
+
+.YMCA-R7Uvjq-history-module-temperature, .YMCA-R7Uvjq-history-module-humidity {
+  flex-direction: column;
+  margin: 10px;
+  display: flex;
+}
+
+.YMCA-R7Uvjq-history-module-temperatureHeader, .YMCA-R7Uvjq-history-module-humidityHeader {
+  margin-bottom: 5px;
+}
+
+.YMCA-R7Uvjq-history-module-humidityDivHistory, .YMCA-R7Uvjq-history-module-temperatureDivHistory {
+  width: 100px;
+  flex-direction: column;
+  display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+  .YMCA-R7Uvjq-history-module-roomName {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .YMCA-R7Uvjq-history-module-sensorType {
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .YMCA-R7Uvjq-history-module-roomName {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .YMCA-R7Uvjq-history-module-sensorType {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .YMCA-R7Uvjq-history-module-mainDivHistory {
+    width: 80%;
+  }
+}
+
+/*# sourceMappingURL=index.82a9798e.css.map */
