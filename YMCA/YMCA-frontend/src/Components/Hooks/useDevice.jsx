@@ -21,20 +21,21 @@ const useDevice = (device) => {
             ? setMetricType("Temperatur")
             : setMetricType("Luftfuktighet");
         
+        setIsAlarm(device.isAlarm);
+        
         (async () => {
-            console.log(await getUnit(device.unitId));
             setUnit(await getUnit(device.unitId));
         })();
     }, []);
 
-    useEffect(() => {
-        signalRContext.newTelemetry.filter((telemetry) => {
-            if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
-                setCurrentValue(telemetry.value);
-                validateValue(telemetry.value);
-            }
-        });
-    }, [signalRContext.newTelemetry]);
+    // useEffect(() => {
+    //     signalRContext.newTelemetry.filter((telemetry) => {
+    //         if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
+    //             setCurrentValue(telemetry.value);
+    //             validateValue(telemetry.value);
+    //         }
+    //     });
+    // }, [signalRContext.newTelemetry]);
 
     const resetAlarm = () => {
         setIsAlarm(false);
@@ -42,6 +43,7 @@ const useDevice = (device) => {
 
     const testAlarm = () => {
         setIsAlarm(true);
+        console.log('nej');
     };
 
     return {

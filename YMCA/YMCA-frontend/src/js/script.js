@@ -24,9 +24,6 @@ export const getUnit = async (id) => {
 
         const response = await fetch("https://api.smarthut.se/Unit/", {headers});
         const data = await response.json();
-        console.log(data);
-
-
         return data.find((unit) => unit.id.toLowerCase() === id.toLowerCase());
     }
     catch (e) {
@@ -78,7 +75,7 @@ export const getAll = async () => {
     const building = await getBuilding(headers);
 
     const buildingWithDevices = await getDevicesBuilding(building.id, headers)
-    console.log(buildingWithDevices);
+
     return buildingWithDevices
 }
 

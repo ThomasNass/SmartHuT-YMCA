@@ -13,7 +13,7 @@ const Device = (props) => {
     } = useDevice(props.device);
 
     useEffect(() => {
-        props.onAlarmChange(isAlarm);
+        props.onAlarmChange(props.device.id, isAlarm);
     }, [isAlarm])
 
     return (

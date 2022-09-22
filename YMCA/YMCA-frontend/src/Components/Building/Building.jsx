@@ -9,27 +9,36 @@ const Building = () => {
     useEffect(() => {
         (async () => {
             const devices = await getBuildingDevices();
-            const filteredRoom = createRooms(devices).sort(
-                (a, b) => a.name - b.name
-            );
-            console.log(filteredRoom);
+            const filteredRoom = createRooms(devices);
             setRooms(filteredRoom);
         })();
     }, []);
 
-    const onAlarmChangeHandler = (room) => {
-        setRooms((prevRooms) => {
-            return prevRooms
-                .map((obj) => {
-                    if (obj.name === room.name) {
-                        return { ...obj, isAlarm: room.isAlarm };
-                    }
-                    return obj;
-                })
-                .sort((a, b) =>
-                    b.isAlarm - a.isAlarm
-                );;
+
+    const onAlarmChangeHandler = (roomName, isAlarm) => {
+        const tempRooms = rooms.map((room) => {
+            if (room.name === roomName) {
+                return { ...room, isAlarm: isAlarm };
+            }
+            return room;
         });
+        console.log("TempRooms ", tempRooms);
+        const tempSortedRooms = tempRooms.sort((a, b) => b.isAlarm - a.isAlarm);
+        console.log("TempSortedRooms ", tempSortedRooms);
+
+        setRooms(tempRooms);
+        // setRooms((prevRooms) => {
+        //     return prevRooms
+        //         .map((room) => {
+        //             if (room.name === roomName) {
+        //                 return { ...room, isAlarm: isAlarm };
+        //             }
+        //             return room;
+        //         })
+        //         .sort((a, b) =>
+        //             a.isAlarm - b.isAlarm
+        //         )
+        // });
     };
 
     const createRooms = (devices) => {
