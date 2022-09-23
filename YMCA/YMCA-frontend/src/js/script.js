@@ -100,6 +100,18 @@ export const getBuildingDevices = async () => {
     }
 }
 
+
+export const getAlarmLogs = async (id) => {
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    }
+
+    const response = await fetch(`https://api.smarthut.se/DeviceInfo/GetAlarmLogs/${id}`, { headers: headers })
+    const data = await response.json();
+    return data[0].state;
+}
+
 // SignalR
 
 const initializeSignalRConnection = async (accessToken, url) => {

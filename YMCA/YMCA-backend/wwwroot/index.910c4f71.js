@@ -27097,25 +27097,32 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _appModuleCss = require("./App.module.css");
 var _building = require("./Components/Building/Building");
 var _buildingDefault = parcelHelpers.interopDefault(_building);
+var _signalRContext = require("./Components/Contexts/SignalRContext");
+var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
+var _s = $RefreshSig$();
 const App = ()=>{
+    _s();
+    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
+    const header = signalRContext.alarmCount > 0 ? `Antal Larm: ${signalRContext.alarmCount}` : "Inga Larm";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 className: _appModuleCss["header"],
-                children: "App Component"
+                children: header
             }, void 0, false, {
                 fileName: "src/App.jsx",
-                lineNumber: 9,
+                lineNumber: 16,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buildingDefault.default), {}, void 0, false, {
                 fileName: "src/App.jsx",
-                lineNumber: 10,
+                lineNumber: 17,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true);
 };
+_s(App, "V+QJ9Wx2Y8/4xAWNcqjyXCYxN70=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27126,7 +27133,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","./Components/Building/Building":"jkbYy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"c4nSm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","./Components/Building/Building":"jkbYy","./Components/Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"c4nSm":[function(require,module,exports) {
 module.exports["header"] = `YMCA-uEldNa-App-module-header`;
 
 },{}],"jkbYy":[function(require,module,exports) {
@@ -27156,11 +27163,6 @@ const Building = ()=>{
             setRooms(filteredRoom);
         })();
     }, []);
-    (0, _react.useEffect)(()=>{
-        console.log("Components");
-    }, [
-        rooms
-    ]);
     const onAlarmChangeHandler = (roomName, isAlarm)=>{
         setRooms((prevRooms)=>{
             return prevRooms.map((room)=>{
@@ -27202,18 +27204,18 @@ const Building = ()=>{
                     room: room
                 }, room.name, false, {
                     fileName: "src/Components/Building/Building.jsx",
-                    lineNumber: 72,
+                    lineNumber: 68,
                     columnNumber: 29
                 }, undefined);
             })
         }, void 0, false, {
             fileName: "src/Components/Building/Building.jsx",
-            lineNumber: 68,
+            lineNumber: 64,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
-_s(Building, "maaZ5AaE3fd7snx/7wTE9rdhDNs=");
+_s(Building, "pVIe8tJm1V/hStRMkuwTtBQhqgo=");
 _c = Building;
 exports.default = Building;
 var _c;
@@ -27231,6 +27233,7 @@ parcelHelpers.export(exports, "getUser", ()=>getUser);
 parcelHelpers.export(exports, "getUnit", ()=>getUnit);
 parcelHelpers.export(exports, "getAll", ()=>getAll);
 parcelHelpers.export(exports, "getBuildingDevices", ()=>getBuildingDevices);
+parcelHelpers.export(exports, "getAlarmLogs", ()=>getAlarmLogs);
 var _sortDevicesByRoomJs = require("./sort-devices-by-room.js");
 var _sortDevicesByRoomJsDefault = parcelHelpers.interopDefault(_sortDevicesByRoomJs);
 const localHost = `${window.location.protocol}//${window.location.host}`;
@@ -27312,6 +27315,17 @@ const getBuildingDevices = async ()=>{
     } catch (e) {
         console.log(e);
     }
+};
+const getAlarmLogs = async (id)=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const response = await fetch(`https://api.smarthut.se/DeviceInfo/GetAlarmLogs/${id}`, {
+        headers: headers
+    });
+    const data = await response.json();
+    return data[0].state;
 };
 // SignalR
 const initializeSignalRConnection = async (accessToken, url)=>{
@@ -27457,7 +27471,6 @@ const Room = (props)=>{
     ]);
     (0, _react.useEffect)(()=>{
         setIsAlarm(room.isAlarm);
-        setAlarmCounter(0);
         setDevices(props.room.devices);
         setRoom(props.room);
     }, []);
@@ -27479,7 +27492,7 @@ const Room = (props)=>{
                     children: isAlarm ? `${props.room.name} LARM!` : `${props.room.name}`
                 }, void 0, false, {
                     fileName: "src/Components/Building/Room/Room.jsx",
-                    lineNumber: 46,
+                    lineNumber: 45,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27490,19 +27503,19 @@ const Room = (props)=>{
                             device: device
                         }, key, false, {
                             fileName: "src/Components/Building/Room/Room.jsx",
-                            lineNumber: 55,
+                            lineNumber: 54,
                             columnNumber: 33
                         }, undefined);
                     })
                 }, void 0, false, {
                     fileName: "src/Components/Building/Room/Room.jsx",
-                    lineNumber: 51,
+                    lineNumber: 50,
                     columnNumber: 17
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/Components/Building/Room/Room.jsx",
-            lineNumber: 45,
+            lineNumber: 44,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
@@ -27626,25 +27639,47 @@ const useDevice = (device)=>{
         if (value > device.maxValue || value < device.minValue) setIsAlarm(true);
     };
     (0, _react.useEffect)(()=>{
-        device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
-        setIsAlarm(device.isAlarm);
         (async ()=>{
-            setUnit(await (0, _script.getUnit)(device.unitId));
+            device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
+            const humidityState = await (0, _script.getAlarmLogs)(device.id);
+            setIsAlarm(humidityState);
+            signalRContext.addDevice(device);
+            (async ()=>{
+                setUnit(await (0, _script.getUnit)(device.unitId));
+            })();
         })();
     }, []);
-    // useEffect(() => {
-    //     signalRContext.newTelemetry.filter((telemetry) => {
-    //         if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
-    //             setCurrentValue(telemetry.value);
-    //             validateValue(telemetry.value);
-    //         }
-    //     });
-    // }, [signalRContext.newTelemetry]);
-    const resetAlarm = ()=>{
+    (0, _react.useEffect)(()=>{
+        signalRContext.newTelemetry.filter((telemetry)=>{
+            if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
+                setCurrentValue(Math.round(telemetry.value * 10) / 10);
+                validateValue(telemetry.value);
+            }
+        });
+    }, [
+        signalRContext.newTelemetry
+    ]);
+    const resetAlarm = async ()=>{
+        const response = await fetch("https://smarthut.azurewebsites.net/api/restorealarm", {
+            method: "POST",
+            body: JSON.stringify({
+                deviceId: device.id,
+                userName: "krki21cn@student.ju.se"
+            })
+        });
+        const data = response;
         setIsAlarm(false);
+        console.log(data);
+        return data;
     };
+    (0, _react.useEffect)(()=>{
+        device.id.toLowerCase() === signalRContext.resetId.toLowerCase() ? setIsAlarm(false) : isAlarm;
+    }, [
+        signalRContext.resetId
+    ]);
     const testAlarm = ()=>{
         setIsAlarm(true);
+        console.log(signalRContext.resetId);
     };
     return {
         currentValue,
@@ -27655,7 +27690,7 @@ const useDevice = (device)=>{
         testAlarm
     };
 };
-_s(useDevice, "FN3hbh0k/l2YDy4VLiYZh0VibLo=");
+_s(useDevice, "ubRH7TdpavwX1A0W1TSCoWvA55I=");
 exports.default = useDevice;
 
   $parcel$ReactRefreshHelpers$789e.postlude(module);
@@ -27680,12 +27715,25 @@ var _signalr = require("@microsoft/signalr");
 var _s = $RefreshSig$();
 const SignalRContext = /*#__PURE__*/ (0, _reactDefault.default).createContext({
     newTelemetry: [],
-    alarmNetralized: null
+    alarmNetralized: null,
+    addDevice: ()=>{},
+    alarmCount: 0,
+    resetId: null
 });
 const SignalRContextProvider = (props)=>{
     _s();
     const [newTelemetry, setNewTelemetry] = (0, _react.useState)([]);
     const [alarmNeutralized, setAlarmNeutralized] = (0, _react.useState)([]);
+    const [resetId, setResetId] = (0, _react.useState)("");
+    const [devices, setDevices] = (0, _react.useState)([]);
+    const [alarmCount, setAlarmCount] = (0, _react.useState)(0);
+    const addDevice = (newDevice)=>{
+        // Ny enhet läggs inte till ifall ID matchar en annan
+        setDevices((prevDevices)=>!prevDevices.some((d)=>d.id.toLowerCase() === newDevice.id.toLowerCase()) ? [
+                ...prevDevices,
+                newDevice
+            ] : prevDevices);
+    };
     const negotiate = async ()=>{
         const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
             headers: {
@@ -27697,49 +27745,48 @@ const SignalRContextProvider = (props)=>{
         return data;
     };
     (0, _react.useEffect)(()=>{
-    // (async () => {
-    //     let negotiation = null;
-    //     if (!localStorage.getItem("negotiation")) {
-    //         negotiation = await negotiate();
-    //     }
-    //     else {
-    //         negotiation = JSON.parse(localStorage.getItem("negotiation"));
-    //     }
-    //     const connection = new HubConnectionBuilder()
-    //         .withUrl(negotiation.url, {
-    //             accessTokenFactory: () => negotiation.accessToken,
-    //         })
-    //         .withAutomaticReconnect()
-    //         .configureLogging(LogLevel.Trace)
-    //         .build();
-    //     connection
-    //         .start()
-    //         .then(() => {
-    //             connection.on("newTelemetry", (newTelemetry) => {
-    //                 setNewTelemetry(newTelemetry);
-    //                 console.log(newTelemetry);
-    //             });
-    //             connection.on("alarmNeutralized", (msg) =>
-    //                 console.log(msg)
-    //             );
-    //         })
-    //         .catch((error) => console.error(error.toString()));
-    // })();
+        setAlarmCount(devices.filter((device)=>device.isAlarm).length);
+    }, [
+        devices
+    ]);
+    (0, _react.useEffect)(()=>{
+        (async ()=>{
+            let negotiation = null;
+            if (!localStorage.getItem("negotiation")) negotiation = await negotiate();
+            else negotiation = JSON.parse(localStorage.getItem("negotiation"));
+            const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(negotiation.url, {
+                accessTokenFactory: ()=>negotiation.accessToken
+            }).withAutomaticReconnect().configureLogging((0, _signalr.LogLevel).Trace).build();
+            connection.start().then(()=>{
+                connection.on("newTelemetry", (newTelemetry)=>{
+                    setNewTelemetry(newTelemetry);
+                    console.log(newTelemetry);
+                });
+                connection.on("alarmNeutralized", (msg)=>{
+                    const str = "Alarm restored on device with id ";
+                    const id = msg.split(str).pop().trim().split(" ").shift();
+                    setResetId(id);
+                });
+            }).catch((error)=>console.error(error.toString()));
+        })();
     }, []);
     const contextValue = {
         newTelemetry: newTelemetry,
-        alarmNetralized: alarmNeutralized
+        alarmNetralized: alarmNeutralized,
+        addDevice: addDevice,
+        alarmCount: alarmCount,
+        resetId: resetId
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SignalRContext.Provider, {
         value: contextValue,
         children: props.children
     }, void 0, false, {
         fileName: "src/Components/Contexts/SignalRContext.jsx",
-        lineNumber: 71,
+        lineNumber: 96,
         columnNumber: 9
     }, undefined);
 };
-_s(SignalRContextProvider, "ccjYoCe4JRWahD2bF0GQF/1lhVU=");
+_s(SignalRContextProvider, "Ab0OKx4TQ9m8g/aYlP5jPqdxvdk=");
 _c = SignalRContextProvider;
 exports.default = SignalRContext;
 var _c;
@@ -30426,9 +30473,9 @@ function registerExportsForReactRefresh(module1) {
 },{"react-refresh/runtime":"786KC"}],"6zCwq":[function(require,module,exports) {
 
 },{}],"lvq8E":[function(require,module,exports) {
-module.exports["devices"] = `YMCA-v40VSa-Room-module-devices`;
 module.exports["container"] = `YMCA-v40VSa-Room-module-container`;
 module.exports["header"] = `YMCA-v40VSa-Room-module-header`;
+module.exports["devices"] = `YMCA-v40VSa-Room-module-devices`;
 
 },{}],"dx3A3":[function(require,module,exports) {
 module.exports["container"] = `YMCA-ZdBa8G-Building-module-container`;

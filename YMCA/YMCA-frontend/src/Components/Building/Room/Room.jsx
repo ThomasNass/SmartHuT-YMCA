@@ -22,7 +22,6 @@ const Room = (props) => {
 
     useEffect(() => {
         setIsAlarm(room.isAlarm);
-        setAlarmCounter(0);
         setDevices(props.room.devices);
         setRoom(props.room);
     }, []);

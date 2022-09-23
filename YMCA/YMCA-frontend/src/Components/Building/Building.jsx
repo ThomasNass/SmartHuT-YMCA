@@ -14,10 +14,6 @@ const Building = () => {
         })();
     }, []);
 
-    useEffect(() => {
-        console.log('Components')
-    }, [rooms]);
-
     const onAlarmChangeHandler = (roomName, isAlarm) => {
         setRooms((prevRooms) => {
             return prevRooms
