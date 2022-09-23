@@ -1,0 +1,14 @@
+.container {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+}
+
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

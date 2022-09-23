@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import * as classes from "./App.module.css";
 import Navbar from "./navbar.jsx"
 import Head from "./Head.jsx";
 
+import Building from "./Components/Building/Building";
+import SignalRContext from "./Components/Contexts/SignalRContext";
 
+const App = () => {
+    const signalRContext = useContext(SignalRContext);
 
-const App = (props) => {
-    console.log(classes);
-  
+    const header =
+        signalRContext.alarmCount > 0
+            ? `Antal Larm: ${signalRContext.alarmCount}`
+            : "Inga Larm";
 
     return (
-        <Navbar>
-           <Head title= "Inga Larm"/>
-        </Navbar>
+        <>
+            <h1 className={classes["header"]}>{header}</h1>
+            <Building />
+        </>
+
     );
 };
 
