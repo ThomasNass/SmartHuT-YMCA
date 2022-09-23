@@ -42,8 +42,6 @@
                 if (Object.keys(temp2[i]).length > Object.keys(temp2[j]).length) {
                     temp2.splice(j, 1);
                 }
-
-
             }
         }
     }

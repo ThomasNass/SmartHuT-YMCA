@@ -9,7 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\js\script.js" />
+    <Compile Remove="wwwroot\js\**" />
+    <Content Remove="wwwroot\js\**" />
+    <EmbeddedResource Remove="wwwroot\js\**" />
+    <None Remove="wwwroot\js\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,9 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\signalr\dist\browser\signalr.js" />
-    <None Include="wwwroot\js\signalr\dist\browser\signalr.js.map" />
-    <None Include="wwwroot\js\signalr\dist\browser\signalr.min.js" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

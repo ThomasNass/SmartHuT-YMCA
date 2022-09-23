@@ -9,4 +9,26 @@
   border: 2px solid #000;
 }
 
+
+
+.YMCA-v40VSa-Room-module-container {
+  border: 2px solid #000;
+  flex-direction: column;
+  display: flex;
+}
+
+.YMCA-v40VSa-Room-module-header {
+  text-align: center;
+}
+
+.YMCA-v40VSa-Room-module-devices {
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+}
+
+.YMCA-ZdBa8G-Building-module-container {
+  grid-auto-rows: minmax(100px, auto);
+  display: grid;
+}
+
 /*# sourceMappingURL=index.584caf71.css.map */

@@ -2,7 +2,7 @@
 
 const localHost = `${window.location.protocol}//${window.location.host}`;
 
-const getUser = async () => {
+export const getUser = async () => {
     try {
         const response = await fetch(`${localHost}/User`);
         const data = await response.json();
@@ -14,11 +14,28 @@ const getUser = async () => {
     }
 }
 
+export const getUnit = async (id) => {
+    try {
+        const token = await getToken();
+
+        const headers = {
+            "Authorization": `Bearer ${token}`
+        }
+
+        const response = await fetch("https://api.smarthut.se/Unit/", {headers});
+        const data = await response.json();
+        return data.find((unit) => unit.id.toLowerCase() === id.toLowerCase());
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
+
 const getBuilding = async (headers) => {
     try {
         let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", { headers: headers });
         let data = await response.json();
-        console.log(data);
+
         return data;
     }
     catch (e) {
@@ -49,7 +66,7 @@ const getDevicesBuilding = async (id, headers) => {
     }
 }
 
-const getAll = async () => {
+export const getAll = async () => {
     const token = await getToken();
 
     const headers = {
@@ -59,14 +76,41 @@ const getAll = async () => {
 
     const buildingWithDevices = await getDevicesBuilding(building.id, headers)
 
-    const sorted = formattedData(buildingWithDevices);
-
-    console.log(sorted)
-    console.log(buildingWithDevices)
-
+    return buildingWithDevices
 }
 
-getAll();
+export const getBuildingDevices = async () => {
+    const token = await getToken();
+
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    }
+
+    const building = await getBuilding(headers);
+
+    try {
+
+        let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, { headers });
+        let data = await response.json();
+
+        return data;
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
+
+export const getAlarmLogs = async (id) => {
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    }
+
+    const response = await fetch(`https://api.smarthut.se/DeviceInfo/GetAlarmLogs/${id}`, { headers: headers })
+    const data = await response.json();
+    return data[0].state;
+}
 
 // SignalR
 
@@ -107,5 +151,3 @@ const startSignalR = async () => {
 
     connection.start().catch((error) => console.error(error.toString()));
 }
-
-startSignalR();

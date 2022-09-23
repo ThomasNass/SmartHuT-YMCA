@@ -2907,20 +2907,29 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _app = require("./App");
 var _appDefault = parcelHelpers.interopDefault(_app);
+var _signalRContext = require("./Components/Contexts/SignalRContext");
 const container = document.getElementById("root");
 const root = (0, _clientDefault.default).createRoot(container);
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
-    fileName: "src/index.js",
-    lineNumber: 8,
-    columnNumber: 5
-}, undefined));
+root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signalRContext.SignalRContextProvider), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
+            fileName: "src/index.js",
+            lineNumber: 12,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/index.js",
+        lineNumber: 11,
+        columnNumber: 9
+    }, undefined)
+}, void 0, false));
 
   $parcel$ReactRefreshHelpers$20e5.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react":"21dqq","./App":"e9Zfo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react":"21dqq","./App":"e9Zfo","./Components/Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
 
@@ -27086,17 +27095,34 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _appModuleCss = require("./App.module.css");
+var _building = require("./Components/Building/Building");
+var _buildingDefault = parcelHelpers.interopDefault(_building);
+var _signalRContext = require("./Components/Contexts/SignalRContext");
+var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
+var _s = $RefreshSig$();
 const App = ()=>{
-    console.log(_appModuleCss);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-        className: _appModuleCss["header"],
-        children: "App Component"
-    }, void 0, false, {
-        fileName: "src/App.jsx",
-        lineNumber: 7,
-        columnNumber: 9
-    }, undefined);
+    _s();
+    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
+    const header = signalRContext.alarmCount > 0 ? `Antal Larm: ${signalRContext.alarmCount}` : "Inga Larm";
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                className: _appModuleCss["header"],
+                children: header
+            }, void 0, false, {
+                fileName: "src/App.jsx",
+                lineNumber: 16,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buildingDefault.default), {}, void 0, false, {
+                fileName: "src/App.jsx",
+                lineNumber: 17,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true);
 };
+_s(App, "V+QJ9Wx2Y8/4xAWNcqjyXCYxN70=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27107,10 +27133,278 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"c4nSm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./App.module.css":"c4nSm","./Components/Building/Building":"jkbYy","./Components/Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"c4nSm":[function(require,module,exports) {
 module.exports["header"] = `YMCA-uEldNa-App-module-header`;
 
-},{}],"gkKU3":[function(require,module,exports) {
+},{}],"jkbYy":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$46eb = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$46eb.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _script = require("../../js/script");
+var _room = require("./Room/Room");
+var _roomDefault = parcelHelpers.interopDefault(_room);
+var _buildingModuleCss = require("./Building.module.css");
+var _s = $RefreshSig$();
+const Building = ()=>{
+    _s();
+    const [rooms, setRooms] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        (async ()=>{
+            const devices = await (0, _script.getBuildingDevices)();
+            const filteredRoom = createRoomObjects(devices);
+            setRooms(filteredRoom);
+        })();
+    }, []);
+    const onAlarmChangeHandler = (roomName, isAlarm)=>{
+        setRooms((prevRooms)=>{
+            return prevRooms.map((room)=>{
+                if (room.name === roomName) return {
+                    ...room,
+                    isAlarm: isAlarm
+                };
+                return room;
+            }).sort((a, b)=>b.isAlarm - a.isAlarm);
+        });
+    };
+    const createRoomObjects = (devices)=>{
+        const tempRooms = [];
+        devices.forEach((device)=>{
+            const roomName = device.name.substr(device.name.indexOf(" ") + 1);
+            tempRooms.some((obj)=>obj.name.includes(roomName)) || tempRooms.push(device);
+        });
+        return tempRooms.map((tempRoom)=>{
+            const roomName = tempRoom.name.substr(tempRoom.name.indexOf(" ") + 1);
+            const filteredDevices = devices.filter((device)=>device.name.includes(roomName)).sort((a, b)=>a.name - b.name);
+            return {
+                name: roomName,
+                devices: filteredDevices.map((device)=>{
+                    return {
+                        ...device,
+                        isAlarm: false
+                    };
+                }),
+                isAlarm: false
+            };
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: _buildingModuleCss.container,
+            children: rooms.length > 1 && rooms.map((room)=>{
+                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _roomDefault.default), {
+                    onAlarmChange: onAlarmChangeHandler,
+                    room: room
+                }, room.name, false, {
+                    fileName: "src/Components/Building/Building.jsx",
+                    lineNumber: 68,
+                    columnNumber: 29
+                }, undefined);
+            })
+        }, void 0, false, {
+            fileName: "src/Components/Building/Building.jsx",
+            lineNumber: 64,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false);
+};
+_s(Building, "pVIe8tJm1V/hStRMkuwTtBQhqgo=");
+_c = Building;
+exports.default = Building;
+var _c;
+$RefreshReg$(_c, "Building");
+
+  $parcel$ReactRefreshHelpers$46eb.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../js/script":"dV6cC","./Room/Room":"k8kVt","./Building.module.css":"dx3A3","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dV6cC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getUser", ()=>getUser);
+parcelHelpers.export(exports, "getUnit", ()=>getUnit);
+parcelHelpers.export(exports, "getAll", ()=>getAll);
+parcelHelpers.export(exports, "getBuildingDevices", ()=>getBuildingDevices);
+parcelHelpers.export(exports, "getAlarmLogs", ()=>getAlarmLogs);
+var _sortDevicesByRoomJs = require("./sort-devices-by-room.js");
+var _sortDevicesByRoomJsDefault = parcelHelpers.interopDefault(_sortDevicesByRoomJs);
+const localHost = `${window.location.protocol}//${window.location.host}`;
+const getUser = async ()=>{
+    try {
+        const response = await fetch(`${localHost}/User`);
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+};
+const getUnit = async (id)=>{
+    try {
+        const token = await getToken();
+        const headers = {
+            "Authorization": `Bearer ${token}`
+        };
+        const response = await fetch("https://api.smarthut.se/Unit/", {
+            headers
+        });
+        const data = await response.json();
+        return data.find((unit)=>unit.id.toLowerCase() === id.toLowerCase());
+    } catch (e) {
+        console.error(e);
+    }
+};
+const getBuilding = async (headers)=>{
+    try {
+        let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", {
+            headers: headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getToken = async ()=>{
+    try {
+        let user = await getUser();
+        return user.token;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getDevicesBuilding = async (id, headers)=>{
+    try {
+        let response = await fetch(`https://api.smarthut.se/buildinginfo/${id}/true`, {
+            headers: headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getAll = async ()=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const building = await getBuilding(headers);
+    const buildingWithDevices = await getDevicesBuilding(building.id, headers);
+    return buildingWithDevices;
+};
+const getBuildingDevices = async ()=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const building = await getBuilding(headers);
+    try {
+        let response = await fetch(`https://api.smarthut.se/DeviceInfo/GetBuildingDevices/${building.id}`, {
+            headers
+        });
+        let data = await response.json();
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+const getAlarmLogs = async (id)=>{
+    const token = await getToken();
+    const headers = {
+        "Authorization": `Bearer ${token}`
+    };
+    const response = await fetch(`https://api.smarthut.se/DeviceInfo/GetAlarmLogs/${id}`, {
+        headers: headers
+    });
+    const data = await response.json();
+    return data[0].state;
+};
+// SignalR
+const initializeSignalRConnection = async (accessToken, url)=>{
+    const connection = new signalR.HubConnectionBuilder().withUrl(url, {
+        accessTokenFactory: ()=>accessToken
+    }).configureLogging(signalR.LogLevel.Trace).build();
+    return connection;
+};
+const negotiate = async ()=>{
+    const user = await getUser();
+    const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
+        headers: {
+            "X-MS-SIGNALR-USERID": user.email
+        }
+    }).catch((error)=>console.log(error));
+    const data = await response.json();
+    return data;
+};
+const startSignalR = async ()=>{
+    const { accessToken , url  } = await negotiate();
+    const connection = await initializeSignalRConnection(accessToken, url);
+    connection.on("newTelemetry", (array)=>console.log(array));
+    connection.on("alarmNeutralized", (msg)=>console.log(msg));
+    connection.start().catch((error)=>console.error(error.toString()));
+};
+
+},{"./sort-devices-by-room.js":"2J6dx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2J6dx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//data ska vara datan som kommer ifrån anropet till smarthut/buildingInfo/id
+//import data from "../data.json";
+const formattedData = (data)=>{
+    let tempArray = [];
+    data.devices.forEach((device)=>{
+        //Skapar nya objekt där namnet är utan temp/humidity samt att min/max har ändrats så att de är specifika för metrictype så att de senare kan slås samman
+        let newDevice = {};
+        if (device.metricType == 1) {
+            newDevice.tempMin = device.minValue;
+            newDevice.tempMax = device.maxValue;
+            newDevice.tempId = device.id;
+        }
+        if (device.metricType == 2) {
+            newDevice.humidityMin = device.minValue;
+            newDevice.humidityMax = device.maxValue;
+            newDevice.humidityId = device.id;
+        }
+        newDevice.name = removeFirstWord(device.name);
+        tempArray.push(newDevice);
+    });
+    //här slås objekten samman i arrayen
+    let temp2 = [];
+    for(let i = 0; i < tempArray.length; i++){
+        for(let j = tempArray.length - 1; 0 < j; j--)if (tempArray[i].name == tempArray[j].name) {
+            let obj = {
+                ...tempArray[i],
+                ...tempArray[j]
+            };
+            temp2.push(obj);
+            break;
+        }
+    }
+    //Här filtreras dubbletter bort
+    for(let i1 = 0; i1 < temp2.length; i1++)for(let j1 = temp2.length - 1; 0 < j1; j1--){
+        if (temp2[i1].name == temp2[j1].name) {
+            if (Object.keys(temp2[i1]).length > Object.keys(temp2[j1]).length) temp2.splice(j1, 1);
+        }
+    }
+    console.log(temp2);
+    return temp2;
+};
+//tar bort första ordet i namnet; dvs temperature/humidity
+function removeFirstWord(str) {
+    const indexOfSpace = str.indexOf(" ");
+    if (indexOfSpace === -1) return "";
+    return str.substring(indexOfSpace + 1);
+}
+exports.default = formattedData;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27140,7 +27434,2923 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"km3Ru":[function(require,module,exports) {
+},{}],"k8kVt":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$fde0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$fde0.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _device = require("./Device/Device");
+var _deviceDefault = parcelHelpers.interopDefault(_device);
+var _roomModuleCss = require("./Room.module.css");
+var _s = $RefreshSig$();
+const Room = (props)=>{
+    _s();
+    const [room, setRoom] = (0, _react.useState)({});
+    const [devices, setDevices] = (0, _react.useState)([]);
+    const [isAlarm, setIsAlarm] = (0, _react.useState)(false);
+    const onAlarmChangeHandler = (deviceId, isAlarm)=>{
+        changeDeviceAlarmState(deviceId, isAlarm);
+        setIsAlarm(devices.some((device)=>device.isAlarm));
+    };
+    (0, _react.useEffect)(()=>{
+        props.onAlarmChange(room.name, isAlarm);
+    }, [
+        isAlarm
+    ]);
+    (0, _react.useEffect)(()=>{
+        setIsAlarm(devices.some((device)=>device.isAlarm));
+    }, [
+        devices
+    ]);
+    (0, _react.useEffect)(()=>{
+        setIsAlarm(room.isAlarm);
+        setDevices(props.room.devices);
+        setRoom(props.room);
+    }, []);
+    const changeDeviceAlarmState = (deviceId, newIsAlarm)=>{
+        setDevices((prevDevices)=>prevDevices.map((d)=>{
+                if (deviceId == d.id) return {
+                    ...d,
+                    isAlarm: newIsAlarm
+                };
+                return d;
+            }));
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: _roomModuleCss.container,
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    className: _roomModuleCss.header,
+                    children: isAlarm ? `${props.room.name} LARM!` : `${props.room.name}`
+                }, void 0, false, {
+                    fileName: "src/Components/Building/Room/Room.jsx",
+                    lineNumber: 45,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: _roomModuleCss.devices,
+                    children: props.room && devices.map((device, key)=>{
+                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deviceDefault.default), {
+                            onAlarmChange: onAlarmChangeHandler,
+                            device: device
+                        }, key, false, {
+                            fileName: "src/Components/Building/Room/Room.jsx",
+                            lineNumber: 54,
+                            columnNumber: 33
+                        }, undefined);
+                    })
+                }, void 0, false, {
+                    fileName: "src/Components/Building/Room/Room.jsx",
+                    lineNumber: 50,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/Components/Building/Room/Room.jsx",
+            lineNumber: 44,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false);
+};
+_s(Room, "x1XoIETVbEJUVbqcuVKGcUSi7bs=");
+_c = Room;
+exports.default = Room;
+var _c;
+$RefreshReg$(_c, "Room");
+
+  $parcel$ReactRefreshHelpers$fde0.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Device/Device":"gVY4v","./Room.module.css":"lvq8E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gVY4v":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$778a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$778a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _useDevice = require("../../../Hooks/useDevice");
+var _useDeviceDefault = parcelHelpers.interopDefault(_useDevice);
+var _deviceModuleCss = require("./Device.module.css");
+var _s = $RefreshSig$();
+const Device = (props)=>{
+    _s();
+    const { currentValue: currentValue , isAlarm: isAlarm , resetAlarm: resetAlarm , metricType , unit , testAlarm ,  } = (0, _useDeviceDefault.default)(props.device);
+    (0, _react.useEffect)(()=>{
+        props.onAlarmChange(props.device.id, isAlarm);
+    }, [
+        isAlarm
+    ]);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: metricType
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 21,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "Nuvarande v\xe4rde: ",
+                    currentValue,
+                    unit.unit
+                ]
+            }, void 0, true, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 22,
+                columnNumber: 13
+            }, undefined),
+            isAlarm && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: resetAlarm,
+                children: "\xc5terst\xe4ll"
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 26,
+                columnNumber: 25
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: testAlarm,
+                children: "Testa larm"
+            }, void 0, false, {
+                fileName: "src/Components/Building/Room/Device/Device.jsx",
+                lineNumber: 27,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/Components/Building/Room/Device/Device.jsx",
+        lineNumber: 20,
+        columnNumber: 9
+    }, undefined);
+};
+_s(Device, "dXYITqRlM3R+RtEMmU9FgHnDPJQ=", false, function() {
+    return [
+        (0, _useDeviceDefault.default)
+    ];
+});
+_c = Device;
+exports.default = Device;
+var _c;
+$RefreshReg$(_c, "Device");
+
+  $parcel$ReactRefreshHelpers$778a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../Hooks/useDevice":"hK3sQ","./Device.module.css":"6zCwq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hK3sQ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$789e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$789e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _script = require("../../js/script");
+var _signalRContext = require("../Contexts/SignalRContext");
+var _signalRContextDefault = parcelHelpers.interopDefault(_signalRContext);
+var _s = $RefreshSig$();
+const useDevice = (device)=>{
+    _s();
+    const [currentValue, setCurrentValue] = (0, _react.useState)("Inga v\xe4rden");
+    const [isAlarm, setIsAlarm] = (0, _react.useState)(false);
+    const [metricType, setMetricType] = (0, _react.useState)("");
+    const [unit, setUnit] = (0, _react.useState)({});
+    const signalRContext = (0, _react.useContext)((0, _signalRContextDefault.default));
+    const validateValue = (value)=>{
+        if (value > device.maxValue || value < device.minValue) setIsAlarm(true);
+    };
+    (0, _react.useEffect)(()=>{
+        (async ()=>{
+            device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
+            const humidityState = await (0, _script.getAlarmLogs)(device.id);
+            setIsAlarm(humidityState);
+            signalRContext.addDevice(device);
+            (async ()=>{
+                setUnit(await (0, _script.getUnit)(device.unitId));
+            })();
+        })();
+    }, []);
+    (0, _react.useEffect)(()=>{
+        signalRContext.newTelemetry.filter((telemetry)=>{
+            if (telemetry.deviceId.toLowerCase() == device.id.toLowerCase()) {
+                setCurrentValue(Math.round(telemetry.value * 10) / 10);
+                validateValue(telemetry.value);
+            }
+        });
+    }, [
+        signalRContext.newTelemetry
+    ]);
+    const resetAlarm = async ()=>{
+        const response = await fetch("https://smarthut.azurewebsites.net/api/restorealarm", {
+            method: "POST",
+            body: JSON.stringify({
+                deviceId: device.id,
+                userName: "krki21cn@student.ju.se"
+            })
+        });
+        const data = response;
+        setIsAlarm(false);
+        console.log(data);
+        return data;
+    };
+    (0, _react.useEffect)(()=>{
+        device.id.toLowerCase() === signalRContext.resetId.toLowerCase() ? setIsAlarm(false) : isAlarm;
+    }, [
+        signalRContext.resetId
+    ]);
+    const testAlarm = ()=>{
+        setIsAlarm(true);
+        console.log(signalRContext.resetId);
+    };
+    return {
+        currentValue,
+        isAlarm: isAlarm,
+        metricType,
+        resetAlarm,
+        unit,
+        testAlarm
+    };
+};
+_s(useDevice, "ubRH7TdpavwX1A0W1TSCoWvA55I=");
+exports.default = useDevice;
+
+  $parcel$ReactRefreshHelpers$789e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","../../js/script":"dV6cC","../Contexts/SignalRContext":"iLTUn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iLTUn":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$bcf4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$bcf4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SignalRContextProvider", ()=>SignalRContextProvider);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _signalr = require("@microsoft/signalr");
+var _s = $RefreshSig$();
+const SignalRContext = /*#__PURE__*/ (0, _reactDefault.default).createContext({
+    newTelemetry: [],
+    alarmNetralized: null,
+    addDevice: ()=>{},
+    alarmCount: 0,
+    resetId: null
+});
+const SignalRContextProvider = (props)=>{
+    _s();
+    const [newTelemetry, setNewTelemetry] = (0, _react.useState)([]);
+    const [alarmNeutralized, setAlarmNeutralized] = (0, _react.useState)([]);
+    const [resetId, setResetId] = (0, _react.useState)("");
+    const [devices, setDevices] = (0, _react.useState)([]);
+    const [alarmCount, setAlarmCount] = (0, _react.useState)(0);
+    const addDevice = (newDevice)=>{
+        // Ny enhet läggs inte till ifall ID matchar en annan
+        setDevices((prevDevices)=>!prevDevices.some((d)=>d.id.toLowerCase() === newDevice.id.toLowerCase()) ? [
+                ...prevDevices,
+                newDevice
+            ] : prevDevices);
+    };
+    const negotiate = async ()=>{
+        const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
+            headers: {
+                "X-MS-SIGNALR-USERID": "krki21cn@student.ju.se"
+            }
+        }).catch((error)=>console.log(error)); // Bör göra en respons till användaren också
+        const data = await response.json();
+        localStorage.setItem("negotiation", JSON.stringify(data));
+        return data;
+    };
+    (0, _react.useEffect)(()=>{
+        setAlarmCount(devices.filter((device)=>device.isAlarm).length);
+    }, [
+        devices
+    ]);
+    (0, _react.useEffect)(()=>{
+        (async ()=>{
+            let negotiation = null;
+            if (!localStorage.getItem("negotiation")) negotiation = await negotiate();
+            else negotiation = JSON.parse(localStorage.getItem("negotiation"));
+            const connection = new (0, _signalr.HubConnectionBuilder)().withUrl(negotiation.url, {
+                accessTokenFactory: ()=>negotiation.accessToken
+            }).withAutomaticReconnect().configureLogging((0, _signalr.LogLevel).Trace).build();
+            connection.start().then(()=>{
+                connection.on("newTelemetry", (newTelemetry)=>{
+                    setNewTelemetry(newTelemetry);
+                    console.log(newTelemetry);
+                });
+                connection.on("alarmNeutralized", (msg)=>{
+                    const str = "Alarm restored on device with id ";
+                    const id = msg.split(str).pop().trim().split(" ").shift();
+                    setResetId(id);
+                });
+            }).catch((error)=>console.error(error.toString()));
+        })();
+    }, []);
+    const contextValue = {
+        newTelemetry: newTelemetry,
+        alarmNetralized: alarmNeutralized,
+        addDevice: addDevice,
+        alarmCount: alarmCount,
+        resetId: resetId
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SignalRContext.Provider, {
+        value: contextValue,
+        children: props.children
+    }, void 0, false, {
+        fileName: "src/Components/Contexts/SignalRContext.jsx",
+        lineNumber: 96,
+        columnNumber: 9
+    }, undefined);
+};
+_s(SignalRContextProvider, "Ab0OKx4TQ9m8g/aYlP5jPqdxvdk=");
+_c = SignalRContextProvider;
+exports.default = SignalRContext;
+var _c;
+$RefreshReg$(_c, "SignalRContextProvider");
+
+  $parcel$ReactRefreshHelpers$bcf4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@microsoft/signalr":"dkPt0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dkPt0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+parcelHelpers.export(exports, "AbortError", ()=>(0, _errors.AbortError));
+parcelHelpers.export(exports, "HttpError", ()=>(0, _errors.HttpError));
+parcelHelpers.export(exports, "TimeoutError", ()=>(0, _errors.TimeoutError));
+parcelHelpers.export(exports, "HttpClient", ()=>(0, _httpClient.HttpClient));
+parcelHelpers.export(exports, "HttpResponse", ()=>(0, _httpClient.HttpResponse));
+parcelHelpers.export(exports, "DefaultHttpClient", ()=>(0, _defaultHttpClient.DefaultHttpClient));
+parcelHelpers.export(exports, "HubConnection", ()=>(0, _hubConnection.HubConnection));
+parcelHelpers.export(exports, "HubConnectionState", ()=>(0, _hubConnection.HubConnectionState));
+parcelHelpers.export(exports, "HubConnectionBuilder", ()=>(0, _hubConnectionBuilder.HubConnectionBuilder));
+parcelHelpers.export(exports, "MessageType", ()=>(0, _ihubProtocol.MessageType));
+parcelHelpers.export(exports, "LogLevel", ()=>(0, _ilogger.LogLevel));
+parcelHelpers.export(exports, "HttpTransportType", ()=>(0, _itransport.HttpTransportType));
+parcelHelpers.export(exports, "TransferFormat", ()=>(0, _itransport.TransferFormat));
+parcelHelpers.export(exports, "NullLogger", ()=>(0, _loggers.NullLogger));
+parcelHelpers.export(exports, "JsonHubProtocol", ()=>(0, _jsonHubProtocol.JsonHubProtocol));
+parcelHelpers.export(exports, "Subject", ()=>(0, _subject.Subject));
+parcelHelpers.export(exports, "VERSION", ()=>(0, _utils.VERSION));
+var _errors = require("./Errors");
+var _httpClient = require("./HttpClient");
+var _defaultHttpClient = require("./DefaultHttpClient");
+var _hubConnection = require("./HubConnection");
+var _hubConnectionBuilder = require("./HubConnectionBuilder");
+var _ihubProtocol = require("./IHubProtocol");
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _loggers = require("./Loggers");
+var _jsonHubProtocol = require("./JsonHubProtocol");
+var _subject = require("./Subject");
+var _utils = require("./Utils");
+
+},{"./Errors":"aog7x","./HttpClient":"gq5kK","./DefaultHttpClient":"7ZQMv","./HubConnection":"5zQSx","./HubConnectionBuilder":"jS1Va","./IHubProtocol":"i4JLH","./ILogger":"e8deM","./ITransport":"57ni4","./Loggers":"1B6CY","./JsonHubProtocol":"bK2jR","./Subject":"iS1Ri","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aog7x":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+/** Error thrown when an HTTP request fails. */ parcelHelpers.export(exports, "HttpError", ()=>HttpError);
+/** Error thrown when a timeout elapses. */ parcelHelpers.export(exports, "TimeoutError", ()=>TimeoutError);
+/** Error thrown when an action is aborted. */ parcelHelpers.export(exports, "AbortError", ()=>AbortError);
+/** Error thrown when the selected transport is unsupported by the browser. */ /** @private */ parcelHelpers.export(exports, "UnsupportedTransportError", ()=>UnsupportedTransportError);
+/** Error thrown when the selected transport is disabled by the browser. */ /** @private */ parcelHelpers.export(exports, "DisabledTransportError", ()=>DisabledTransportError);
+/** Error thrown when the selected transport cannot be started. */ /** @private */ parcelHelpers.export(exports, "FailedToStartTransportError", ()=>FailedToStartTransportError);
+/** Error thrown when the negotiation with the server failed to complete. */ /** @private */ parcelHelpers.export(exports, "FailedToNegotiateWithServerError", ()=>FailedToNegotiateWithServerError);
+/** Error thrown when multiple errors have occured. */ /** @private */ parcelHelpers.export(exports, "AggregateErrors", ()=>AggregateErrors);
+class HttpError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.HttpError}.
+     *
+     * @param {string} errorMessage A descriptive error message.
+     * @param {number} statusCode The HTTP status code represented by this error.
+     */ constructor(errorMessage, statusCode){
+        const trueProto = new.target.prototype;
+        super(`${errorMessage}: Status code '${statusCode}'`);
+        this.statusCode = statusCode;
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class TimeoutError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.TimeoutError}.
+     *
+     * @param {string} errorMessage A descriptive error message.
+     */ constructor(errorMessage = "A timeout occurred."){
+        const trueProto = new.target.prototype;
+        super(errorMessage);
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class AbortError extends Error {
+    /** Constructs a new instance of {@link AbortError}.
+     *
+     * @param {string} errorMessage A descriptive error message.
+     */ constructor(errorMessage = "An abort occurred."){
+        const trueProto = new.target.prototype;
+        super(errorMessage);
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class UnsupportedTransportError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.UnsupportedTransportError}.
+     *
+     * @param {string} message A descriptive error message.
+     * @param {HttpTransportType} transport The {@link @microsoft/signalr.HttpTransportType} this error occured on.
+     */ constructor(message, transport){
+        const trueProto = new.target.prototype;
+        super(message);
+        this.transport = transport;
+        this.errorType = "UnsupportedTransportError";
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class DisabledTransportError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.DisabledTransportError}.
+     *
+     * @param {string} message A descriptive error message.
+     * @param {HttpTransportType} transport The {@link @microsoft/signalr.HttpTransportType} this error occured on.
+     */ constructor(message, transport){
+        const trueProto = new.target.prototype;
+        super(message);
+        this.transport = transport;
+        this.errorType = "DisabledTransportError";
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class FailedToStartTransportError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.FailedToStartTransportError}.
+     *
+     * @param {string} message A descriptive error message.
+     * @param {HttpTransportType} transport The {@link @microsoft/signalr.HttpTransportType} this error occured on.
+     */ constructor(message, transport){
+        const trueProto = new.target.prototype;
+        super(message);
+        this.transport = transport;
+        this.errorType = "FailedToStartTransportError";
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class FailedToNegotiateWithServerError extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.FailedToNegotiateWithServerError}.
+     *
+     * @param {string} message A descriptive error message.
+     */ constructor(message){
+        const trueProto = new.target.prototype;
+        super(message);
+        this.errorType = "FailedToNegotiateWithServerError";
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+class AggregateErrors extends Error {
+    /** Constructs a new instance of {@link @microsoft/signalr.AggregateErrors}.
+     *
+     * @param {string} message A descriptive error message.
+     * @param {Error[]} innerErrors The collection of errors this error is aggregating.
+     */ constructor(message, innerErrors){
+        const trueProto = new.target.prototype;
+        super(message);
+        this.innerErrors = innerErrors;
+        // Workaround issue in Typescript compiler
+        // https://github.com/Microsoft/TypeScript/issues/13965#issuecomment-278570200
+        this.__proto__ = trueProto;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gq5kK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+/** Represents an HTTP response. */ parcelHelpers.export(exports, "HttpResponse", ()=>HttpResponse);
+/** Abstraction over an HTTP client.
+ *
+ * This class provides an abstraction over an HTTP client so that a different implementation can be provided on different platforms.
+ */ parcelHelpers.export(exports, "HttpClient", ()=>HttpClient);
+class HttpResponse {
+    constructor(statusCode, statusText, content){
+        this.statusCode = statusCode;
+        this.statusText = statusText;
+        this.content = content;
+    }
+}
+class HttpClient {
+    get(url, options) {
+        return this.send({
+            ...options,
+            method: "GET",
+            url
+        });
+    }
+    post(url, options) {
+        return this.send({
+            ...options,
+            method: "POST",
+            url
+        });
+    }
+    delete(url, options) {
+        return this.send({
+            ...options,
+            method: "DELETE",
+            url
+        });
+    }
+    /** Gets all cookies that apply to the specified URL.
+     *
+     * @param url The URL that the cookies are valid for.
+     * @returns {string} A string containing all the key-value cookie pairs for the specified URL.
+     */ // @ts-ignore
+    getCookieString(url) {
+        return "";
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7ZQMv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** Default implementation of {@link @microsoft/signalr.HttpClient}. */ parcelHelpers.export(exports, "DefaultHttpClient", ()=>DefaultHttpClient);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _errors = require("./Errors");
+var _fetchHttpClient = require("./FetchHttpClient");
+var _httpClient = require("./HttpClient");
+var _utils = require("./Utils");
+var _xhrHttpClient = require("./XhrHttpClient");
+class DefaultHttpClient extends (0, _httpClient.HttpClient) {
+    /** Creates a new instance of the {@link @microsoft/signalr.DefaultHttpClient}, using the provided {@link @microsoft/signalr.ILogger} to log messages. */ constructor(logger){
+        super();
+        if (typeof fetch !== "undefined" || (0, _utils.Platform).isNode) this._httpClient = new (0, _fetchHttpClient.FetchHttpClient)(logger);
+        else if (typeof XMLHttpRequest !== "undefined") this._httpClient = new (0, _xhrHttpClient.XhrHttpClient)(logger);
+        else throw new Error("No usable HttpClient found.");
+    }
+    /** @inheritDoc */ send(request) {
+        // Check that abort was not signaled before calling send
+        if (request.abortSignal && request.abortSignal.aborted) return Promise.reject(new (0, _errors.AbortError)());
+        if (!request.method) return Promise.reject(new Error("No method defined."));
+        if (!request.url) return Promise.reject(new Error("No url defined."));
+        return this._httpClient.send(request);
+    }
+    getCookieString(url) {
+        return this._httpClient.getCookieString(url);
+    }
+}
+
+},{"./Errors":"aog7x","./FetchHttpClient":"8HX9C","./HttpClient":"gq5kK","./Utils":"daEHA","./XhrHttpClient":"1j3Hx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8HX9C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FetchHttpClient", ()=>FetchHttpClient);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _errors = require("./Errors");
+var _httpClient = require("./HttpClient");
+var _ilogger = require("./ILogger");
+var _utils = require("./Utils");
+class FetchHttpClient extends (0, _httpClient.HttpClient) {
+    constructor(logger){
+        super();
+        this._logger = logger;
+        if (typeof fetch === "undefined") {
+            // In order to ignore the dynamic require in webpack builds we need to do this magic
+            // @ts-ignore: TS doesn't know about these names
+            const requireFunc = typeof __webpack_require__ === "function" ? __non_webpack_require__ : undefined;
+            // Cookies aren't automatically handled in Node so we need to add a CookieJar to preserve cookies across requests
+            this._jar = new (requireFunc("tough-cookie")).CookieJar();
+            this._fetchType = requireFunc("node-fetch");
+            // node-fetch doesn't have a nice API for getting and setting cookies
+            // fetch-cookie will wrap a fetch implementation with a default CookieJar or a provided one
+            this._fetchType = requireFunc("fetch-cookie")(this._fetchType, this._jar);
+        } else this._fetchType = fetch.bind((0, _utils.getGlobalThis)());
+        if (typeof AbortController === "undefined") {
+            // In order to ignore the dynamic require in webpack builds we need to do this magic
+            // @ts-ignore: TS doesn't know about these names
+            const requireFunc1 = typeof __webpack_require__ === "function" ? __non_webpack_require__ : undefined;
+            // Node needs EventListener methods on AbortController which our custom polyfill doesn't provide
+            this._abortControllerType = requireFunc1("abort-controller");
+        } else this._abortControllerType = AbortController;
+    }
+    /** @inheritDoc */ async send(request) {
+        // Check that abort was not signaled before calling send
+        if (request.abortSignal && request.abortSignal.aborted) throw new (0, _errors.AbortError)();
+        if (!request.method) throw new Error("No method defined.");
+        if (!request.url) throw new Error("No url defined.");
+        const abortController = new this._abortControllerType();
+        let error;
+        // Hook our abortSignal into the abort controller
+        if (request.abortSignal) request.abortSignal.onabort = ()=>{
+            abortController.abort();
+            error = new (0, _errors.AbortError)();
+        };
+        // If a timeout has been passed in, setup a timeout to call abort
+        // Type needs to be any to fit window.setTimeout and NodeJS.setTimeout
+        let timeoutId = null;
+        if (request.timeout) {
+            const msTimeout = request.timeout;
+            timeoutId = setTimeout(()=>{
+                abortController.abort();
+                this._logger.log((0, _ilogger.LogLevel).Warning, `Timeout from HTTP request.`);
+                error = new (0, _errors.TimeoutError)();
+            }, msTimeout);
+        }
+        let response;
+        try {
+            response = await this._fetchType(request.url, {
+                body: request.content,
+                cache: "no-cache",
+                credentials: request.withCredentials === true ? "include" : "same-origin",
+                headers: {
+                    "Content-Type": "text/plain;charset=UTF-8",
+                    "X-Requested-With": "XMLHttpRequest",
+                    ...request.headers
+                },
+                method: request.method,
+                mode: "cors",
+                redirect: "follow",
+                signal: abortController.signal
+            });
+        } catch (e) {
+            if (error) throw error;
+            this._logger.log((0, _ilogger.LogLevel).Warning, `Error from HTTP request. ${e}.`);
+            throw e;
+        } finally{
+            if (timeoutId) clearTimeout(timeoutId);
+            if (request.abortSignal) request.abortSignal.onabort = null;
+        }
+        if (!response.ok) {
+            const errorMessage = await deserializeContent(response, "text");
+            throw new (0, _errors.HttpError)(errorMessage || response.statusText, response.status);
+        }
+        const content = deserializeContent(response, request.responseType);
+        const payload = await content;
+        return new (0, _httpClient.HttpResponse)(response.status, response.statusText, payload);
+    }
+    getCookieString(url) {
+        let cookies = "";
+        if ((0, _utils.Platform).isNode && this._jar) // @ts-ignore: unused variable
+        this._jar.getCookies(url, (e, c)=>cookies = c.join("; "));
+        return cookies;
+    }
+}
+function deserializeContent(response, responseType) {
+    let content;
+    switch(responseType){
+        case "arraybuffer":
+            content = response.arrayBuffer();
+            break;
+        case "text":
+            content = response.text();
+            break;
+        case "blob":
+        case "document":
+        case "json":
+            throw new Error(`${responseType} is not supported.`);
+        default:
+            content = response.text();
+            break;
+    }
+    return content;
+}
+
+},{"./Errors":"aog7x","./HttpClient":"gq5kK","./ILogger":"e8deM","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e8deM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LogLevel", ()=>LogLevel);
+var LogLevel;
+(function(LogLevel) {
+    /** Log level for very low severity diagnostic messages. */ LogLevel[LogLevel["Trace"] = 0] = "Trace";
+    /** Log level for low severity diagnostic messages. */ LogLevel[LogLevel["Debug"] = 1] = "Debug";
+    /** Log level for informational diagnostic messages. */ LogLevel[LogLevel["Information"] = 2] = "Information";
+    /** Log level for diagnostic messages that indicate a non-fatal problem. */ LogLevel[LogLevel["Warning"] = 3] = "Warning";
+    /** Log level for diagnostic messages that indicate a failure in the current operation. */ LogLevel[LogLevel["Error"] = 4] = "Error";
+    /** Log level for diagnostic messages that indicate a failure that will terminate the entire application. */ LogLevel[LogLevel["Critical"] = 5] = "Critical";
+    /** The highest possible log level. Used when configuring logging to indicate that no log messages should be emitted. */ LogLevel[LogLevel["None"] = 6] = "None";
+})(LogLevel || (LogLevel = {}));
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"daEHA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "VERSION", ()=>VERSION);
+/** @private */ parcelHelpers.export(exports, "Arg", ()=>Arg);
+/** @private */ parcelHelpers.export(exports, "Platform", ()=>Platform);
+/** @private */ parcelHelpers.export(exports, "getDataDetail", ()=>getDataDetail);
+/** @private */ parcelHelpers.export(exports, "formatArrayBuffer", ()=>formatArrayBuffer);
+// Also in signalr-protocol-msgpack/Utils.ts
+/** @private */ parcelHelpers.export(exports, "isArrayBuffer", ()=>isArrayBuffer);
+/** @private */ parcelHelpers.export(exports, "sendMessage", ()=>sendMessage);
+/** @private */ parcelHelpers.export(exports, "createLogger", ()=>createLogger);
+/** @private */ parcelHelpers.export(exports, "SubjectSubscription", ()=>SubjectSubscription);
+/** @private */ parcelHelpers.export(exports, "ConsoleLogger", ()=>ConsoleLogger);
+/** @private */ parcelHelpers.export(exports, "getUserAgentHeader", ()=>getUserAgentHeader);
+/** @private */ parcelHelpers.export(exports, "constructUserAgent", ()=>constructUserAgent);
+/** @private */ parcelHelpers.export(exports, "getErrorString", ()=>getErrorString);
+/** @private */ parcelHelpers.export(exports, "getGlobalThis", ()=>getGlobalThis);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _ilogger = require("./ILogger");
+var _loggers = require("./Loggers");
+var process = require("process");
+var global = arguments[3];
+const VERSION = "6.0.9";
+class Arg {
+    static isRequired(val, name) {
+        if (val === null || val === undefined) throw new Error(`The '${name}' argument is required.`);
+    }
+    static isNotEmpty(val, name) {
+        if (!val || val.match(/^\s*$/)) throw new Error(`The '${name}' argument should not be empty.`);
+    }
+    static isIn(val, values, name) {
+        // TypeScript enums have keys for **both** the name and the value of each enum member on the type itself.
+        if (!(val in values)) throw new Error(`Unknown ${name} value: ${val}.`);
+    }
+}
+class Platform {
+    // react-native has a window but no document so we should check both
+    static get isBrowser() {
+        return typeof window === "object" && typeof window.document === "object";
+    }
+    // WebWorkers don't have a window object so the isBrowser check would fail
+    static get isWebWorker() {
+        return typeof self === "object" && "importScripts" in self;
+    }
+    // react-native has a window but no document
+    static get isReactNative() {
+        return typeof window === "object" && typeof window.document === "undefined";
+    }
+    // Node apps shouldn't have a window object, but WebWorkers don't either
+    // so we need to check for both WebWorker and window
+    static get isNode() {
+        return !this.isBrowser && !this.isWebWorker && !this.isReactNative;
+    }
+}
+function getDataDetail(data, includeContent) {
+    let detail = "";
+    if (isArrayBuffer(data)) {
+        detail = `Binary data of length ${data.byteLength}`;
+        if (includeContent) detail += `. Content: '${formatArrayBuffer(data)}'`;
+    } else if (typeof data === "string") {
+        detail = `String data of length ${data.length}`;
+        if (includeContent) detail += `. Content: '${data}'`;
+    }
+    return detail;
+}
+function formatArrayBuffer(data) {
+    const view = new Uint8Array(data);
+    // Uint8Array.map only supports returning another Uint8Array?
+    let str = "";
+    view.forEach((num)=>{
+        const pad = num < 16 ? "0" : "";
+        str += `0x${pad}${num.toString(16)} `;
+    });
+    // Trim of trailing space.
+    return str.substr(0, str.length - 1);
+}
+function isArrayBuffer(val) {
+    return val && typeof ArrayBuffer !== "undefined" && (val instanceof ArrayBuffer || val.constructor && val.constructor.name === "ArrayBuffer");
+}
+async function sendMessage(logger, transportName, httpClient, url, accessTokenFactory, content, options) {
+    let headers = {};
+    if (accessTokenFactory) {
+        const token = await accessTokenFactory();
+        if (token) headers = {
+            ["Authorization"]: `Bearer ${token}`
+        };
+    }
+    const [name, value] = getUserAgentHeader();
+    headers[name] = value;
+    logger.log((0, _ilogger.LogLevel).Trace, `(${transportName} transport) sending data. ${getDataDetail(content, options.logMessageContent)}.`);
+    const responseType = isArrayBuffer(content) ? "arraybuffer" : "text";
+    const response = await httpClient.post(url, {
+        content,
+        headers: {
+            ...headers,
+            ...options.headers
+        },
+        responseType,
+        timeout: options.timeout,
+        withCredentials: options.withCredentials
+    });
+    logger.log((0, _ilogger.LogLevel).Trace, `(${transportName} transport) request complete. Response status: ${response.statusCode}.`);
+}
+function createLogger(logger) {
+    if (logger === undefined) return new ConsoleLogger((0, _ilogger.LogLevel).Information);
+    if (logger === null) return (0, _loggers.NullLogger).instance;
+    if (logger.log !== undefined) return logger;
+    return new ConsoleLogger(logger);
+}
+class SubjectSubscription {
+    constructor(subject, observer){
+        this._subject = subject;
+        this._observer = observer;
+    }
+    dispose() {
+        const index = this._subject.observers.indexOf(this._observer);
+        if (index > -1) this._subject.observers.splice(index, 1);
+        if (this._subject.observers.length === 0 && this._subject.cancelCallback) this._subject.cancelCallback().catch((_)=>{});
+    }
+}
+class ConsoleLogger {
+    constructor(minimumLogLevel){
+        this._minLevel = minimumLogLevel;
+        this.out = console;
+    }
+    log(logLevel, message) {
+        if (logLevel >= this._minLevel) {
+            const msg = `[${new Date().toISOString()}] ${(0, _ilogger.LogLevel)[logLevel]}: ${message}`;
+            switch(logLevel){
+                case (0, _ilogger.LogLevel).Critical:
+                case (0, _ilogger.LogLevel).Error:
+                    this.out.error(msg);
+                    break;
+                case (0, _ilogger.LogLevel).Warning:
+                    this.out.warn(msg);
+                    break;
+                case (0, _ilogger.LogLevel).Information:
+                    this.out.info(msg);
+                    break;
+                default:
+                    // console.debug only goes to attached debuggers in Node, so we use console.log for Trace and Debug
+                    this.out.log(msg);
+                    break;
+            }
+        }
+    }
+}
+function getUserAgentHeader() {
+    let userAgentHeaderName = "X-SignalR-User-Agent";
+    if (Platform.isNode) userAgentHeaderName = "User-Agent";
+    return [
+        userAgentHeaderName,
+        constructUserAgent(VERSION, getOsName(), getRuntime(), getRuntimeVersion())
+    ];
+}
+function constructUserAgent(version, os, runtime, runtimeVersion) {
+    // Microsoft SignalR/[Version] ([Detailed Version]; [Operating System]; [Runtime]; [Runtime Version])
+    let userAgent = "Microsoft SignalR/";
+    const majorAndMinor = version.split(".");
+    userAgent += `${majorAndMinor[0]}.${majorAndMinor[1]}`;
+    userAgent += ` (${version}; `;
+    if (os && os !== "") userAgent += `${os}; `;
+    else userAgent += "Unknown OS; ";
+    userAgent += `${runtime}`;
+    if (runtimeVersion) userAgent += `; ${runtimeVersion}`;
+    else userAgent += "; Unknown Runtime Version";
+    userAgent += ")";
+    return userAgent;
+}
+// eslint-disable-next-line spaced-comment
+/*#__PURE__*/ function getOsName() {
+    if (Platform.isNode) switch(process.platform){
+        case "win32":
+            return "Windows NT";
+        case "darwin":
+            return "macOS";
+        case "linux":
+            return "Linux";
+        default:
+            return process.platform;
+    }
+    else return "";
+}
+// eslint-disable-next-line spaced-comment
+/*#__PURE__*/ function getRuntimeVersion() {
+    if (Platform.isNode) return process.versions.node;
+    return undefined;
+}
+function getRuntime() {
+    if (Platform.isNode) return "NodeJS";
+    else return "Browser";
+}
+function getErrorString(e) {
+    if (e.stack) return e.stack;
+    else if (e.message) return e.message;
+    return `${e}`;
+}
+function getGlobalThis() {
+    // globalThis is semi-new and not available in Node until v12
+    if (typeof globalThis !== "undefined") return globalThis;
+    if (typeof self !== "undefined") return self;
+    if (typeof window !== "undefined") return window;
+    if (typeof global !== "undefined") return global;
+    throw new Error("could not find global");
+}
+
+},{"./ILogger":"e8deM","./Loggers":"1B6CY","process":"d5jf4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1B6CY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+/** A logger that does nothing when log messages are sent to it. */ parcelHelpers.export(exports, "NullLogger", ()=>NullLogger);
+class NullLogger {
+    constructor(){}
+    /** @inheritDoc */ // eslint-disable-next-line
+    log(_logLevel, _message) {}
+}
+/** The singleton instance of the {@link @microsoft/signalr.NullLogger}. */ NullLogger.instance = new NullLogger();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1j3Hx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "XhrHttpClient", ()=>XhrHttpClient);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _errors = require("./Errors");
+var _httpClient = require("./HttpClient");
+var _ilogger = require("./ILogger");
+class XhrHttpClient extends (0, _httpClient.HttpClient) {
+    constructor(logger){
+        super();
+        this._logger = logger;
+    }
+    /** @inheritDoc */ send(request) {
+        // Check that abort was not signaled before calling send
+        if (request.abortSignal && request.abortSignal.aborted) return Promise.reject(new (0, _errors.AbortError)());
+        if (!request.method) return Promise.reject(new Error("No method defined."));
+        if (!request.url) return Promise.reject(new Error("No url defined."));
+        return new Promise((resolve, reject)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open(request.method, request.url, true);
+            xhr.withCredentials = request.withCredentials === undefined ? true : request.withCredentials;
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            // Explicitly setting the Content-Type header for React Native on Android platform.
+            xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+            const headers = request.headers;
+            if (headers) Object.keys(headers).forEach((header)=>{
+                xhr.setRequestHeader(header, headers[header]);
+            });
+            if (request.responseType) xhr.responseType = request.responseType;
+            if (request.abortSignal) request.abortSignal.onabort = ()=>{
+                xhr.abort();
+                reject(new (0, _errors.AbortError)());
+            };
+            if (request.timeout) xhr.timeout = request.timeout;
+            xhr.onload = ()=>{
+                if (request.abortSignal) request.abortSignal.onabort = null;
+                if (xhr.status >= 200 && xhr.status < 300) resolve(new (0, _httpClient.HttpResponse)(xhr.status, xhr.statusText, xhr.response || xhr.responseText));
+                else reject(new (0, _errors.HttpError)(xhr.response || xhr.responseText || xhr.statusText, xhr.status));
+            };
+            xhr.onerror = ()=>{
+                this._logger.log((0, _ilogger.LogLevel).Warning, `Error from HTTP request. ${xhr.status}: ${xhr.statusText}.`);
+                reject(new (0, _errors.HttpError)(xhr.statusText, xhr.status));
+            };
+            xhr.ontimeout = ()=>{
+                this._logger.log((0, _ilogger.LogLevel).Warning, `Timeout from HTTP request.`);
+                reject(new (0, _errors.TimeoutError)());
+            };
+            xhr.send(request.content || "");
+        });
+    }
+}
+
+},{"./Errors":"aog7x","./HttpClient":"gq5kK","./ILogger":"e8deM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5zQSx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "HubConnectionState", ()=>HubConnectionState);
+/** Represents a connection to a SignalR Hub. */ parcelHelpers.export(exports, "HubConnection", ()=>HubConnection);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _handshakeProtocol = require("./HandshakeProtocol");
+var _ihubProtocol = require("./IHubProtocol");
+var _ilogger = require("./ILogger");
+var _subject = require("./Subject");
+var _utils = require("./Utils");
+const DEFAULT_TIMEOUT_IN_MS = 30000;
+const DEFAULT_PING_INTERVAL_IN_MS = 15000;
+var HubConnectionState;
+(function(HubConnectionState) {
+    /** The hub connection is disconnected. */ HubConnectionState["Disconnected"] = "Disconnected";
+    /** The hub connection is connecting. */ HubConnectionState["Connecting"] = "Connecting";
+    /** The hub connection is connected. */ HubConnectionState["Connected"] = "Connected";
+    /** The hub connection is disconnecting. */ HubConnectionState["Disconnecting"] = "Disconnecting";
+    /** The hub connection is reconnecting. */ HubConnectionState["Reconnecting"] = "Reconnecting";
+})(HubConnectionState || (HubConnectionState = {}));
+class HubConnection {
+    constructor(connection, logger, protocol, reconnectPolicy){
+        this._nextKeepAlive = 0;
+        this._freezeEventListener = ()=>{
+            this._logger.log((0, _ilogger.LogLevel).Warning, "The page is being frozen, this will likely lead to the connection being closed and messages being lost. For more information see the docs at https://docs.microsoft.com/aspnet/core/signalr/javascript-client#bsleep");
+        };
+        (0, _utils.Arg).isRequired(connection, "connection");
+        (0, _utils.Arg).isRequired(logger, "logger");
+        (0, _utils.Arg).isRequired(protocol, "protocol");
+        this.serverTimeoutInMilliseconds = DEFAULT_TIMEOUT_IN_MS;
+        this.keepAliveIntervalInMilliseconds = DEFAULT_PING_INTERVAL_IN_MS;
+        this._logger = logger;
+        this._protocol = protocol;
+        this.connection = connection;
+        this._reconnectPolicy = reconnectPolicy;
+        this._handshakeProtocol = new (0, _handshakeProtocol.HandshakeProtocol)();
+        this.connection.onreceive = (data)=>this._processIncomingData(data);
+        this.connection.onclose = (error)=>this._connectionClosed(error);
+        this._callbacks = {};
+        this._methods = {};
+        this._closedCallbacks = [];
+        this._reconnectingCallbacks = [];
+        this._reconnectedCallbacks = [];
+        this._invocationId = 0;
+        this._receivedHandshakeResponse = false;
+        this._connectionState = HubConnectionState.Disconnected;
+        this._connectionStarted = false;
+        this._cachedPingMessage = this._protocol.writeMessage({
+            type: (0, _ihubProtocol.MessageType).Ping
+        });
+    }
+    /** @internal */ // Using a public static factory method means we can have a private constructor and an _internal_
+    // create method that can be used by HubConnectionBuilder. An "internal" constructor would just
+    // be stripped away and the '.d.ts' file would have no constructor, which is interpreted as a
+    // public parameter-less constructor.
+    static create(connection, logger, protocol, reconnectPolicy) {
+        return new HubConnection(connection, logger, protocol, reconnectPolicy);
+    }
+    /** Indicates the state of the {@link HubConnection} to the server. */ get state() {
+        return this._connectionState;
+    }
+    /** Represents the connection id of the {@link HubConnection} on the server. The connection id will be null when the connection is either
+     *  in the disconnected state or if the negotiation step was skipped.
+     */ get connectionId() {
+        return this.connection ? this.connection.connectionId || null : null;
+    }
+    /** Indicates the url of the {@link HubConnection} to the server. */ get baseUrl() {
+        return this.connection.baseUrl || "";
+    }
+    /**
+     * Sets a new url for the HubConnection. Note that the url can only be changed when the connection is in either the Disconnected or
+     * Reconnecting states.
+     * @param {string} url The url to connect to.
+     */ set baseUrl(url) {
+        if (this._connectionState !== HubConnectionState.Disconnected && this._connectionState !== HubConnectionState.Reconnecting) throw new Error("The HubConnection must be in the Disconnected or Reconnecting state to change the url.");
+        if (!url) throw new Error("The HubConnection url must be a valid url.");
+        this.connection.baseUrl = url;
+    }
+    /** Starts the connection.
+     *
+     * @returns {Promise<void>} A Promise that resolves when the connection has been successfully established, or rejects with an error.
+     */ start() {
+        this._startPromise = this._startWithStateTransitions();
+        return this._startPromise;
+    }
+    async _startWithStateTransitions() {
+        if (this._connectionState !== HubConnectionState.Disconnected) return Promise.reject(new Error("Cannot start a HubConnection that is not in the 'Disconnected' state."));
+        this._connectionState = HubConnectionState.Connecting;
+        this._logger.log((0, _ilogger.LogLevel).Debug, "Starting HubConnection.");
+        try {
+            await this._startInternal();
+            if ((0, _utils.Platform).isBrowser) // Log when the browser freezes the tab so users know why their connection unexpectedly stopped working
+            window.document.addEventListener("freeze", this._freezeEventListener);
+            this._connectionState = HubConnectionState.Connected;
+            this._connectionStarted = true;
+            this._logger.log((0, _ilogger.LogLevel).Debug, "HubConnection connected successfully.");
+        } catch (e) {
+            this._connectionState = HubConnectionState.Disconnected;
+            this._logger.log((0, _ilogger.LogLevel).Debug, `HubConnection failed to start successfully because of error '${e}'.`);
+            return Promise.reject(e);
+        }
+    }
+    async _startInternal() {
+        this._stopDuringStartError = undefined;
+        this._receivedHandshakeResponse = false;
+        // Set up the promise before any connection is (re)started otherwise it could race with received messages
+        const handshakePromise = new Promise((resolve, reject)=>{
+            this._handshakeResolver = resolve;
+            this._handshakeRejecter = reject;
+        });
+        await this.connection.start(this._protocol.transferFormat);
+        try {
+            const handshakeRequest = {
+                protocol: this._protocol.name,
+                version: this._protocol.version
+            };
+            this._logger.log((0, _ilogger.LogLevel).Debug, "Sending handshake request.");
+            await this._sendMessage(this._handshakeProtocol.writeHandshakeRequest(handshakeRequest));
+            this._logger.log((0, _ilogger.LogLevel).Information, `Using HubProtocol '${this._protocol.name}'.`);
+            // defensively cleanup timeout in case we receive a message from the server before we finish start
+            this._cleanupTimeout();
+            this._resetTimeoutPeriod();
+            this._resetKeepAliveInterval();
+            await handshakePromise;
+            // It's important to check the stopDuringStartError instead of just relying on the handshakePromise
+            // being rejected on close, because this continuation can run after both the handshake completed successfully
+            // and the connection was closed.
+            if (this._stopDuringStartError) // It's important to throw instead of returning a rejected promise, because we don't want to allow any state
+            // transitions to occur between now and the calling code observing the exceptions. Returning a rejected promise
+            // will cause the calling continuation to get scheduled to run later.
+            // eslint-disable-next-line @typescript-eslint/no-throw-literal
+            throw this._stopDuringStartError;
+        } catch (e) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Hub handshake failed with error '${e}' during start(). Stopping HubConnection.`);
+            this._cleanupTimeout();
+            this._cleanupPingTimer();
+            // HttpConnection.stop() should not complete until after the onclose callback is invoked.
+            // This will transition the HubConnection to the disconnected state before HttpConnection.stop() completes.
+            await this.connection.stop(e);
+            throw e;
+        }
+    }
+    /** Stops the connection.
+     *
+     * @returns {Promise<void>} A Promise that resolves when the connection has been successfully terminated, or rejects with an error.
+     */ async stop() {
+        // Capture the start promise before the connection might be restarted in an onclose callback.
+        const startPromise = this._startPromise;
+        this._stopPromise = this._stopInternal();
+        await this._stopPromise;
+        try {
+            // Awaiting undefined continues immediately
+            await startPromise;
+        } catch (e) {
+        // This exception is returned to the user as a rejected Promise from the start method.
+        }
+    }
+    _stopInternal(error) {
+        if (this._connectionState === HubConnectionState.Disconnected) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Call to HubConnection.stop(${error}) ignored because it is already in the disconnected state.`);
+            return Promise.resolve();
+        }
+        if (this._connectionState === HubConnectionState.Disconnecting) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Call to HttpConnection.stop(${error}) ignored because the connection is already in the disconnecting state.`);
+            return this._stopPromise;
+        }
+        this._connectionState = HubConnectionState.Disconnecting;
+        this._logger.log((0, _ilogger.LogLevel).Debug, "Stopping HubConnection.");
+        if (this._reconnectDelayHandle) {
+            // We're in a reconnect delay which means the underlying connection is currently already stopped.
+            // Just clear the handle to stop the reconnect loop (which no one is waiting on thankfully) and
+            // fire the onclose callbacks.
+            this._logger.log((0, _ilogger.LogLevel).Debug, "Connection stopped during reconnect delay. Done reconnecting.");
+            clearTimeout(this._reconnectDelayHandle);
+            this._reconnectDelayHandle = undefined;
+            this._completeClose();
+            return Promise.resolve();
+        }
+        this._cleanupTimeout();
+        this._cleanupPingTimer();
+        this._stopDuringStartError = error || new Error("The connection was stopped before the hub handshake could complete.");
+        // HttpConnection.stop() should not complete until after either HttpConnection.start() fails
+        // or the onclose callback is invoked. The onclose callback will transition the HubConnection
+        // to the disconnected state if need be before HttpConnection.stop() completes.
+        return this.connection.stop(error);
+    }
+    /** Invokes a streaming hub method on the server using the specified name and arguments.
+     *
+     * @typeparam T The type of the items returned by the server.
+     * @param {string} methodName The name of the server method to invoke.
+     * @param {any[]} args The arguments used to invoke the server method.
+     * @returns {IStreamResult<T>} An object that yields results from the server as they are received.
+     */ stream(methodName, ...args) {
+        const [streams, streamIds] = this._replaceStreamingParams(args);
+        const invocationDescriptor = this._createStreamInvocation(methodName, args, streamIds);
+        // eslint-disable-next-line prefer-const
+        let promiseQueue;
+        const subject = new (0, _subject.Subject)();
+        subject.cancelCallback = ()=>{
+            const cancelInvocation = this._createCancelInvocation(invocationDescriptor.invocationId);
+            delete this._callbacks[invocationDescriptor.invocationId];
+            return promiseQueue.then(()=>{
+                return this._sendWithProtocol(cancelInvocation);
+            });
+        };
+        this._callbacks[invocationDescriptor.invocationId] = (invocationEvent, error)=>{
+            if (error) {
+                subject.error(error);
+                return;
+            } else if (invocationEvent) {
+                // invocationEvent will not be null when an error is not passed to the callback
+                if (invocationEvent.type === (0, _ihubProtocol.MessageType).Completion) {
+                    if (invocationEvent.error) subject.error(new Error(invocationEvent.error));
+                    else subject.complete();
+                } else subject.next(invocationEvent.item);
+            }
+        };
+        promiseQueue = this._sendWithProtocol(invocationDescriptor).catch((e)=>{
+            subject.error(e);
+            delete this._callbacks[invocationDescriptor.invocationId];
+        });
+        this._launchStreams(streams, promiseQueue);
+        return subject;
+    }
+    _sendMessage(message) {
+        this._resetKeepAliveInterval();
+        return this.connection.send(message);
+    }
+    /**
+     * Sends a js object to the server.
+     * @param message The js object to serialize and send.
+     */ _sendWithProtocol(message) {
+        return this._sendMessage(this._protocol.writeMessage(message));
+    }
+    /** Invokes a hub method on the server using the specified name and arguments. Does not wait for a response from the receiver.
+     *
+     * The Promise returned by this method resolves when the client has sent the invocation to the server. The server may still
+     * be processing the invocation.
+     *
+     * @param {string} methodName The name of the server method to invoke.
+     * @param {any[]} args The arguments used to invoke the server method.
+     * @returns {Promise<void>} A Promise that resolves when the invocation has been successfully sent, or rejects with an error.
+     */ send(methodName, ...args) {
+        const [streams, streamIds] = this._replaceStreamingParams(args);
+        const sendPromise = this._sendWithProtocol(this._createInvocation(methodName, args, true, streamIds));
+        this._launchStreams(streams, sendPromise);
+        return sendPromise;
+    }
+    /** Invokes a hub method on the server using the specified name and arguments.
+     *
+     * The Promise returned by this method resolves when the server indicates it has finished invoking the method. When the promise
+     * resolves, the server has finished invoking the method. If the server method returns a result, it is produced as the result of
+     * resolving the Promise.
+     *
+     * @typeparam T The expected return type.
+     * @param {string} methodName The name of the server method to invoke.
+     * @param {any[]} args The arguments used to invoke the server method.
+     * @returns {Promise<T>} A Promise that resolves with the result of the server method (if any), or rejects with an error.
+     */ invoke(methodName, ...args) {
+        const [streams, streamIds] = this._replaceStreamingParams(args);
+        const invocationDescriptor = this._createInvocation(methodName, args, false, streamIds);
+        const p = new Promise((resolve, reject)=>{
+            // invocationId will always have a value for a non-blocking invocation
+            this._callbacks[invocationDescriptor.invocationId] = (invocationEvent, error)=>{
+                if (error) {
+                    reject(error);
+                    return;
+                } else if (invocationEvent) {
+                    // invocationEvent will not be null when an error is not passed to the callback
+                    if (invocationEvent.type === (0, _ihubProtocol.MessageType).Completion) {
+                        if (invocationEvent.error) reject(new Error(invocationEvent.error));
+                        else resolve(invocationEvent.result);
+                    } else reject(new Error(`Unexpected message type: ${invocationEvent.type}`));
+                }
+            };
+            const promiseQueue = this._sendWithProtocol(invocationDescriptor).catch((e)=>{
+                reject(e);
+                // invocationId will always have a value for a non-blocking invocation
+                delete this._callbacks[invocationDescriptor.invocationId];
+            });
+            this._launchStreams(streams, promiseQueue);
+        });
+        return p;
+    }
+    /** Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+     *
+     * @param {string} methodName The name of the hub method to define.
+     * @param {Function} newMethod The handler that will be raised when the hub method is invoked.
+     */ on(methodName, newMethod) {
+        if (!methodName || !newMethod) return;
+        methodName = methodName.toLowerCase();
+        if (!this._methods[methodName]) this._methods[methodName] = [];
+        // Preventing adding the same handler multiple times.
+        if (this._methods[methodName].indexOf(newMethod) !== -1) return;
+        this._methods[methodName].push(newMethod);
+    }
+    off(methodName, method) {
+        if (!methodName) return;
+        methodName = methodName.toLowerCase();
+        const handlers = this._methods[methodName];
+        if (!handlers) return;
+        if (method) {
+            const removeIdx = handlers.indexOf(method);
+            if (removeIdx !== -1) {
+                handlers.splice(removeIdx, 1);
+                if (handlers.length === 0) delete this._methods[methodName];
+            }
+        } else delete this._methods[methodName];
+    }
+    /** Registers a handler that will be invoked when the connection is closed.
+     *
+     * @param {Function} callback The handler that will be invoked when the connection is closed. Optionally receives a single argument containing the error that caused the connection to close (if any).
+     */ onclose(callback) {
+        if (callback) this._closedCallbacks.push(callback);
+    }
+    /** Registers a handler that will be invoked when the connection starts reconnecting.
+     *
+     * @param {Function} callback The handler that will be invoked when the connection starts reconnecting. Optionally receives a single argument containing the error that caused the connection to start reconnecting (if any).
+     */ onreconnecting(callback) {
+        if (callback) this._reconnectingCallbacks.push(callback);
+    }
+    /** Registers a handler that will be invoked when the connection successfully reconnects.
+     *
+     * @param {Function} callback The handler that will be invoked when the connection successfully reconnects.
+     */ onreconnected(callback) {
+        if (callback) this._reconnectedCallbacks.push(callback);
+    }
+    _processIncomingData(data) {
+        this._cleanupTimeout();
+        if (!this._receivedHandshakeResponse) {
+            data = this._processHandshakeResponse(data);
+            this._receivedHandshakeResponse = true;
+        }
+        // Data may have all been read when processing handshake response
+        if (data) {
+            // Parse the messages
+            const messages = this._protocol.parseMessages(data, this._logger);
+            for (const message of messages)switch(message.type){
+                case (0, _ihubProtocol.MessageType).Invocation:
+                    this._invokeClientMethod(message);
+                    break;
+                case (0, _ihubProtocol.MessageType).StreamItem:
+                case (0, _ihubProtocol.MessageType).Completion:
+                    {
+                        const callback = this._callbacks[message.invocationId];
+                        if (callback) {
+                            if (message.type === (0, _ihubProtocol.MessageType).Completion) delete this._callbacks[message.invocationId];
+                            try {
+                                callback(message);
+                            } catch (e) {
+                                this._logger.log((0, _ilogger.LogLevel).Error, `Stream callback threw error: ${(0, _utils.getErrorString)(e)}`);
+                            }
+                        }
+                        break;
+                    }
+                case (0, _ihubProtocol.MessageType).Ping:
+                    break;
+                case (0, _ihubProtocol.MessageType).Close:
+                    {
+                        this._logger.log((0, _ilogger.LogLevel).Information, "Close message received from server.");
+                        const error = message.error ? new Error("Server returned an error on close: " + message.error) : undefined;
+                        if (message.allowReconnect === true) // It feels wrong not to await connection.stop() here, but processIncomingData is called as part of an onreceive callback which is not async,
+                        // this is already the behavior for serverTimeout(), and HttpConnection.Stop() should catch and log all possible exceptions.
+                        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                        this.connection.stop(error);
+                        else // We cannot await stopInternal() here, but subsequent calls to stop() will await this if stopInternal() is still ongoing.
+                        this._stopPromise = this._stopInternal(error);
+                        break;
+                    }
+                default:
+                    this._logger.log((0, _ilogger.LogLevel).Warning, `Invalid message type: ${message.type}.`);
+                    break;
+            }
+        }
+        this._resetTimeoutPeriod();
+    }
+    _processHandshakeResponse(data) {
+        let responseMessage;
+        let remainingData;
+        try {
+            [remainingData, responseMessage] = this._handshakeProtocol.parseHandshakeResponse(data);
+        } catch (e) {
+            const message = "Error parsing handshake response: " + e;
+            this._logger.log((0, _ilogger.LogLevel).Error, message);
+            const error = new Error(message);
+            this._handshakeRejecter(error);
+            throw error;
+        }
+        if (responseMessage.error) {
+            const message1 = "Server returned handshake error: " + responseMessage.error;
+            this._logger.log((0, _ilogger.LogLevel).Error, message1);
+            const error1 = new Error(message1);
+            this._handshakeRejecter(error1);
+            throw error1;
+        } else this._logger.log((0, _ilogger.LogLevel).Debug, "Server handshake complete.");
+        this._handshakeResolver();
+        return remainingData;
+    }
+    _resetKeepAliveInterval() {
+        if (this.connection.features.inherentKeepAlive) return;
+        // Set the time we want the next keep alive to be sent
+        // Timer will be setup on next message receive
+        this._nextKeepAlive = new Date().getTime() + this.keepAliveIntervalInMilliseconds;
+        this._cleanupPingTimer();
+    }
+    _resetTimeoutPeriod() {
+        if (!this.connection.features || !this.connection.features.inherentKeepAlive) {
+            // Set the timeout timer
+            this._timeoutHandle = setTimeout(()=>this.serverTimeout(), this.serverTimeoutInMilliseconds);
+            // Set keepAlive timer if there isn't one
+            if (this._pingServerHandle === undefined) {
+                let nextPing = this._nextKeepAlive - new Date().getTime();
+                if (nextPing < 0) nextPing = 0;
+                // The timer needs to be set from a networking callback to avoid Chrome timer throttling from causing timers to run once a minute
+                this._pingServerHandle = setTimeout(async ()=>{
+                    if (this._connectionState === HubConnectionState.Connected) try {
+                        await this._sendMessage(this._cachedPingMessage);
+                    } catch  {
+                        // We don't care about the error. It should be seen elsewhere in the client.
+                        // The connection is probably in a bad or closed state now, cleanup the timer so it stops triggering
+                        this._cleanupPingTimer();
+                    }
+                }, nextPing);
+            }
+        }
+    }
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    serverTimeout() {
+        // The server hasn't talked to us in a while. It doesn't like us anymore ... :(
+        // Terminate the connection, but we don't need to wait on the promise. This could trigger reconnecting.
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.connection.stop(new Error("Server timeout elapsed without receiving a message from the server."));
+    }
+    _invokeClientMethod(invocationMessage) {
+        const methods = this._methods[invocationMessage.target.toLowerCase()];
+        if (methods) {
+            try {
+                methods.forEach((m)=>m.apply(this, invocationMessage.arguments));
+            } catch (e) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `A callback for the method ${invocationMessage.target.toLowerCase()} threw error '${e}'.`);
+            }
+            if (invocationMessage.invocationId) {
+                // This is not supported in v1. So we return an error to avoid blocking the server waiting for the response.
+                const message = "Server requested a response, which is not supported in this version of the client.";
+                this._logger.log((0, _ilogger.LogLevel).Error, message);
+                // We don't want to wait on the stop itself.
+                this._stopPromise = this._stopInternal(new Error(message));
+            }
+        } else this._logger.log((0, _ilogger.LogLevel).Warning, `No client method with the name '${invocationMessage.target}' found.`);
+    }
+    _connectionClosed(error) {
+        this._logger.log((0, _ilogger.LogLevel).Debug, `HubConnection.connectionClosed(${error}) called while in state ${this._connectionState}.`);
+        // Triggering this.handshakeRejecter is insufficient because it could already be resolved without the continuation having run yet.
+        this._stopDuringStartError = this._stopDuringStartError || error || new Error("The underlying connection was closed before the hub handshake could complete.");
+        // If the handshake is in progress, start will be waiting for the handshake promise, so we complete it.
+        // If it has already completed, this should just noop.
+        if (this._handshakeResolver) this._handshakeResolver();
+        this._cancelCallbacksWithError(error || new Error("Invocation canceled due to the underlying connection being closed."));
+        this._cleanupTimeout();
+        this._cleanupPingTimer();
+        if (this._connectionState === HubConnectionState.Disconnecting) this._completeClose(error);
+        else if (this._connectionState === HubConnectionState.Connected && this._reconnectPolicy) // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this._reconnect(error);
+        else if (this._connectionState === HubConnectionState.Connected) this._completeClose(error);
+    // If none of the above if conditions were true were called the HubConnection must be in either:
+    // 1. The Connecting state in which case the handshakeResolver will complete it and stopDuringStartError will fail it.
+    // 2. The Reconnecting state in which case the handshakeResolver will complete it and stopDuringStartError will fail the current reconnect attempt
+    //    and potentially continue the reconnect() loop.
+    // 3. The Disconnected state in which case we're already done.
+    }
+    _completeClose(error) {
+        if (this._connectionStarted) {
+            this._connectionState = HubConnectionState.Disconnected;
+            this._connectionStarted = false;
+            if ((0, _utils.Platform).isBrowser) window.document.removeEventListener("freeze", this._freezeEventListener);
+            try {
+                this._closedCallbacks.forEach((c)=>c.apply(this, [
+                        error
+                    ]));
+            } catch (e) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `An onclose callback called with error '${error}' threw error '${e}'.`);
+            }
+        }
+    }
+    async _reconnect(error) {
+        const reconnectStartTime = Date.now();
+        let previousReconnectAttempts = 0;
+        let retryError = error !== undefined ? error : new Error("Attempting to reconnect due to a unknown error.");
+        let nextRetryDelay = this._getNextRetryDelay(previousReconnectAttempts++, 0, retryError);
+        if (nextRetryDelay === null) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, "Connection not reconnecting because the IRetryPolicy returned null on the first reconnect attempt.");
+            this._completeClose(error);
+            return;
+        }
+        this._connectionState = HubConnectionState.Reconnecting;
+        if (error) this._logger.log((0, _ilogger.LogLevel).Information, `Connection reconnecting because of error '${error}'.`);
+        else this._logger.log((0, _ilogger.LogLevel).Information, "Connection reconnecting.");
+        if (this._reconnectingCallbacks.length !== 0) {
+            try {
+                this._reconnectingCallbacks.forEach((c)=>c.apply(this, [
+                        error
+                    ]));
+            } catch (e) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `An onreconnecting callback called with error '${error}' threw error '${e}'.`);
+            }
+            // Exit early if an onreconnecting callback called connection.stop().
+            if (this._connectionState !== HubConnectionState.Reconnecting) {
+                this._logger.log((0, _ilogger.LogLevel).Debug, "Connection left the reconnecting state in onreconnecting callback. Done reconnecting.");
+                return;
+            }
+        }
+        while(nextRetryDelay !== null){
+            this._logger.log((0, _ilogger.LogLevel).Information, `Reconnect attempt number ${previousReconnectAttempts} will start in ${nextRetryDelay} ms.`);
+            await new Promise((resolve)=>{
+                this._reconnectDelayHandle = setTimeout(resolve, nextRetryDelay);
+            });
+            this._reconnectDelayHandle = undefined;
+            if (this._connectionState !== HubConnectionState.Reconnecting) {
+                this._logger.log((0, _ilogger.LogLevel).Debug, "Connection left the reconnecting state during reconnect delay. Done reconnecting.");
+                return;
+            }
+            try {
+                await this._startInternal();
+                this._connectionState = HubConnectionState.Connected;
+                this._logger.log((0, _ilogger.LogLevel).Information, "HubConnection reconnected successfully.");
+                if (this._reconnectedCallbacks.length !== 0) try {
+                    this._reconnectedCallbacks.forEach((c)=>c.apply(this, [
+                            this.connection.connectionId
+                        ]));
+                } catch (e1) {
+                    this._logger.log((0, _ilogger.LogLevel).Error, `An onreconnected callback called with connectionId '${this.connection.connectionId}; threw error '${e1}'.`);
+                }
+                return;
+            } catch (e2) {
+                this._logger.log((0, _ilogger.LogLevel).Information, `Reconnect attempt failed because of error '${e2}'.`);
+                if (this._connectionState !== HubConnectionState.Reconnecting) {
+                    this._logger.log((0, _ilogger.LogLevel).Debug, `Connection moved to the '${this._connectionState}' from the reconnecting state during reconnect attempt. Done reconnecting.`);
+                    // The TypeScript compiler thinks that connectionState must be Connected here. The TypeScript compiler is wrong.
+                    if (this._connectionState === HubConnectionState.Disconnecting) this._completeClose();
+                    return;
+                }
+                retryError = e2 instanceof Error ? e2 : new Error(e2.toString());
+                nextRetryDelay = this._getNextRetryDelay(previousReconnectAttempts++, Date.now() - reconnectStartTime, retryError);
+            }
+        }
+        this._logger.log((0, _ilogger.LogLevel).Information, `Reconnect retries have been exhausted after ${Date.now() - reconnectStartTime} ms and ${previousReconnectAttempts} failed attempts. Connection disconnecting.`);
+        this._completeClose();
+    }
+    _getNextRetryDelay(previousRetryCount, elapsedMilliseconds, retryReason) {
+        try {
+            return this._reconnectPolicy.nextRetryDelayInMilliseconds({
+                elapsedMilliseconds,
+                previousRetryCount,
+                retryReason
+            });
+        } catch (e) {
+            this._logger.log((0, _ilogger.LogLevel).Error, `IRetryPolicy.nextRetryDelayInMilliseconds(${previousRetryCount}, ${elapsedMilliseconds}) threw error '${e}'.`);
+            return null;
+        }
+    }
+    _cancelCallbacksWithError(error) {
+        const callbacks = this._callbacks;
+        this._callbacks = {};
+        Object.keys(callbacks).forEach((key)=>{
+            const callback = callbacks[key];
+            try {
+                callback(null, error);
+            } catch (e) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `Stream 'error' callback called with '${error}' threw error: ${(0, _utils.getErrorString)(e)}`);
+            }
+        });
+    }
+    _cleanupPingTimer() {
+        if (this._pingServerHandle) {
+            clearTimeout(this._pingServerHandle);
+            this._pingServerHandle = undefined;
+        }
+    }
+    _cleanupTimeout() {
+        if (this._timeoutHandle) clearTimeout(this._timeoutHandle);
+    }
+    _createInvocation(methodName, args, nonblocking, streamIds) {
+        if (nonblocking) {
+            if (streamIds.length !== 0) return {
+                arguments: args,
+                streamIds,
+                target: methodName,
+                type: (0, _ihubProtocol.MessageType).Invocation
+            };
+            else return {
+                arguments: args,
+                target: methodName,
+                type: (0, _ihubProtocol.MessageType).Invocation
+            };
+        } else {
+            const invocationId = this._invocationId;
+            this._invocationId++;
+            if (streamIds.length !== 0) return {
+                arguments: args,
+                invocationId: invocationId.toString(),
+                streamIds,
+                target: methodName,
+                type: (0, _ihubProtocol.MessageType).Invocation
+            };
+            else return {
+                arguments: args,
+                invocationId: invocationId.toString(),
+                target: methodName,
+                type: (0, _ihubProtocol.MessageType).Invocation
+            };
+        }
+    }
+    _launchStreams(streams, promiseQueue) {
+        if (streams.length === 0) return;
+        // Synchronize stream data so they arrive in-order on the server
+        if (!promiseQueue) promiseQueue = Promise.resolve();
+        // We want to iterate over the keys, since the keys are the stream ids
+        // eslint-disable-next-line guard-for-in
+        for(const streamId in streams)streams[streamId].subscribe({
+            complete: ()=>{
+                promiseQueue = promiseQueue.then(()=>this._sendWithProtocol(this._createCompletionMessage(streamId)));
+            },
+            error: (err)=>{
+                let message;
+                if (err instanceof Error) message = err.message;
+                else if (err && err.toString) message = err.toString();
+                else message = "Unknown error";
+                promiseQueue = promiseQueue.then(()=>this._sendWithProtocol(this._createCompletionMessage(streamId, message)));
+            },
+            next: (item)=>{
+                promiseQueue = promiseQueue.then(()=>this._sendWithProtocol(this._createStreamItemMessage(streamId, item)));
+            }
+        });
+    }
+    _replaceStreamingParams(args) {
+        const streams = [];
+        const streamIds = [];
+        for(let i = 0; i < args.length; i++){
+            const argument = args[i];
+            if (this._isObservable(argument)) {
+                const streamId = this._invocationId;
+                this._invocationId++;
+                // Store the stream for later use
+                streams[streamId] = argument;
+                streamIds.push(streamId.toString());
+                // remove stream from args
+                args.splice(i, 1);
+            }
+        }
+        return [
+            streams,
+            streamIds
+        ];
+    }
+    _isObservable(arg) {
+        // This allows other stream implementations to just work (like rxjs)
+        return arg && arg.subscribe && typeof arg.subscribe === "function";
+    }
+    _createStreamInvocation(methodName, args, streamIds) {
+        const invocationId = this._invocationId;
+        this._invocationId++;
+        if (streamIds.length !== 0) return {
+            arguments: args,
+            invocationId: invocationId.toString(),
+            streamIds,
+            target: methodName,
+            type: (0, _ihubProtocol.MessageType).StreamInvocation
+        };
+        else return {
+            arguments: args,
+            invocationId: invocationId.toString(),
+            target: methodName,
+            type: (0, _ihubProtocol.MessageType).StreamInvocation
+        };
+    }
+    _createCancelInvocation(id) {
+        return {
+            invocationId: id,
+            type: (0, _ihubProtocol.MessageType).CancelInvocation
+        };
+    }
+    _createStreamItemMessage(id, item) {
+        return {
+            invocationId: id,
+            item,
+            type: (0, _ihubProtocol.MessageType).StreamItem
+        };
+    }
+    _createCompletionMessage(id, error, result) {
+        if (error) return {
+            error,
+            invocationId: id,
+            type: (0, _ihubProtocol.MessageType).Completion
+        };
+        return {
+            invocationId: id,
+            result,
+            type: (0, _ihubProtocol.MessageType).Completion
+        };
+    }
+}
+
+},{"./HandshakeProtocol":"f8HBC","./IHubProtocol":"i4JLH","./ILogger":"e8deM","./Subject":"iS1Ri","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f8HBC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** @private */ parcelHelpers.export(exports, "HandshakeProtocol", ()=>HandshakeProtocol);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _textMessageFormat = require("./TextMessageFormat");
+var _utils = require("./Utils");
+class HandshakeProtocol {
+    // Handshake request is always JSON
+    writeHandshakeRequest(handshakeRequest) {
+        return (0, _textMessageFormat.TextMessageFormat).write(JSON.stringify(handshakeRequest));
+    }
+    parseHandshakeResponse(data) {
+        let messageData;
+        let remainingData;
+        if ((0, _utils.isArrayBuffer)(data)) {
+            // Format is binary but still need to read JSON text from handshake response
+            const binaryData = new Uint8Array(data);
+            const separatorIndex = binaryData.indexOf((0, _textMessageFormat.TextMessageFormat).RecordSeparatorCode);
+            if (separatorIndex === -1) throw new Error("Message is incomplete.");
+            // content before separator is handshake response
+            // optional content after is additional messages
+            const responseLength = separatorIndex + 1;
+            messageData = String.fromCharCode.apply(null, Array.prototype.slice.call(binaryData.slice(0, responseLength)));
+            remainingData = binaryData.byteLength > responseLength ? binaryData.slice(responseLength).buffer : null;
+        } else {
+            const textData = data;
+            const separatorIndex1 = textData.indexOf((0, _textMessageFormat.TextMessageFormat).RecordSeparator);
+            if (separatorIndex1 === -1) throw new Error("Message is incomplete.");
+            // content before separator is handshake response
+            // optional content after is additional messages
+            const responseLength1 = separatorIndex1 + 1;
+            messageData = textData.substring(0, responseLength1);
+            remainingData = textData.length > responseLength1 ? textData.substring(responseLength1) : null;
+        }
+        // At this point we should have just the single handshake message
+        const messages = (0, _textMessageFormat.TextMessageFormat).parse(messageData);
+        const response = JSON.parse(messages[0]);
+        if (response.type) throw new Error("Expected a handshake response from the server.");
+        const responseMessage = response;
+        // multiple messages could have arrived with handshake
+        // return additional data to be parsed as usual, or null if all parsed
+        return [
+            remainingData,
+            responseMessage
+        ];
+    }
+}
+
+},{"./TextMessageFormat":"1g148","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1g148":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// Not exported from index
+/** @private */ parcelHelpers.export(exports, "TextMessageFormat", ()=>TextMessageFormat);
+class TextMessageFormat {
+    static write(output) {
+        return `${output}${TextMessageFormat.RecordSeparator}`;
+    }
+    static parse(input) {
+        if (input[input.length - 1] !== TextMessageFormat.RecordSeparator) throw new Error("Message is incomplete.");
+        const messages = input.split(TextMessageFormat.RecordSeparator);
+        messages.pop();
+        return messages;
+    }
+}
+TextMessageFormat.RecordSeparatorCode = 0x1e;
+TextMessageFormat.RecordSeparator = String.fromCharCode(TextMessageFormat.RecordSeparatorCode);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i4JLH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MessageType", ()=>MessageType);
+var MessageType;
+(function(MessageType) {
+    /** Indicates the message is an Invocation message and implements the {@link @microsoft/signalr.InvocationMessage} interface. */ MessageType[MessageType["Invocation"] = 1] = "Invocation";
+    /** Indicates the message is a StreamItem message and implements the {@link @microsoft/signalr.StreamItemMessage} interface. */ MessageType[MessageType["StreamItem"] = 2] = "StreamItem";
+    /** Indicates the message is a Completion message and implements the {@link @microsoft/signalr.CompletionMessage} interface. */ MessageType[MessageType["Completion"] = 3] = "Completion";
+    /** Indicates the message is a Stream Invocation message and implements the {@link @microsoft/signalr.StreamInvocationMessage} interface. */ MessageType[MessageType["StreamInvocation"] = 4] = "StreamInvocation";
+    /** Indicates the message is a Cancel Invocation message and implements the {@link @microsoft/signalr.CancelInvocationMessage} interface. */ MessageType[MessageType["CancelInvocation"] = 5] = "CancelInvocation";
+    /** Indicates the message is a Ping message and implements the {@link @microsoft/signalr.PingMessage} interface. */ MessageType[MessageType["Ping"] = 6] = "Ping";
+    /** Indicates the message is a Close message and implements the {@link @microsoft/signalr.CloseMessage} interface. */ MessageType[MessageType["Close"] = 7] = "Close";
+})(MessageType || (MessageType = {}));
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iS1Ri":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** Stream implementation to stream items to the server. */ parcelHelpers.export(exports, "Subject", ()=>Subject);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _utils = require("./Utils");
+class Subject {
+    constructor(){
+        this.observers = [];
+    }
+    next(item) {
+        for (const observer of this.observers)observer.next(item);
+    }
+    error(err) {
+        for (const observer of this.observers)if (observer.error) observer.error(err);
+    }
+    complete() {
+        for (const observer of this.observers)if (observer.complete) observer.complete();
+    }
+    subscribe(observer) {
+        this.observers.push(observer);
+        return new (0, _utils.SubjectSubscription)(this, observer);
+    }
+}
+
+},{"./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jS1Va":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** A builder for configuring {@link @microsoft/signalr.HubConnection} instances. */ parcelHelpers.export(exports, "HubConnectionBuilder", ()=>HubConnectionBuilder);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _defaultReconnectPolicy = require("./DefaultReconnectPolicy");
+var _httpConnection = require("./HttpConnection");
+var _hubConnection = require("./HubConnection");
+var _ilogger = require("./ILogger");
+var _jsonHubProtocol = require("./JsonHubProtocol");
+var _loggers = require("./Loggers");
+var _utils = require("./Utils");
+const LogLevelNameMapping = {
+    trace: (0, _ilogger.LogLevel).Trace,
+    debug: (0, _ilogger.LogLevel).Debug,
+    info: (0, _ilogger.LogLevel).Information,
+    information: (0, _ilogger.LogLevel).Information,
+    warn: (0, _ilogger.LogLevel).Warning,
+    warning: (0, _ilogger.LogLevel).Warning,
+    error: (0, _ilogger.LogLevel).Error,
+    critical: (0, _ilogger.LogLevel).Critical,
+    none: (0, _ilogger.LogLevel).None
+};
+function parseLogLevel(name) {
+    // Case-insensitive matching via lower-casing
+    // Yes, I know case-folding is a complicated problem in Unicode, but we only support
+    // the ASCII strings defined in LogLevelNameMapping anyway, so it's fine -anurse.
+    const mapping = LogLevelNameMapping[name.toLowerCase()];
+    if (typeof mapping !== "undefined") return mapping;
+    else throw new Error(`Unknown log level: ${name}`);
+}
+class HubConnectionBuilder {
+    configureLogging(logging) {
+        (0, _utils.Arg).isRequired(logging, "logging");
+        if (isLogger(logging)) this.logger = logging;
+        else if (typeof logging === "string") {
+            const logLevel = parseLogLevel(logging);
+            this.logger = new (0, _utils.ConsoleLogger)(logLevel);
+        } else this.logger = new (0, _utils.ConsoleLogger)(logging);
+        return this;
+    }
+    withUrl(url, transportTypeOrOptions) {
+        (0, _utils.Arg).isRequired(url, "url");
+        (0, _utils.Arg).isNotEmpty(url, "url");
+        this.url = url;
+        // Flow-typing knows where it's at. Since HttpTransportType is a number and IHttpConnectionOptions is guaranteed
+        // to be an object, we know (as does TypeScript) this comparison is all we need to figure out which overload was called.
+        if (typeof transportTypeOrOptions === "object") this.httpConnectionOptions = {
+            ...this.httpConnectionOptions,
+            ...transportTypeOrOptions
+        };
+        else this.httpConnectionOptions = {
+            ...this.httpConnectionOptions,
+            transport: transportTypeOrOptions
+        };
+        return this;
+    }
+    /** Configures the {@link @microsoft/signalr.HubConnection} to use the specified Hub Protocol.
+     *
+     * @param {IHubProtocol} protocol The {@link @microsoft/signalr.IHubProtocol} implementation to use.
+     */ withHubProtocol(protocol) {
+        (0, _utils.Arg).isRequired(protocol, "protocol");
+        this.protocol = protocol;
+        return this;
+    }
+    withAutomaticReconnect(retryDelaysOrReconnectPolicy) {
+        if (this.reconnectPolicy) throw new Error("A reconnectPolicy has already been set.");
+        if (!retryDelaysOrReconnectPolicy) this.reconnectPolicy = new (0, _defaultReconnectPolicy.DefaultReconnectPolicy)();
+        else if (Array.isArray(retryDelaysOrReconnectPolicy)) this.reconnectPolicy = new (0, _defaultReconnectPolicy.DefaultReconnectPolicy)(retryDelaysOrReconnectPolicy);
+        else this.reconnectPolicy = retryDelaysOrReconnectPolicy;
+        return this;
+    }
+    /** Creates a {@link @microsoft/signalr.HubConnection} from the configuration options specified in this builder.
+     *
+     * @returns {HubConnection} The configured {@link @microsoft/signalr.HubConnection}.
+     */ build() {
+        // If httpConnectionOptions has a logger, use it. Otherwise, override it with the one
+        // provided to configureLogger
+        const httpConnectionOptions = this.httpConnectionOptions || {};
+        // If it's 'null', the user **explicitly** asked for null, don't mess with it.
+        if (httpConnectionOptions.logger === undefined) // If our logger is undefined or null, that's OK, the HttpConnection constructor will handle it.
+        httpConnectionOptions.logger = this.logger;
+        // Now create the connection
+        if (!this.url) throw new Error("The 'HubConnectionBuilder.withUrl' method must be called before building the connection.");
+        const connection = new (0, _httpConnection.HttpConnection)(this.url, httpConnectionOptions);
+        return (0, _hubConnection.HubConnection).create(connection, this.logger || (0, _loggers.NullLogger).instance, this.protocol || new (0, _jsonHubProtocol.JsonHubProtocol)(), this.reconnectPolicy);
+    }
+}
+function isLogger(logger) {
+    return logger.log !== undefined;
+}
+
+},{"./DefaultReconnectPolicy":"lf7Av","./HttpConnection":"jC4h2","./HubConnection":"5zQSx","./ILogger":"e8deM","./JsonHubProtocol":"bK2jR","./Loggers":"1B6CY","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lf7Av":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** @private */ parcelHelpers.export(exports, "DefaultReconnectPolicy", ()=>DefaultReconnectPolicy);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// 0, 2, 10, 30 second delays before reconnect attempts.
+const DEFAULT_RETRY_DELAYS_IN_MILLISECONDS = [
+    0,
+    2000,
+    10000,
+    30000,
+    null
+];
+class DefaultReconnectPolicy {
+    constructor(retryDelays){
+        this._retryDelays = retryDelays !== undefined ? [
+            ...retryDelays,
+            null
+        ] : DEFAULT_RETRY_DELAYS_IN_MILLISECONDS;
+    }
+    nextRetryDelayInMilliseconds(retryContext) {
+        return this._retryDelays[retryContext.previousRetryCount];
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jC4h2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** @private */ parcelHelpers.export(exports, "HttpConnection", ()=>HttpConnection);
+/** @private */ parcelHelpers.export(exports, "TransportSendQueue", ()=>TransportSendQueue);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _defaultHttpClient = require("./DefaultHttpClient");
+var _errors = require("./Errors");
+var _headerNames = require("./HeaderNames");
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _longPollingTransport = require("./LongPollingTransport");
+var _serverSentEventsTransport = require("./ServerSentEventsTransport");
+var _utils = require("./Utils");
+var _webSocketTransport = require("./WebSocketTransport");
+const MAX_REDIRECTS = 100;
+class HttpConnection {
+    constructor(url, options = {}){
+        this._stopPromiseResolver = ()=>{};
+        this.features = {};
+        this._negotiateVersion = 1;
+        (0, _utils.Arg).isRequired(url, "url");
+        this._logger = (0, _utils.createLogger)(options.logger);
+        this.baseUrl = this._resolveUrl(url);
+        options = options || {};
+        options.logMessageContent = options.logMessageContent === undefined ? false : options.logMessageContent;
+        if (typeof options.withCredentials === "boolean" || options.withCredentials === undefined) options.withCredentials = options.withCredentials === undefined ? true : options.withCredentials;
+        else throw new Error("withCredentials option was not a 'boolean' or 'undefined' value");
+        options.timeout = options.timeout === undefined ? 100000 : options.timeout;
+        let webSocketModule = null;
+        let eventSourceModule = null;
+        if ((0, _utils.Platform).isNode && true) {
+            // In order to ignore the dynamic require in webpack builds we need to do this magic
+            // @ts-ignore: TS doesn't know about these names
+            const requireFunc = typeof __webpack_require__ === "function" ? __non_webpack_require__ : undefined;
+            webSocketModule = requireFunc("ws");
+            eventSourceModule = requireFunc("eventsource");
+        }
+        if (!(0, _utils.Platform).isNode && typeof WebSocket !== "undefined" && !options.WebSocket) options.WebSocket = WebSocket;
+        else if ((0, _utils.Platform).isNode && !options.WebSocket) {
+            if (webSocketModule) options.WebSocket = webSocketModule;
+        }
+        if (!(0, _utils.Platform).isNode && typeof EventSource !== "undefined" && !options.EventSource) options.EventSource = EventSource;
+        else if ((0, _utils.Platform).isNode && !options.EventSource) {
+            if (typeof eventSourceModule !== "undefined") options.EventSource = eventSourceModule;
+        }
+        this._httpClient = options.httpClient || new (0, _defaultHttpClient.DefaultHttpClient)(this._logger);
+        this._connectionState = "Disconnected" /* Disconnected */ ;
+        this._connectionStarted = false;
+        this._options = options;
+        this.onreceive = null;
+        this.onclose = null;
+    }
+    async start(transferFormat) {
+        transferFormat = transferFormat || (0, _itransport.TransferFormat).Binary;
+        (0, _utils.Arg).isIn(transferFormat, (0, _itransport.TransferFormat), "transferFormat");
+        this._logger.log((0, _ilogger.LogLevel).Debug, `Starting connection with transfer format '${(0, _itransport.TransferFormat)[transferFormat]}'.`);
+        if (this._connectionState !== "Disconnected" /* Disconnected */ ) return Promise.reject(new Error("Cannot start an HttpConnection that is not in the 'Disconnected' state."));
+        this._connectionState = "Connecting" /* Connecting */ ;
+        this._startInternalPromise = this._startInternal(transferFormat);
+        await this._startInternalPromise;
+        // The TypeScript compiler thinks that connectionState must be Connecting here. The TypeScript compiler is wrong.
+        if (this._connectionState === "Disconnecting" /* Disconnecting */ ) {
+            // stop() was called and transitioned the client into the Disconnecting state.
+            const message = "Failed to start the HttpConnection before stop() was called.";
+            this._logger.log((0, _ilogger.LogLevel).Error, message);
+            // We cannot await stopPromise inside startInternal since stopInternal awaits the startInternalPromise.
+            await this._stopPromise;
+            return Promise.reject(new Error(message));
+        } else if (this._connectionState !== "Connected" /* Connected */ ) {
+            // stop() was called and transitioned the client into the Disconnecting state.
+            const message1 = "HttpConnection.startInternal completed gracefully but didn't enter the connection into the connected state!";
+            this._logger.log((0, _ilogger.LogLevel).Error, message1);
+            return Promise.reject(new Error(message1));
+        }
+        this._connectionStarted = true;
+    }
+    send(data) {
+        if (this._connectionState !== "Connected" /* Connected */ ) return Promise.reject(new Error("Cannot send data if the connection is not in the 'Connected' State."));
+        if (!this._sendQueue) this._sendQueue = new TransportSendQueue(this.transport);
+        // Transport will not be null if state is connected
+        return this._sendQueue.send(data);
+    }
+    async stop(error) {
+        if (this._connectionState === "Disconnected" /* Disconnected */ ) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Call to HttpConnection.stop(${error}) ignored because the connection is already in the disconnected state.`);
+            return Promise.resolve();
+        }
+        if (this._connectionState === "Disconnecting" /* Disconnecting */ ) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Call to HttpConnection.stop(${error}) ignored because the connection is already in the disconnecting state.`);
+            return this._stopPromise;
+        }
+        this._connectionState = "Disconnecting" /* Disconnecting */ ;
+        this._stopPromise = new Promise((resolve)=>{
+            // Don't complete stop() until stopConnection() completes.
+            this._stopPromiseResolver = resolve;
+        });
+        // stopInternal should never throw so just observe it.
+        await this._stopInternal(error);
+        await this._stopPromise;
+    }
+    async _stopInternal(error) {
+        // Set error as soon as possible otherwise there is a race between
+        // the transport closing and providing an error and the error from a close message
+        // We would prefer the close message error.
+        this._stopError = error;
+        try {
+            await this._startInternalPromise;
+        } catch (e) {
+        // This exception is returned to the user as a rejected Promise from the start method.
+        }
+        // The transport's onclose will trigger stopConnection which will run our onclose event.
+        // The transport should always be set if currently connected. If it wasn't set, it's likely because
+        // stop was called during start() and start() failed.
+        if (this.transport) {
+            try {
+                await this.transport.stop();
+            } catch (e1) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `HttpConnection.transport.stop() threw error '${e1}'.`);
+                this._stopConnection();
+            }
+            this.transport = undefined;
+        } else this._logger.log((0, _ilogger.LogLevel).Debug, "HttpConnection.transport is undefined in HttpConnection.stop() because start() failed.");
+    }
+    async _startInternal(transferFormat) {
+        // Store the original base url and the access token factory since they may change
+        // as part of negotiating
+        let url = this.baseUrl;
+        this._accessTokenFactory = this._options.accessTokenFactory;
+        try {
+            if (this._options.skipNegotiation) {
+                if (this._options.transport === (0, _itransport.HttpTransportType).WebSockets) {
+                    // No need to add a connection ID in this case
+                    this.transport = this._constructTransport((0, _itransport.HttpTransportType).WebSockets);
+                    // We should just call connect directly in this case.
+                    // No fallback or negotiate in this case.
+                    await this._startTransport(url, transferFormat);
+                } else throw new Error("Negotiation can only be skipped when using the WebSocket transport directly.");
+            } else {
+                let negotiateResponse = null;
+                let redirects = 0;
+                do {
+                    negotiateResponse = await this._getNegotiationResponse(url);
+                    // the user tries to stop the connection when it is being started
+                    if (this._connectionState === "Disconnecting" /* Disconnecting */  || this._connectionState === "Disconnected" /* Disconnected */ ) throw new Error("The connection was stopped during negotiation.");
+                    if (negotiateResponse.error) throw new Error(negotiateResponse.error);
+                    if (negotiateResponse.ProtocolVersion) throw new Error("Detected a connection attempt to an ASP.NET SignalR Server. This client only supports connecting to an ASP.NET Core SignalR Server. See https://aka.ms/signalr-core-differences for details.");
+                    if (negotiateResponse.url) url = negotiateResponse.url;
+                    if (negotiateResponse.accessToken) {
+                        // Replace the current access token factory with one that uses
+                        // the returned access token
+                        const accessToken = negotiateResponse.accessToken;
+                        this._accessTokenFactory = ()=>accessToken;
+                    }
+                    redirects++;
+                }while (negotiateResponse.url && redirects < MAX_REDIRECTS);
+                if (redirects === MAX_REDIRECTS && negotiateResponse.url) throw new Error("Negotiate redirection limit exceeded.");
+                await this._createTransport(url, this._options.transport, negotiateResponse, transferFormat);
+            }
+            if (this.transport instanceof (0, _longPollingTransport.LongPollingTransport)) this.features.inherentKeepAlive = true;
+            if (this._connectionState === "Connecting" /* Connecting */ ) {
+                // Ensure the connection transitions to the connected state prior to completing this.startInternalPromise.
+                // start() will handle the case when stop was called and startInternal exits still in the disconnecting state.
+                this._logger.log((0, _ilogger.LogLevel).Debug, "The HttpConnection connected successfully.");
+                this._connectionState = "Connected" /* Connected */ ;
+            }
+        // stop() is waiting on us via this.startInternalPromise so keep this.transport around so it can clean up.
+        // This is the only case startInternal can exit in neither the connected nor disconnected state because stopConnection()
+        // will transition to the disconnected state. start() will wait for the transition using the stopPromise.
+        } catch (e) {
+            this._logger.log((0, _ilogger.LogLevel).Error, "Failed to start the connection: " + e);
+            this._connectionState = "Disconnected" /* Disconnected */ ;
+            this.transport = undefined;
+            // if start fails, any active calls to stop assume that start will complete the stop promise
+            this._stopPromiseResolver();
+            return Promise.reject(e);
+        }
+    }
+    async _getNegotiationResponse(url) {
+        const headers = {};
+        if (this._accessTokenFactory) {
+            const token = await this._accessTokenFactory();
+            if (token) headers[(0, _headerNames.HeaderNames).Authorization] = `Bearer ${token}`;
+        }
+        const [name, value] = (0, _utils.getUserAgentHeader)();
+        headers[name] = value;
+        const negotiateUrl = this._resolveNegotiateUrl(url);
+        this._logger.log((0, _ilogger.LogLevel).Debug, `Sending negotiation request: ${negotiateUrl}.`);
+        try {
+            const response = await this._httpClient.post(negotiateUrl, {
+                content: "",
+                headers: {
+                    ...headers,
+                    ...this._options.headers
+                },
+                timeout: this._options.timeout,
+                withCredentials: this._options.withCredentials
+            });
+            if (response.statusCode !== 200) return Promise.reject(new Error(`Unexpected status code returned from negotiate '${response.statusCode}'`));
+            const negotiateResponse = JSON.parse(response.content);
+            if (!negotiateResponse.negotiateVersion || negotiateResponse.negotiateVersion < 1) // Negotiate version 0 doesn't use connectionToken
+            // So we set it equal to connectionId so all our logic can use connectionToken without being aware of the negotiate version
+            negotiateResponse.connectionToken = negotiateResponse.connectionId;
+            return negotiateResponse;
+        } catch (e) {
+            let errorMessage = "Failed to complete negotiation with the server: " + e;
+            if (e instanceof (0, _errors.HttpError)) {
+                if (e.statusCode === 404) errorMessage = errorMessage + " Either this is not a SignalR endpoint or there is a proxy blocking the connection.";
+            }
+            this._logger.log((0, _ilogger.LogLevel).Error, errorMessage);
+            return Promise.reject(new (0, _errors.FailedToNegotiateWithServerError)(errorMessage));
+        }
+    }
+    _createConnectUrl(url, connectionToken) {
+        if (!connectionToken) return url;
+        return url + (url.indexOf("?") === -1 ? "?" : "&") + `id=${connectionToken}`;
+    }
+    async _createTransport(url, requestedTransport, negotiateResponse, requestedTransferFormat) {
+        let connectUrl = this._createConnectUrl(url, negotiateResponse.connectionToken);
+        if (this._isITransport(requestedTransport)) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, "Connection was provided an instance of ITransport, using that directly.");
+            this.transport = requestedTransport;
+            await this._startTransport(connectUrl, requestedTransferFormat);
+            this.connectionId = negotiateResponse.connectionId;
+            return;
+        }
+        const transportExceptions = [];
+        const transports = negotiateResponse.availableTransports || [];
+        let negotiate = negotiateResponse;
+        for (const endpoint of transports){
+            const transportOrError = this._resolveTransportOrError(endpoint, requestedTransport, requestedTransferFormat);
+            if (transportOrError instanceof Error) {
+                // Store the error and continue, we don't want to cause a re-negotiate in these cases
+                transportExceptions.push(`${endpoint.transport} failed:`);
+                transportExceptions.push(transportOrError);
+            } else if (this._isITransport(transportOrError)) {
+                this.transport = transportOrError;
+                if (!negotiate) {
+                    try {
+                        negotiate = await this._getNegotiationResponse(url);
+                    } catch (ex) {
+                        return Promise.reject(ex);
+                    }
+                    connectUrl = this._createConnectUrl(url, negotiate.connectionToken);
+                }
+                try {
+                    await this._startTransport(connectUrl, requestedTransferFormat);
+                    this.connectionId = negotiate.connectionId;
+                    return;
+                } catch (ex1) {
+                    this._logger.log((0, _ilogger.LogLevel).Error, `Failed to start the transport '${endpoint.transport}': ${ex1}`);
+                    negotiate = undefined;
+                    transportExceptions.push(new (0, _errors.FailedToStartTransportError)(`${endpoint.transport} failed: ${ex1}`, (0, _itransport.HttpTransportType)[endpoint.transport]));
+                    if (this._connectionState !== "Connecting" /* Connecting */ ) {
+                        const message = "Failed to select transport before stop() was called.";
+                        this._logger.log((0, _ilogger.LogLevel).Debug, message);
+                        return Promise.reject(new Error(message));
+                    }
+                }
+            }
+        }
+        if (transportExceptions.length > 0) return Promise.reject(new (0, _errors.AggregateErrors)(`Unable to connect to the server with any of the available transports. ${transportExceptions.join(" ")}`, transportExceptions));
+        return Promise.reject(new Error("None of the transports supported by the client are supported by the server."));
+    }
+    _constructTransport(transport) {
+        switch(transport){
+            case (0, _itransport.HttpTransportType).WebSockets:
+                if (!this._options.WebSocket) throw new Error("'WebSocket' is not supported in your environment.");
+                return new (0, _webSocketTransport.WebSocketTransport)(this._httpClient, this._accessTokenFactory, this._logger, this._options.logMessageContent, this._options.WebSocket, this._options.headers || {});
+            case (0, _itransport.HttpTransportType).ServerSentEvents:
+                if (!this._options.EventSource) throw new Error("'EventSource' is not supported in your environment.");
+                return new (0, _serverSentEventsTransport.ServerSentEventsTransport)(this._httpClient, this._accessTokenFactory, this._logger, this._options);
+            case (0, _itransport.HttpTransportType).LongPolling:
+                return new (0, _longPollingTransport.LongPollingTransport)(this._httpClient, this._accessTokenFactory, this._logger, this._options);
+            default:
+                throw new Error(`Unknown transport: ${transport}.`);
+        }
+    }
+    _startTransport(url, transferFormat) {
+        this.transport.onreceive = this.onreceive;
+        this.transport.onclose = (e)=>this._stopConnection(e);
+        return this.transport.connect(url, transferFormat);
+    }
+    _resolveTransportOrError(endpoint, requestedTransport, requestedTransferFormat) {
+        const transport = (0, _itransport.HttpTransportType)[endpoint.transport];
+        if (transport === null || transport === undefined) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Skipping transport '${endpoint.transport}' because it is not supported by this client.`);
+            return new Error(`Skipping transport '${endpoint.transport}' because it is not supported by this client.`);
+        } else if (transportMatches(requestedTransport, transport)) {
+            const transferFormats = endpoint.transferFormats.map((s)=>(0, _itransport.TransferFormat)[s]);
+            if (transferFormats.indexOf(requestedTransferFormat) >= 0) {
+                if (transport === (0, _itransport.HttpTransportType).WebSockets && !this._options.WebSocket || transport === (0, _itransport.HttpTransportType).ServerSentEvents && !this._options.EventSource) {
+                    this._logger.log((0, _ilogger.LogLevel).Debug, `Skipping transport '${(0, _itransport.HttpTransportType)[transport]}' because it is not supported in your environment.'`);
+                    return new (0, _errors.UnsupportedTransportError)(`'${(0, _itransport.HttpTransportType)[transport]}' is not supported in your environment.`, transport);
+                } else {
+                    this._logger.log((0, _ilogger.LogLevel).Debug, `Selecting transport '${(0, _itransport.HttpTransportType)[transport]}'.`);
+                    try {
+                        return this._constructTransport(transport);
+                    } catch (ex) {
+                        return ex;
+                    }
+                }
+            } else {
+                this._logger.log((0, _ilogger.LogLevel).Debug, `Skipping transport '${(0, _itransport.HttpTransportType)[transport]}' because it does not support the requested transfer format '${(0, _itransport.TransferFormat)[requestedTransferFormat]}'.`);
+                return new Error(`'${(0, _itransport.HttpTransportType)[transport]}' does not support ${(0, _itransport.TransferFormat)[requestedTransferFormat]}.`);
+            }
+        } else {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Skipping transport '${(0, _itransport.HttpTransportType)[transport]}' because it was disabled by the client.`);
+            return new (0, _errors.DisabledTransportError)(`'${(0, _itransport.HttpTransportType)[transport]}' is disabled by the client.`, transport);
+        }
+    }
+    _isITransport(transport) {
+        return transport && typeof transport === "object" && "connect" in transport;
+    }
+    _stopConnection(error) {
+        this._logger.log((0, _ilogger.LogLevel).Debug, `HttpConnection.stopConnection(${error}) called while in state ${this._connectionState}.`);
+        this.transport = undefined;
+        // If we have a stopError, it takes precedence over the error from the transport
+        error = this._stopError || error;
+        this._stopError = undefined;
+        if (this._connectionState === "Disconnected" /* Disconnected */ ) {
+            this._logger.log((0, _ilogger.LogLevel).Debug, `Call to HttpConnection.stopConnection(${error}) was ignored because the connection is already in the disconnected state.`);
+            return;
+        }
+        if (this._connectionState === "Connecting" /* Connecting */ ) {
+            this._logger.log((0, _ilogger.LogLevel).Warning, `Call to HttpConnection.stopConnection(${error}) was ignored because the connection is still in the connecting state.`);
+            throw new Error(`HttpConnection.stopConnection(${error}) was called while the connection is still in the connecting state.`);
+        }
+        if (this._connectionState === "Disconnecting" /* Disconnecting */ ) // A call to stop() induced this call to stopConnection and needs to be completed.
+        // Any stop() awaiters will be scheduled to continue after the onclose callback fires.
+        this._stopPromiseResolver();
+        if (error) this._logger.log((0, _ilogger.LogLevel).Error, `Connection disconnected with error '${error}'.`);
+        else this._logger.log((0, _ilogger.LogLevel).Information, "Connection disconnected.");
+        if (this._sendQueue) {
+            this._sendQueue.stop().catch((e)=>{
+                this._logger.log((0, _ilogger.LogLevel).Error, `TransportSendQueue.stop() threw error '${e}'.`);
+            });
+            this._sendQueue = undefined;
+        }
+        this.connectionId = undefined;
+        this._connectionState = "Disconnected" /* Disconnected */ ;
+        if (this._connectionStarted) {
+            this._connectionStarted = false;
+            try {
+                if (this.onclose) this.onclose(error);
+            } catch (e) {
+                this._logger.log((0, _ilogger.LogLevel).Error, `HttpConnection.onclose(${error}) threw error '${e}'.`);
+            }
+        }
+    }
+    _resolveUrl(url) {
+        // startsWith is not supported in IE
+        if (url.lastIndexOf("https://", 0) === 0 || url.lastIndexOf("http://", 0) === 0) return url;
+        if (!(0, _utils.Platform).isBrowser) throw new Error(`Cannot resolve '${url}'.`);
+        // Setting the url to the href propery of an anchor tag handles normalization
+        // for us. There are 3 main cases.
+        // 1. Relative path normalization e.g "b" -> "http://localhost:5000/a/b"
+        // 2. Absolute path normalization e.g "/a/b" -> "http://localhost:5000/a/b"
+        // 3. Networkpath reference normalization e.g "//localhost:5000/a/b" -> "http://localhost:5000/a/b"
+        const aTag = window.document.createElement("a");
+        aTag.href = url;
+        this._logger.log((0, _ilogger.LogLevel).Information, `Normalizing '${url}' to '${aTag.href}'.`);
+        return aTag.href;
+    }
+    _resolveNegotiateUrl(url) {
+        const index = url.indexOf("?");
+        let negotiateUrl = url.substring(0, index === -1 ? url.length : index);
+        if (negotiateUrl[negotiateUrl.length - 1] !== "/") negotiateUrl += "/";
+        negotiateUrl += "negotiate";
+        negotiateUrl += index === -1 ? "" : url.substring(index);
+        if (negotiateUrl.indexOf("negotiateVersion") === -1) {
+            negotiateUrl += index === -1 ? "?" : "&";
+            negotiateUrl += "negotiateVersion=" + this._negotiateVersion;
+        }
+        return negotiateUrl;
+    }
+}
+function transportMatches(requestedTransport, actualTransport) {
+    return !requestedTransport || (actualTransport & requestedTransport) !== 0;
+}
+class TransportSendQueue {
+    constructor(_transport){
+        this._transport = _transport;
+        this._buffer = [];
+        this._executing = true;
+        this._sendBufferedData = new PromiseSource();
+        this._transportResult = new PromiseSource();
+        this._sendLoopPromise = this._sendLoop();
+    }
+    send(data) {
+        this._bufferData(data);
+        if (!this._transportResult) this._transportResult = new PromiseSource();
+        return this._transportResult.promise;
+    }
+    stop() {
+        this._executing = false;
+        this._sendBufferedData.resolve();
+        return this._sendLoopPromise;
+    }
+    _bufferData(data) {
+        if (this._buffer.length && typeof this._buffer[0] !== typeof data) throw new Error(`Expected data to be of type ${typeof this._buffer} but was of type ${typeof data}`);
+        this._buffer.push(data);
+        this._sendBufferedData.resolve();
+    }
+    async _sendLoop() {
+        while(true){
+            await this._sendBufferedData.promise;
+            if (!this._executing) {
+                if (this._transportResult) this._transportResult.reject("Connection stopped.");
+                break;
+            }
+            this._sendBufferedData = new PromiseSource();
+            const transportResult = this._transportResult;
+            this._transportResult = undefined;
+            const data = typeof this._buffer[0] === "string" ? this._buffer.join("") : TransportSendQueue._concatBuffers(this._buffer);
+            this._buffer.length = 0;
+            try {
+                await this._transport.send(data);
+                transportResult.resolve();
+            } catch (error) {
+                transportResult.reject(error);
+            }
+        }
+    }
+    static _concatBuffers(arrayBuffers) {
+        const totalLength = arrayBuffers.map((b)=>b.byteLength).reduce((a, b)=>a + b);
+        const result = new Uint8Array(totalLength);
+        let offset = 0;
+        for (const item of arrayBuffers){
+            result.set(new Uint8Array(item), offset);
+            offset += item.byteLength;
+        }
+        return result.buffer;
+    }
+}
+class PromiseSource {
+    constructor(){
+        this.promise = new Promise((resolve, reject)=>([this._resolver, this._rejecter] = [
+                resolve,
+                reject
+            ]));
+    }
+    resolve() {
+        this._resolver();
+    }
+    reject(reason) {
+        this._rejecter(reason);
+    }
+}
+
+},{"./DefaultHttpClient":"7ZQMv","./Errors":"aog7x","./HeaderNames":"iRrcX","./ILogger":"e8deM","./ITransport":"57ni4","./LongPollingTransport":"1TzKR","./ServerSentEventsTransport":"3zJj1","./Utils":"daEHA","./WebSocketTransport":"lJsJI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iRrcX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+parcelHelpers.export(exports, "HeaderNames", ()=>HeaderNames);
+class HeaderNames {
+}
+HeaderNames.Authorization = "Authorization";
+HeaderNames.Cookie = "Cookie";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"57ni4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "HttpTransportType", ()=>HttpTransportType);
+parcelHelpers.export(exports, "TransferFormat", ()=>TransferFormat);
+var HttpTransportType;
+(function(HttpTransportType) {
+    /** Specifies no transport preference. */ HttpTransportType[HttpTransportType["None"] = 0] = "None";
+    /** Specifies the WebSockets transport. */ HttpTransportType[HttpTransportType["WebSockets"] = 1] = "WebSockets";
+    /** Specifies the Server-Sent Events transport. */ HttpTransportType[HttpTransportType["ServerSentEvents"] = 2] = "ServerSentEvents";
+    /** Specifies the Long Polling transport. */ HttpTransportType[HttpTransportType["LongPolling"] = 4] = "LongPolling";
+})(HttpTransportType || (HttpTransportType = {}));
+var TransferFormat;
+(function(TransferFormat) {
+    /** Specifies that only text data will be transmitted over the connection. */ TransferFormat[TransferFormat["Text"] = 1] = "Text";
+    /** Specifies that binary data will be transmitted over the connection. */ TransferFormat[TransferFormat["Binary"] = 2] = "Binary";
+})(TransferFormat || (TransferFormat = {}));
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1TzKR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Not exported from 'index', this type is internal.
+/** @private */ parcelHelpers.export(exports, "LongPollingTransport", ()=>LongPollingTransport);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _abortController = require("./AbortController");
+var _errors = require("./Errors");
+var _headerNames = require("./HeaderNames");
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _utils = require("./Utils");
+class LongPollingTransport {
+    constructor(httpClient, accessTokenFactory, logger, options){
+        this._httpClient = httpClient;
+        this._accessTokenFactory = accessTokenFactory;
+        this._logger = logger;
+        this._pollAbort = new (0, _abortController.AbortController)();
+        this._options = options;
+        this._running = false;
+        this.onreceive = null;
+        this.onclose = null;
+    }
+    // This is an internal type, not exported from 'index' so this is really just internal.
+    get pollAborted() {
+        return this._pollAbort.aborted;
+    }
+    async connect(url, transferFormat) {
+        (0, _utils.Arg).isRequired(url, "url");
+        (0, _utils.Arg).isRequired(transferFormat, "transferFormat");
+        (0, _utils.Arg).isIn(transferFormat, (0, _itransport.TransferFormat), "transferFormat");
+        this._url = url;
+        this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Connecting.");
+        // Allow binary format on Node and Browsers that support binary content (indicated by the presence of responseType property)
+        if (transferFormat === (0, _itransport.TransferFormat).Binary && typeof XMLHttpRequest !== "undefined" && typeof new XMLHttpRequest().responseType !== "string") throw new Error("Binary protocols over XmlHttpRequest not implementing advanced features are not supported.");
+        const [name, value] = (0, _utils.getUserAgentHeader)();
+        const headers = {
+            [name]: value,
+            ...this._options.headers
+        };
+        const pollOptions = {
+            abortSignal: this._pollAbort.signal,
+            headers,
+            timeout: 100000,
+            withCredentials: this._options.withCredentials
+        };
+        if (transferFormat === (0, _itransport.TransferFormat).Binary) pollOptions.responseType = "arraybuffer";
+        const token = await this._getAccessToken();
+        this._updateHeaderToken(pollOptions, token);
+        // Make initial long polling request
+        // Server uses first long polling request to finish initializing connection and it returns without data
+        const pollUrl = `${url}&_=${Date.now()}`;
+        this._logger.log((0, _ilogger.LogLevel).Trace, `(LongPolling transport) polling: ${pollUrl}.`);
+        const response = await this._httpClient.get(pollUrl, pollOptions);
+        if (response.statusCode !== 200) {
+            this._logger.log((0, _ilogger.LogLevel).Error, `(LongPolling transport) Unexpected response code: ${response.statusCode}.`);
+            // Mark running as false so that the poll immediately ends and runs the close logic
+            this._closeError = new (0, _errors.HttpError)(response.statusText || "", response.statusCode);
+            this._running = false;
+        } else this._running = true;
+        this._receiving = this._poll(this._url, pollOptions);
+    }
+    async _getAccessToken() {
+        if (this._accessTokenFactory) return await this._accessTokenFactory();
+        return null;
+    }
+    _updateHeaderToken(request, token) {
+        if (!request.headers) request.headers = {};
+        if (token) {
+            request.headers[(0, _headerNames.HeaderNames).Authorization] = `Bearer ${token}`;
+            return;
+        }
+        if (request.headers[(0, _headerNames.HeaderNames).Authorization]) delete request.headers[(0, _headerNames.HeaderNames).Authorization];
+    }
+    async _poll(url, pollOptions) {
+        try {
+            while(this._running){
+                // We have to get the access token on each poll, in case it changes
+                const token = await this._getAccessToken();
+                this._updateHeaderToken(pollOptions, token);
+                try {
+                    const pollUrl = `${url}&_=${Date.now()}`;
+                    this._logger.log((0, _ilogger.LogLevel).Trace, `(LongPolling transport) polling: ${pollUrl}.`);
+                    const response = await this._httpClient.get(pollUrl, pollOptions);
+                    if (response.statusCode === 204) {
+                        this._logger.log((0, _ilogger.LogLevel).Information, "(LongPolling transport) Poll terminated by server.");
+                        this._running = false;
+                    } else if (response.statusCode !== 200) {
+                        this._logger.log((0, _ilogger.LogLevel).Error, `(LongPolling transport) Unexpected response code: ${response.statusCode}.`);
+                        // Unexpected status code
+                        this._closeError = new (0, _errors.HttpError)(response.statusText || "", response.statusCode);
+                        this._running = false;
+                    } else // Process the response
+                    if (response.content) {
+                        this._logger.log((0, _ilogger.LogLevel).Trace, `(LongPolling transport) data received. ${(0, _utils.getDataDetail)(response.content, this._options.logMessageContent)}.`);
+                        if (this.onreceive) this.onreceive(response.content);
+                    } else // This is another way timeout manifest.
+                    this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Poll timed out, reissuing.");
+                } catch (e) {
+                    if (!this._running) // Log but disregard errors that occur after stopping
+                    this._logger.log((0, _ilogger.LogLevel).Trace, `(LongPolling transport) Poll errored after shutdown: ${e.message}`);
+                    else if (e instanceof (0, _errors.TimeoutError)) // Ignore timeouts and reissue the poll.
+                    this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Poll timed out, reissuing.");
+                    else {
+                        // Close the connection with the error as the result.
+                        this._closeError = e;
+                        this._running = false;
+                    }
+                }
+            }
+        } finally{
+            this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Polling complete.");
+            // We will reach here with pollAborted==false when the server returned a response causing the transport to stop.
+            // If pollAborted==true then client initiated the stop and the stop method will raise the close event after DELETE is sent.
+            if (!this.pollAborted) this._raiseOnClose();
+        }
+    }
+    async send(data) {
+        if (!this._running) return Promise.reject(new Error("Cannot send until the transport is connected"));
+        return (0, _utils.sendMessage)(this._logger, "LongPolling", this._httpClient, this._url, this._accessTokenFactory, data, this._options);
+    }
+    async stop() {
+        this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Stopping polling.");
+        // Tell receiving loop to stop, abort any current request, and then wait for it to finish
+        this._running = false;
+        this._pollAbort.abort();
+        try {
+            await this._receiving;
+            // Send DELETE to clean up long polling on the server
+            this._logger.log((0, _ilogger.LogLevel).Trace, `(LongPolling transport) sending DELETE request to ${this._url}.`);
+            const headers = {};
+            const [name, value] = (0, _utils.getUserAgentHeader)();
+            headers[name] = value;
+            const deleteOptions = {
+                headers: {
+                    ...headers,
+                    ...this._options.headers
+                },
+                timeout: this._options.timeout,
+                withCredentials: this._options.withCredentials
+            };
+            const token = await this._getAccessToken();
+            this._updateHeaderToken(deleteOptions, token);
+            await this._httpClient.delete(this._url, deleteOptions);
+            this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) DELETE request sent.");
+        } finally{
+            this._logger.log((0, _ilogger.LogLevel).Trace, "(LongPolling transport) Stop finished.");
+            // Raise close event here instead of in polling
+            // It needs to happen after the DELETE request is sent
+            this._raiseOnClose();
+        }
+    }
+    _raiseOnClose() {
+        if (this.onclose) {
+            let logMessage = "(LongPolling transport) Firing onclose event.";
+            if (this._closeError) logMessage += " Error: " + this._closeError;
+            this._logger.log((0, _ilogger.LogLevel).Trace, logMessage);
+            this.onclose(this._closeError);
+        }
+    }
+}
+
+},{"./AbortController":"hFDIm","./Errors":"aog7x","./HeaderNames":"iRrcX","./ILogger":"e8deM","./ITransport":"57ni4","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hFDIm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// Rough polyfill of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
+// We don't actually ever use the API being polyfilled, we always use the polyfill because
+// it's a very new API right now.
+// Not exported from index.
+/** @private */ parcelHelpers.export(exports, "AbortController", ()=>AbortController);
+class AbortController {
+    constructor(){
+        this._isAborted = false;
+        this.onabort = null;
+    }
+    abort() {
+        if (!this._isAborted) {
+            this._isAborted = true;
+            if (this.onabort) this.onabort();
+        }
+    }
+    get signal() {
+        return this;
+    }
+    get aborted() {
+        return this._isAborted;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3zJj1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** @private */ parcelHelpers.export(exports, "ServerSentEventsTransport", ()=>ServerSentEventsTransport);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _utils = require("./Utils");
+class ServerSentEventsTransport {
+    constructor(httpClient, accessTokenFactory, logger, options){
+        this._httpClient = httpClient;
+        this._accessTokenFactory = accessTokenFactory;
+        this._logger = logger;
+        this._options = options;
+        this.onreceive = null;
+        this.onclose = null;
+    }
+    async connect(url, transferFormat) {
+        (0, _utils.Arg).isRequired(url, "url");
+        (0, _utils.Arg).isRequired(transferFormat, "transferFormat");
+        (0, _utils.Arg).isIn(transferFormat, (0, _itransport.TransferFormat), "transferFormat");
+        this._logger.log((0, _ilogger.LogLevel).Trace, "(SSE transport) Connecting.");
+        // set url before accessTokenFactory because this.url is only for send and we set the auth header instead of the query string for send
+        this._url = url;
+        if (this._accessTokenFactory) {
+            const token = await this._accessTokenFactory();
+            if (token) url += (url.indexOf("?") < 0 ? "?" : "&") + `access_token=${encodeURIComponent(token)}`;
+        }
+        return new Promise((resolve, reject)=>{
+            let opened = false;
+            if (transferFormat !== (0, _itransport.TransferFormat).Text) {
+                reject(new Error("The Server-Sent Events transport only supports the 'Text' transfer format"));
+                return;
+            }
+            let eventSource;
+            if ((0, _utils.Platform).isBrowser || (0, _utils.Platform).isWebWorker) eventSource = new this._options.EventSource(url, {
+                withCredentials: this._options.withCredentials
+            });
+            else {
+                // Non-browser passes cookies via the dictionary
+                const cookies = this._httpClient.getCookieString(url);
+                const headers = {};
+                headers.Cookie = cookies;
+                const [name, value] = (0, _utils.getUserAgentHeader)();
+                headers[name] = value;
+                eventSource = new this._options.EventSource(url, {
+                    withCredentials: this._options.withCredentials,
+                    headers: {
+                        ...headers,
+                        ...this._options.headers
+                    }
+                });
+            }
+            try {
+                eventSource.onmessage = (e)=>{
+                    if (this.onreceive) try {
+                        this._logger.log((0, _ilogger.LogLevel).Trace, `(SSE transport) data received. ${(0, _utils.getDataDetail)(e.data, this._options.logMessageContent)}.`);
+                        this.onreceive(e.data);
+                    } catch (error) {
+                        this._close(error);
+                        return;
+                    }
+                };
+                // @ts-ignore: not using event on purpose
+                eventSource.onerror = (e)=>{
+                    // EventSource doesn't give any useful information about server side closes.
+                    if (opened) this._close();
+                    else reject(new Error("EventSource failed to connect. The connection could not be found on the server, either the connection ID is not present on the server, or a proxy is refusing/buffering the connection. If you have multiple servers check that sticky sessions are enabled."));
+                };
+                eventSource.onopen = ()=>{
+                    this._logger.log((0, _ilogger.LogLevel).Information, `SSE connected to ${this._url}`);
+                    this._eventSource = eventSource;
+                    opened = true;
+                    resolve();
+                };
+            } catch (e) {
+                reject(e);
+                return;
+            }
+        });
+    }
+    async send(data) {
+        if (!this._eventSource) return Promise.reject(new Error("Cannot send until the transport is connected"));
+        return (0, _utils.sendMessage)(this._logger, "SSE", this._httpClient, this._url, this._accessTokenFactory, data, this._options);
+    }
+    stop() {
+        this._close();
+        return Promise.resolve();
+    }
+    _close(e) {
+        if (this._eventSource) {
+            this._eventSource.close();
+            this._eventSource = undefined;
+            if (this.onclose) this.onclose(e);
+        }
+    }
+}
+
+},{"./ILogger":"e8deM","./ITransport":"57ni4","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lJsJI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** @private */ parcelHelpers.export(exports, "WebSocketTransport", ()=>WebSocketTransport);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _headerNames = require("./HeaderNames");
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _utils = require("./Utils");
+class WebSocketTransport {
+    constructor(httpClient, accessTokenFactory, logger, logMessageContent, webSocketConstructor, headers){
+        this._logger = logger;
+        this._accessTokenFactory = accessTokenFactory;
+        this._logMessageContent = logMessageContent;
+        this._webSocketConstructor = webSocketConstructor;
+        this._httpClient = httpClient;
+        this.onreceive = null;
+        this.onclose = null;
+        this._headers = headers;
+    }
+    async connect(url, transferFormat) {
+        (0, _utils.Arg).isRequired(url, "url");
+        (0, _utils.Arg).isRequired(transferFormat, "transferFormat");
+        (0, _utils.Arg).isIn(transferFormat, (0, _itransport.TransferFormat), "transferFormat");
+        this._logger.log((0, _ilogger.LogLevel).Trace, "(WebSockets transport) Connecting.");
+        if (this._accessTokenFactory) {
+            const token = await this._accessTokenFactory();
+            if (token) url += (url.indexOf("?") < 0 ? "?" : "&") + `access_token=${encodeURIComponent(token)}`;
+        }
+        return new Promise((resolve, reject)=>{
+            url = url.replace(/^http/, "ws");
+            let webSocket;
+            const cookies = this._httpClient.getCookieString(url);
+            let opened = false;
+            if ((0, _utils.Platform).isNode) {
+                const headers = {};
+                const [name, value] = (0, _utils.getUserAgentHeader)();
+                headers[name] = value;
+                if (cookies) headers[(0, _headerNames.HeaderNames).Cookie] = `${cookies}`;
+                // Only pass headers when in non-browser environments
+                webSocket = new this._webSocketConstructor(url, undefined, {
+                    headers: {
+                        ...headers,
+                        ...this._headers
+                    }
+                });
+            }
+            if (!webSocket) // Chrome is not happy with passing 'undefined' as protocol
+            webSocket = new this._webSocketConstructor(url);
+            if (transferFormat === (0, _itransport.TransferFormat).Binary) webSocket.binaryType = "arraybuffer";
+            webSocket.onopen = (_event)=>{
+                this._logger.log((0, _ilogger.LogLevel).Information, `WebSocket connected to ${url}.`);
+                this._webSocket = webSocket;
+                opened = true;
+                resolve();
+            };
+            webSocket.onerror = (event)=>{
+                let error = null;
+                // ErrorEvent is a browser only type we need to check if the type exists before using it
+                if (typeof ErrorEvent !== "undefined" && event instanceof ErrorEvent) error = event.error;
+                else error = "There was an error with the transport";
+                this._logger.log((0, _ilogger.LogLevel).Information, `(WebSockets transport) ${error}.`);
+            };
+            webSocket.onmessage = (message)=>{
+                this._logger.log((0, _ilogger.LogLevel).Trace, `(WebSockets transport) data received. ${(0, _utils.getDataDetail)(message.data, this._logMessageContent)}.`);
+                if (this.onreceive) try {
+                    this.onreceive(message.data);
+                } catch (error) {
+                    this._close(error);
+                    return;
+                }
+            };
+            webSocket.onclose = (event)=>{
+                // Don't call close handler if connection was never established
+                // We'll reject the connect call instead
+                if (opened) this._close(event);
+                else {
+                    let error = null;
+                    // ErrorEvent is a browser only type we need to check if the type exists before using it
+                    if (typeof ErrorEvent !== "undefined" && event instanceof ErrorEvent) error = event.error;
+                    else error = "WebSocket failed to connect. The connection could not be found on the server, either the endpoint may not be a SignalR endpoint, the connection ID is not present on the server, or there is a proxy blocking WebSockets. If you have multiple servers check that sticky sessions are enabled.";
+                    reject(new Error(error));
+                }
+            };
+        });
+    }
+    send(data) {
+        if (this._webSocket && this._webSocket.readyState === this._webSocketConstructor.OPEN) {
+            this._logger.log((0, _ilogger.LogLevel).Trace, `(WebSockets transport) sending data. ${(0, _utils.getDataDetail)(data, this._logMessageContent)}.`);
+            this._webSocket.send(data);
+            return Promise.resolve();
+        }
+        return Promise.reject("WebSocket is not in the OPEN state");
+    }
+    stop() {
+        if (this._webSocket) // Manually invoke onclose callback inline so we know the HttpConnection was closed properly before returning
+        // This also solves an issue where websocket.onclose could take 18+ seconds to trigger during network disconnects
+        this._close(undefined);
+        return Promise.resolve();
+    }
+    _close(event) {
+        // webSocket will be null if the transport did not start successfully
+        if (this._webSocket) {
+            // Clear websocket handlers because we are considering the socket closed now
+            this._webSocket.onclose = ()=>{};
+            this._webSocket.onmessage = ()=>{};
+            this._webSocket.onerror = ()=>{};
+            this._webSocket.close();
+            this._webSocket = undefined;
+        }
+        this._logger.log((0, _ilogger.LogLevel).Trace, "(WebSockets transport) socket closed.");
+        if (this.onclose) {
+            if (this._isCloseEvent(event) && (event.wasClean === false || event.code !== 1000)) this.onclose(new Error(`WebSocket closed with status code: ${event.code} (${event.reason || "no reason given"}).`));
+            else if (event instanceof Error) this.onclose(event);
+            else this.onclose();
+        }
+    }
+    _isCloseEvent(event) {
+        return event && typeof event.wasClean === "boolean" && typeof event.code === "number";
+    }
+}
+
+},{"./HeaderNames":"iRrcX","./ILogger":"e8deM","./ITransport":"57ni4","./Utils":"daEHA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bK2jR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/** Implements the JSON Hub Protocol. */ parcelHelpers.export(exports, "JsonHubProtocol", ()=>JsonHubProtocol);
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+var _ihubProtocol = require("./IHubProtocol");
+var _ilogger = require("./ILogger");
+var _itransport = require("./ITransport");
+var _loggers = require("./Loggers");
+var _textMessageFormat = require("./TextMessageFormat");
+const JSON_HUB_PROTOCOL_NAME = "json";
+class JsonHubProtocol {
+    constructor(){
+        /** @inheritDoc */ this.name = JSON_HUB_PROTOCOL_NAME;
+        /** @inheritDoc */ this.version = 1;
+        /** @inheritDoc */ this.transferFormat = (0, _itransport.TransferFormat).Text;
+    }
+    /** Creates an array of {@link @microsoft/signalr.HubMessage} objects from the specified serialized representation.
+     *
+     * @param {string} input A string containing the serialized representation.
+     * @param {ILogger} logger A logger that will be used to log messages that occur during parsing.
+     */ parseMessages(input, logger) {
+        // The interface does allow "ArrayBuffer" to be passed in, but this implementation does not. So let's throw a useful error.
+        if (typeof input !== "string") throw new Error("Invalid input for JSON hub protocol. Expected a string.");
+        if (!input) return [];
+        if (logger === null) logger = (0, _loggers.NullLogger).instance;
+        // Parse the messages
+        const messages = (0, _textMessageFormat.TextMessageFormat).parse(input);
+        const hubMessages = [];
+        for (const message of messages){
+            const parsedMessage = JSON.parse(message);
+            if (typeof parsedMessage.type !== "number") throw new Error("Invalid payload.");
+            switch(parsedMessage.type){
+                case (0, _ihubProtocol.MessageType).Invocation:
+                    this._isInvocationMessage(parsedMessage);
+                    break;
+                case (0, _ihubProtocol.MessageType).StreamItem:
+                    this._isStreamItemMessage(parsedMessage);
+                    break;
+                case (0, _ihubProtocol.MessageType).Completion:
+                    this._isCompletionMessage(parsedMessage);
+                    break;
+                case (0, _ihubProtocol.MessageType).Ping:
+                    break;
+                case (0, _ihubProtocol.MessageType).Close:
+                    break;
+                default:
+                    // Future protocol changes can add message types, old clients can ignore them
+                    logger.log((0, _ilogger.LogLevel).Information, "Unknown message type '" + parsedMessage.type + "' ignored.");
+                    continue;
+            }
+            hubMessages.push(parsedMessage);
+        }
+        return hubMessages;
+    }
+    /** Writes the specified {@link @microsoft/signalr.HubMessage} to a string and returns it.
+     *
+     * @param {HubMessage} message The message to write.
+     * @returns {string} A string containing the serialized representation of the message.
+     */ writeMessage(message) {
+        return (0, _textMessageFormat.TextMessageFormat).write(JSON.stringify(message));
+    }
+    _isInvocationMessage(message) {
+        this._assertNotEmptyString(message.target, "Invalid payload for Invocation message.");
+        if (message.invocationId !== undefined) this._assertNotEmptyString(message.invocationId, "Invalid payload for Invocation message.");
+    }
+    _isStreamItemMessage(message) {
+        this._assertNotEmptyString(message.invocationId, "Invalid payload for StreamItem message.");
+        if (message.item === undefined) throw new Error("Invalid payload for StreamItem message.");
+    }
+    _isCompletionMessage(message) {
+        if (message.result && message.error) throw new Error("Invalid payload for Completion message.");
+        if (!message.result && message.error) this._assertNotEmptyString(message.error, "Invalid payload for Completion message.");
+        this._assertNotEmptyString(message.invocationId, "Invalid payload for Completion message.");
+    }
+    _assertNotEmptyString(value, errorMessage) {
+        if (typeof value !== "string" || value === "") throw new Error(errorMessage);
+    }
+}
+
+},{"./IHubProtocol":"i4JLH","./ILogger":"e8deM","./ITransport":"57ni4","./Loggers":"1B6CY","./TextMessageFormat":"1g148","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -27260,6 +30470,16 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}]},["1xC6H","eeyqb","8lqZg"], "8lqZg", "parcelRequire2aa7")
+},{"react-refresh/runtime":"786KC"}],"6zCwq":[function(require,module,exports) {
+
+},{}],"lvq8E":[function(require,module,exports) {
+module.exports["container"] = `YMCA-v40VSa-Room-module-container`;
+module.exports["header"] = `YMCA-v40VSa-Room-module-header`;
+module.exports["devices"] = `YMCA-v40VSa-Room-module-devices`;
+
+},{}],"dx3A3":[function(require,module,exports) {
+module.exports["container"] = `YMCA-ZdBa8G-Building-module-container`;
+
+},{}]},["1xC6H","eeyqb","8lqZg"], "8lqZg", "parcelRequire2aa7")
 
 //# sourceMappingURL=index.910c4f71.js.map
