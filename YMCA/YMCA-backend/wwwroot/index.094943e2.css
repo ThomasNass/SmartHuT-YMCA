@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+﻿body {
+  margin: 0;
+}
+
+.YMCA-T9D3fa-Navbar-module-nav {
+  width: 100%;
+  height: 8%;
+  background-color: #1e80f7;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 0 3px #0003;
+}
+
+.YMCA-T9D3fa-Navbar-module-icon {
+  min-width: 50px;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 30px;
+  transition: background-color .1s ease-in-out;
+  display: flex;
+}
+
+.YMCA-T9D3fa-Navbar-module-head {
+  width: 100%;
+  height: 8%;
+  background-color: #1e80f7;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0 0 3px #0003;
+}
+
+.YMCA-T9D3fa-Navbar-module-h1, .YMCA-T9D3fa-Navbar-module-warning_h1 {
+  color: #fff;
+}
+
+.YMCA-T9D3fa-Navbar-module-text {
+  color: #fff;
+  font-size: 1em;
+}
+
+.YMCA-T9D3fa-Navbar-module-navbutton {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.YMCA-T9D3fa-Navbar-module-alarm {
+  background-color: #e11;
+}
+
+.YMCA-T9D3fa-Navbar-module-warning {
+  color: #ff0;
+  margin-left: 10px;
+  font-size: 35px;
+}
+
+
+
+.YMCA-v40VSa-Room-module-container {
+  border: 2px solid #000;
+  flex-direction: column;
+  display: flex;
+}
+
+.YMCA-v40VSa-Room-module-header {
+  text-align: center;
+}
+
+.YMCA-v40VSa-Room-module-devices {
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+}
+
+.YMCA-ZdBa8G-Building-module-container {
+  grid-auto-rows: minmax(100px, auto);
+  display: grid;
+}
+
+/*# sourceMappingURL=index.094943e2.css.map */
