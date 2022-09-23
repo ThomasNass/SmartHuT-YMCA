@@ -22,7 +22,7 @@ export const getUnit = async (id) => {
             "Authorization": `Bearer ${token}`
         }
 
-        const response = await fetch("https://api.smarthut.se/Unit/", {headers});
+        const response = await fetch("https://api.smarthut.se/Unit/", { headers });
         const data = await response.json();
         return data.find((unit) => unit.id.toLowerCase() === id.toLowerCase());
     }
@@ -43,7 +43,7 @@ const getBuilding = async (headers) => {
     }
 }
 
-const getToken = async () => {
+export const getToken = async () => {
     try {
         let user = await getUser();
 

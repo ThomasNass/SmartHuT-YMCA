@@ -1,21 +1,34 @@
-import React, { useEffect, useContext } from "react";
-import * as classes from "./App.module.css";
+import React, { useEffect, useContext, useState } from "react";
+import Navbar from "./navbar.jsx"
+import Head from "./Head.jsx";
+import Warninghead from "./Warninghead.jsx";
 import Building from "./Components/Building/Building";
 import SignalRContext from "./Components/Contexts/SignalRContext";
+import { History } from "./Components/History/History.jsx";
 
 const App = () => {
     const signalRContext = useContext(SignalRContext);
+    const [showClimate, setShowClimate] = useState(true);
+    const [showHistory, setShowHistory] = useState(false)
 
-    const header =
-        signalRContext.alarmCount > 0
-            ? `Antal Larm: ${signalRContext.alarmCount}`
-            : "Inga Larm";
+    const ClimateDisplay = () => {
+        setShowClimate(true)
+        setShowHistory(false)
+    }
+
+    const HistoryDisplay = () => {
+        setShowClimate(false)
+        setShowHistory(true)
+    }
 
     return (
         <>
-            <h1 className={classes["header"]}>{header}</h1>
-            <Building />
+            {(signalRContext.alarmCount < 1) ? <Head /> : <Warninghead alarmCount={signalRContext.alarmCount} />}
+            <Building showClimate={showClimate} />
+            <History showHistory={showHistory} />
+            <Navbar alarmCount={signalRContext.alarmCount} showClimate={ClimateDisplay} showHistory={HistoryDisplay}></Navbar>
         </>
+
     );
 };
 

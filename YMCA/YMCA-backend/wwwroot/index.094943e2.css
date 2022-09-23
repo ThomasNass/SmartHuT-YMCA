@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+.no-display {
+  display: none;
+}
+
+﻿body {
+  margin: 0;
+}
+
+.YMCA-T9D3fa-Navbar-module-nav {
+  width: 100%;
+  height: 8%;
+  background-color: #1e80f7;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 0 3px #0003;
+}
+
+.YMCA-T9D3fa-Navbar-module-icon {
+  min-width: 50px;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 30px;
+  transition: background-color .1s ease-in-out;
+  display: flex;
+}
+
+.YMCA-T9D3fa-Navbar-module-head {
+  width: 100%;
+  height: 8%;
+  background-color: #1e80f7;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0 0 3px #0003;
+}
+
+.YMCA-T9D3fa-Navbar-module-h1, .YMCA-T9D3fa-Navbar-module-warning_h1 {
+  color: #fff;
+}
+
+.YMCA-T9D3fa-Navbar-module-text {
+  color: #fff;
+  font-size: 1em;
+}
+
+.YMCA-T9D3fa-Navbar-module-navbutton {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.YMCA-T9D3fa-Navbar-module-alarm {
+  background-color: #e11;
+}
+
+.YMCA-T9D3fa-Navbar-module-warning {
+  color: #ff0;
+  margin-left: 10px;
+  font-size: 35px;
+}
+
+
+
+.YMCA-v40VSa-Room-module-container {
+  border: 2px solid #000;
+  flex-direction: column;
+  display: flex;
+}
+
+.YMCA-v40VSa-Room-module-header {
+  text-align: center;
+}
+
+.YMCA-v40VSa-Room-module-devices {
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+}
+
+.YMCA-ZdBa8G-Building-module-container {
+  grid-auto-rows: minmax(100px, auto);
+  display: grid;
+}
+
+.YMCA-ZdBa8G-Building-module-hide {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.YMCA-8A7HnG-history-module-hide {
+  display: none;
+}
+
+.YMCA-8A7HnG-history-module-containerHistory {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  display: flex;
+}
+
+.YMCA-8A7HnG-history-module-roomName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.YMCA-8A7HnG-history-module-sensorType {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.YMCA-8A7HnG-history-module-mainDivHistory {
+  width: 45%;
+  border-bottom: 2px solid;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin: 10px;
+  display: flex;
+}
+
+.YMCA-8A7HnG-history-module-headerDivHistory {
+  width: 100%;
+  border-radius: 25px;
+  justify-content: start;
+  align-items: center;
+  display: flex;
+}
+
+.YMCA-8A7HnG-history-module-historyInfo {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  justify-items: start;
+  display: flex;
+}
+
+.YMCA-8A7HnG-history-module-temperature, .YMCA-8A7HnG-history-module-humidity {
+  flex-direction: column;
+  margin: 10px;
+  display: flex;
+}
+
+.YMCA-8A7HnG-history-module-temperatureHeader, .YMCA-8A7HnG-history-module-humidityHeader {
+  margin-bottom: 5px;
+}
+
+.YMCA-8A7HnG-history-module-humidityDivHistory, .YMCA-8A7HnG-history-module-temperatureDivHistory {
+  width: 100px;
+  flex-direction: column;
+  display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+  .YMCA-8A7HnG-history-module-roomName {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .YMCA-8A7HnG-history-module-sensorType {
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .YMCA-8A7HnG-history-module-roomName {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .YMCA-8A7HnG-history-module-sensorType {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .YMCA-8A7HnG-history-module-mainDivHistory {
+    width: 80%;
+  }
+}
+
+/*# sourceMappingURL=index.094943e2.css.map */
