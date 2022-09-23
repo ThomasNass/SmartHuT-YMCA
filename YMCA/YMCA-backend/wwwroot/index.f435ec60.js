@@ -2910,38 +2910,30 @@ var _appDefault = parcelHelpers.interopDefault(_app);
 var _restoreButton = require("./RestoreButton");
 var _signOutButton = require("./SignOutButton");
 var _hisotry = require("./Hisotry");
+var _observer = require("./Observer");
 const container = document.getElementById("root");
 const root = (0, _clientDefault.default).createRoot(container);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
     children: [
-        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _hisotry.History), {}, void 0, false, {
-            fileName: "src/index.js",
-            lineNumber: 12,
-            columnNumber: 5
-        }, undefined),
-        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restoreButton.RestartButton), {
-            show: true,
-            deviceId: "cb241607-69f9-4a59-a039-36b872db77bc",
-            email: "alra21yg@student.ju.se"
-        }, void 0, false, {
+        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _observer.Observer), {}, void 0, false, {
             fileName: "src/index.js",
             lineNumber: 13,
-            columnNumber: 5
+            columnNumber: 9
         }, undefined),
         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signOutButton.SignOutButton), {}, void 0, false, {
             fileName: "src/index.js",
             lineNumber: 14,
-            columnNumber: 5
+            columnNumber: 9
         }, undefined),
         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 15,
+            lineNumber: 16,
             columnNumber: 5
         }, undefined)
     ]
 }, void 0, true, {
     fileName: "src/index.js",
-    lineNumber: 11,
+    lineNumber: 12,
     columnNumber: 5
 }, undefined));
 
@@ -2950,7 +2942,7 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react":"21dqq","./App":"e9Zfo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RestoreButton":"5O0Ai","./SignOutButton":"c7DI5","./Hisotry":"65nE9"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react":"21dqq","./App":"e9Zfo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RestoreButton":"5O0Ai","./SignOutButton":"c7DI5","./Hisotry":"65nE9","./Observer":"dERb6"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
 
@@ -27116,17 +27108,24 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _appModuleCss = require("./App.module.css");
+var _s = $RefreshSig$();
 const App = ()=>{
+    _s();
     console.log(_appModuleCss);
+    (0, _react.useEffect)(()=>{
+        localStorage.setItem("load", "load");
+        if (!localStorage.getItem("load") == "load") window.location.reload();
+    });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
         className: _appModuleCss["header"],
         children: "App Component"
     }, void 0, false, {
         fileName: "src/App.jsx",
-        lineNumber: 7,
+        lineNumber: 17,
         columnNumber: 9
     }, undefined);
 };
+_s(App, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27376,13 +27375,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SignOutButton", ()=>SignOutButton);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 const SignOutButton = (props)=>{
     // Replace logic with react router it will be better
     const SignOutNow = async (e)=>{
         e.preventDefault();
         try {
-            window.location = "https://localhost:5000/user/signout";
-            window.location.reload();
+            window.location = "user/signout";
         } catch (error) {
             console.log(error);
         }
@@ -27393,12 +27393,12 @@ const SignOutButton = (props)=>{
             children: "SignOut"
         }, void 0, false, {
             fileName: "src/SignOutButton.jsx",
-            lineNumber: 18,
+            lineNumber: 21,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/SignOutButton.jsx",
-        lineNumber: 17,
+        lineNumber: 20,
         columnNumber: 9
     }, undefined);
 };
@@ -27411,7 +27411,7 @@ $RefreshReg$(_c, "SignOutButton");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"65nE9":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"65nE9":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6ecd = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27748,19 +27748,83 @@ $RefreshReg$(_c, "HistoryDisplay");
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./history.module.css":"e7VNd"}],"e7VNd":[function(require,module,exports) {
+module.exports["temperatureDivHistory"] = `YMCA-R7Uvjq-history-module-temperatureDivHistory`;
 module.exports["temperatureHeader"] = `YMCA-R7Uvjq-history-module-temperatureHeader`;
 module.exports["roomName"] = `YMCA-R7Uvjq-history-module-roomName`;
+module.exports["sensorType"] = `YMCA-R7Uvjq-history-module-sensorType`;
+module.exports["containerHistory"] = `YMCA-R7Uvjq-history-module-containerHistory`;
+module.exports["humidityHeader"] = `YMCA-R7Uvjq-history-module-humidityHeader`;
+module.exports["temperature"] = `YMCA-R7Uvjq-history-module-temperature`;
+module.exports["humidityDivHistory"] = `YMCA-R7Uvjq-history-module-humidityDivHistory`;
+module.exports["headerDivHistory"] = `YMCA-R7Uvjq-history-module-headerDivHistory`;
+module.exports["historyInfo"] = `YMCA-R7Uvjq-history-module-historyInfo`;
 module.exports["mainDivHistory"] = `YMCA-R7Uvjq-history-module-mainDivHistory`;
 module.exports["humidity"] = `YMCA-R7Uvjq-history-module-humidity`;
-module.exports["humidityHeader"] = `YMCA-R7Uvjq-history-module-humidityHeader`;
-module.exports["temperatureDivHistory"] = `YMCA-R7Uvjq-history-module-temperatureDivHistory`;
-module.exports["historyInfo"] = `YMCA-R7Uvjq-history-module-historyInfo`;
-module.exports["headerDivHistory"] = `YMCA-R7Uvjq-history-module-headerDivHistory`;
-module.exports["sensorType"] = `YMCA-R7Uvjq-history-module-sensorType`;
-module.exports["humidityDivHistory"] = `YMCA-R7Uvjq-history-module-humidityDivHistory`;
-module.exports["containerHistory"] = `YMCA-R7Uvjq-history-module-containerHistory`;
-module.exports["temperature"] = `YMCA-R7Uvjq-history-module-temperature`;
 
-},{}]},["1xC6H","1lYAC","8lqZg"], "8lqZg", "parcelRequire2aa7")
+},{}],"dERb6":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ad5c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ad5c.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Observer", ()=>Observer);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const Observer = (props)=>{
+    _s();
+    (0, _react.useEffect)(()=>{
+        //Get the user info with token from backend
+        const getUser = async ()=>{
+            try {
+                const response = await fetch(`https://localhost:5000/user`);
+                const data = await response.json();
+                return data;
+            } catch (e) {
+                console.error(e);
+            }
+        };
+        const SaveMyToken = async ()=>{
+            let myToken = await getUser(); // get info
+            localStorage.setItem("token", myToken.token) // save it in localstorage
+            ;
+            let data = await TryToConnectWithSmartHut(myToken.token); // Try to connect with smarthut
+            console.log(data.status);
+            if (data.status == 401) {
+                localStorage.clear(); // clear localStorage
+                window.location = "https://localhost:5000/user/signout" //RedirectTo Logout
+                ;
+            }
+        };
+        //Function to Check The response
+        const TryToConnectWithSmartHut = async (token)=>{
+            try {
+                let response = await fetch("https://api.smarthut.se/buildinginfo/getmybuilding", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                return response;
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        SaveMyToken();
+    }, []);
+};
+_s(Observer, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+_c = Observer;
+var _c;
+$RefreshReg$(_c, "Observer");
+
+  $parcel$ReactRefreshHelpers$ad5c.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","1lYAC","8lqZg"], "8lqZg", "parcelRequire2aa7")
 
 //# sourceMappingURL=index.f435ec60.js.map

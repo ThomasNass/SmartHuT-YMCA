@@ -28,7 +28,6 @@ export const Observer = (props) => {
                 localStorage.clear(); // clear localStorage
                 window.location = "https://localhost:5000/user/signout"  //RedirectTo Logout
             }
-        
 
         }
 

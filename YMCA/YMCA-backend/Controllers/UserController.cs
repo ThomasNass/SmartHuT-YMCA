@@ -30,7 +30,8 @@ namespace API.AuthTest.Controllers
         {
             var prop = new AuthenticationProperties()
             {
-                RedirectUri = "/"   //Make a redirect 
+                RedirectUri = "/index.html"   //Make a redirect 
+
             };
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, prop);
             await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,prop);
