@@ -4,7 +4,7 @@ import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 const SignalRContext = React.createContext({
     newTelemetry: [],
     alarmNetralized: null,
-    adjustAlarmCount: () => {},
+    adjustAlarmCount: () => { },
     alarmCount: 0,
     resetId: null,
 });
@@ -48,14 +48,14 @@ export const SignalRContextProvider = (props) => {
                     accessTokenFactory: () => negotiation.accessToken,
                 })
                 .withAutomaticReconnect()
-                .configureLogging(LogLevel.Trace)
+                // .configureLogging(LogLevel.Trace)
                 .build();
             connection
                 .start()
                 .then(() => {
                     connection.on("newTelemetry", (newTelemetry) => {
                         setNewTelemetry(newTelemetry);
-                        console.log(newTelemetry);
+                        // console.log(newTelemetry);
                     });
                     connection.on("alarmNeutralized", (msg) => {
                         const str = "Alarm restored on device with id ";

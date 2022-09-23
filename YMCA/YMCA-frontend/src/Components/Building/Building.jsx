@@ -3,8 +3,10 @@ import { getBuildingDevices } from "../../js/script";
 import Room from "./Room/Room";
 import * as styles from "./Building.module.css";
 
-const Building = () => {
+
+const Building = (props) => {
     const [rooms, setRooms] = useState([]);
+    let showClimate = props.showClimate ? `${styles.container}` : `${styles.hide}`
 
     useEffect(() => {
         (async () => {
@@ -61,7 +63,7 @@ const Building = () => {
 
     return (
         <>
-            <div className={styles.container}>
+            <div className={showClimate}>
                 {rooms.length > 1 &&
                     rooms.map((room) => {
                         return (
