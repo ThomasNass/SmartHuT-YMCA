@@ -40,13 +40,12 @@
     align-items: center;
     justify-content: center;
 }
-.h1{
+.h1 ,.warning_h1{
     color: white;
 }
 .text{
 color: white;
 font-size: 1em;
-
 }
 .navbutton{
     display: flex;
@@ -55,5 +54,13 @@ font-size: 1em;
 }
 .alarm{
     background-color: rgb(238, 17, 17);
-   
+}
+.warning{
+    color: yellow;
+    font-size: 35px;
+    margin-left: 10px;
+    display: none;
+}
+.warning_h1{
+    display: none;
 }
