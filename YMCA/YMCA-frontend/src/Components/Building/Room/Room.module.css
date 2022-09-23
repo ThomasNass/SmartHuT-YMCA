@@ -1,7 +1,9 @@
 .container {
-    border: 2px solid black;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 1em;
+    padding: 1em 0;
+    grid-template-rows: minmax(100px, auto);
+    outline: 1px solid;
 }
 
 .header {
@@ -11,4 +13,11 @@
 .devices {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.icon {
+    color: var(--orange);
+    padding: 0;
+    filter: drop-shadow(var(--box-shadow));
+    vertical-align:top;
 }

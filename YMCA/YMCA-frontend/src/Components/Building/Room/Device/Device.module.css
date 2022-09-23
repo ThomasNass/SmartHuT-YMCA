@@ -1,0 +1,26 @@
+.container {
+    display: grid;
+    gap: 0.5em;
+}
+
+.paragraph {
+    text-align: center;
+}
+
+.button {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    padding: 1em;
+}
+
+.options {
+    text-align: center;
+}
+
+.icon {
+    color: var(--orange);
+    vertical-align: top;
+    padding: 0;
+    filter: drop-shadow(var(--box-shadow));
+}

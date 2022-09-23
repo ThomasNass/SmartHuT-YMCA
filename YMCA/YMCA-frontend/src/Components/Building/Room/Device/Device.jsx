@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useDevice from "../../../Hooks/useDevice";
 import * as styles from "./Device.module.css";
+import { IoWarning } from "react-icons/io5";
 
 const Device = (props) => {
     const {
@@ -14,17 +15,22 @@ const Device = (props) => {
 
     useEffect(() => {
         props.onAlarmChange(props.device.id, isAlarm);
-    }, [isAlarm])
+    }, [isAlarm]);
 
     return (
-        <div>
-            <h2>{metricType}</h2>
-            <p>
-                Nuvarande värde: {currentValue}
+        <div className={styles.container}>
+            <p className={styles.paragraph}>
+                {metricType}: {currentValue}
                 {unit.unit}
+                {isAlarm && <IoWarning className={styles.icon} />}
             </p>
-            {isAlarm && <button onClick={resetAlarm}>Återställ</button>}
-            <button onClick={testAlarm}>Testa larm</button>
+            {isAlarm && (
+                <div className={styles.options}>
+                    <button className={styles.button} onClick={resetAlarm}>
+                        Återställ
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

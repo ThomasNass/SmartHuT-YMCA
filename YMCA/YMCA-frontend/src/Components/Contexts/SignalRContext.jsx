@@ -11,7 +11,6 @@ const SignalRContext = React.createContext({
 
 export const SignalRContextProvider = (props) => {
     const [newTelemetry, setNewTelemetry] = useState([]);
-    const [alarmNeutralized, setAlarmNeutralized] = useState([]);
     const [resetId, setResetId] = useState("");
     const [alarmCount, setAlarmCount] = useState(0);
 
@@ -74,7 +73,6 @@ export const SignalRContextProvider = (props) => {
 
     const contextValue = {
         newTelemetry: newTelemetry,
-        alarmNetralized: alarmNeutralized,
         adjustAlarmCount: adjustAlarmCount,
         alarmCount: alarmCount,
         resetId: resetId,

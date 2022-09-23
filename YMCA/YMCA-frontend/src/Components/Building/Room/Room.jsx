@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Device from "./Device/Device";
 import * as styles from "./Room.module.css";
+import { IoWarning } from "react-icons/io5";
 
 const Room = (props) => {
-    const [room, setRoom] = useState({})
+    const [room, setRoom] = useState({});
     const [devices, setDevices] = useState([]);
     const [isAlarm, setIsAlarm] = useState(false);
 
@@ -36,16 +37,15 @@ const Room = (props) => {
                 return d;
             })
         );
-
     };
+
 
     return (
         <>
             <div className={styles.container}>
                 <h1 className={styles.header}>
-                    {isAlarm
-                        ? `${props.room.name} LARM!`
-                        : `${props.room.name}`}
+                    {props.room.name}
+                    {isAlarm && <IoWarning className={styles.icon} /> }
                 </h1>
                 <div className={styles.devices}>
                     {props.room &&
