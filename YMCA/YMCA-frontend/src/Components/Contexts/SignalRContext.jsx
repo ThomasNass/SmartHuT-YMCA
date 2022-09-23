@@ -4,7 +4,7 @@ import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 const SignalRContext = React.createContext({
     newTelemetry: [],
     alarmNetralized: null,
-    addDevice: () => {},
+    adjustAlarmCount: () => {},
     alarmCount: 0,
     resetId: null,
 });
@@ -13,19 +13,11 @@ export const SignalRContextProvider = (props) => {
     const [newTelemetry, setNewTelemetry] = useState([]);
     const [alarmNeutralized, setAlarmNeutralized] = useState([]);
     const [resetId, setResetId] = useState("");
-    const [devices, setDevices] = useState([]);
     const [alarmCount, setAlarmCount] = useState(0);
 
-    const addDevice = (newDevice) => {
-        // Ny enhet läggs inte till ifall ID matchar en annan
-        setDevices((prevDevices) =>
-            !prevDevices.some(
-                (d) => d.id.toLowerCase() === newDevice.id.toLowerCase()
-            )
-                ? [...prevDevices, newDevice]
-                : prevDevices
-        );
-    };
+    const adjustAlarmCount = (isAlarm) => {
+        setAlarmCount((counter) => isAlarm ? Math.max(0, ++counter) : Math.max(0, --counter))
+    }
 
     const negotiate = async () => {
         const response = await fetch(
@@ -42,10 +34,6 @@ export const SignalRContextProvider = (props) => {
         localStorage.setItem("negotiation", JSON.stringify(data));
         return data;
     };
-
-    useEffect(() => {
-        setAlarmCount(devices.filter((device) => device.isAlarm).length);
-    }, [devices]);
 
     useEffect(() => {
         (async () => {
@@ -87,7 +75,7 @@ export const SignalRContextProvider = (props) => {
     const contextValue = {
         newTelemetry: newTelemetry,
         alarmNetralized: alarmNeutralized,
-        addDevice: addDevice,
+        adjustAlarmCount: adjustAlarmCount,
         alarmCount: alarmCount,
         resetId: resetId,
     };

@@ -25,8 +25,6 @@ const useDevice = (device) => {
             const humidityState = await getAlarmLogs(device.id);
             setIsAlarm(humidityState);
 
-            signalRContext.addDevice(device);
-
             (async () => {
                 setUnit(await getUnit(device.unitId));
             })();
@@ -60,6 +58,10 @@ const useDevice = (device) => {
     };
 
     useEffect(() => {
+        signalRContext.adjustAlarmCount(isAlarm);
+    }, [isAlarm])
+
+    useEffect(() => {
         device.id.toLowerCase() === signalRContext.resetId.toLowerCase()
             ? setIsAlarm(false)
             : isAlarm;
@@ -67,7 +69,6 @@ const useDevice = (device) => {
 
     const testAlarm = () => {
         setIsAlarm(true);
-        console.log(signalRContext.resetId);
     };
 
     return {

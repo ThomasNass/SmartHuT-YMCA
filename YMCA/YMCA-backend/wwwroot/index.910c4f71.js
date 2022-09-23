@@ -27643,7 +27643,6 @@ const useDevice = (device)=>{
             device.metricType == 1 ? setMetricType("Temperatur") : setMetricType("Luftfuktighet");
             const humidityState = await (0, _script.getAlarmLogs)(device.id);
             setIsAlarm(humidityState);
-            signalRContext.addDevice(device);
             (async ()=>{
                 setUnit(await (0, _script.getUnit)(device.unitId));
             })();
@@ -27673,13 +27672,17 @@ const useDevice = (device)=>{
         return data;
     };
     (0, _react.useEffect)(()=>{
+        signalRContext.adjustAlarmCount(isAlarm);
+    }, [
+        isAlarm
+    ]);
+    (0, _react.useEffect)(()=>{
         device.id.toLowerCase() === signalRContext.resetId.toLowerCase() ? setIsAlarm(false) : isAlarm;
     }, [
         signalRContext.resetId
     ]);
     const testAlarm = ()=>{
         setIsAlarm(true);
-        console.log(signalRContext.resetId);
     };
     return {
         currentValue,
@@ -27690,7 +27693,7 @@ const useDevice = (device)=>{
         testAlarm
     };
 };
-_s(useDevice, "ubRH7TdpavwX1A0W1TSCoWvA55I=");
+_s(useDevice, "t/Tr3DdS7SoXswH3YQDjPT3Xh9Y=");
 exports.default = useDevice;
 
   $parcel$ReactRefreshHelpers$789e.postlude(module);
@@ -27716,7 +27719,7 @@ var _s = $RefreshSig$();
 const SignalRContext = /*#__PURE__*/ (0, _reactDefault.default).createContext({
     newTelemetry: [],
     alarmNetralized: null,
-    addDevice: ()=>{},
+    adjustAlarmCount: ()=>{},
     alarmCount: 0,
     resetId: null
 });
@@ -27725,14 +27728,9 @@ const SignalRContextProvider = (props)=>{
     const [newTelemetry, setNewTelemetry] = (0, _react.useState)([]);
     const [alarmNeutralized, setAlarmNeutralized] = (0, _react.useState)([]);
     const [resetId, setResetId] = (0, _react.useState)("");
-    const [devices, setDevices] = (0, _react.useState)([]);
     const [alarmCount, setAlarmCount] = (0, _react.useState)(0);
-    const addDevice = (newDevice)=>{
-        // Ny enhet läggs inte till ifall ID matchar en annan
-        setDevices((prevDevices)=>!prevDevices.some((d)=>d.id.toLowerCase() === newDevice.id.toLowerCase()) ? [
-                ...prevDevices,
-                newDevice
-            ] : prevDevices);
+    const adjustAlarmCount = (isAlarm)=>{
+        setAlarmCount((counter)=>isAlarm ? Math.max(0, ++counter) : Math.max(0, --counter));
     };
     const negotiate = async ()=>{
         const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate", {
@@ -27744,11 +27742,6 @@ const SignalRContextProvider = (props)=>{
         localStorage.setItem("negotiation", JSON.stringify(data));
         return data;
     };
-    (0, _react.useEffect)(()=>{
-        setAlarmCount(devices.filter((device)=>device.isAlarm).length);
-    }, [
-        devices
-    ]);
     (0, _react.useEffect)(()=>{
         (async ()=>{
             let negotiation = null;
@@ -27773,7 +27766,7 @@ const SignalRContextProvider = (props)=>{
     const contextValue = {
         newTelemetry: newTelemetry,
         alarmNetralized: alarmNeutralized,
-        addDevice: addDevice,
+        adjustAlarmCount: adjustAlarmCount,
         alarmCount: alarmCount,
         resetId: resetId
     };
@@ -27782,11 +27775,11 @@ const SignalRContextProvider = (props)=>{
         children: props.children
     }, void 0, false, {
         fileName: "src/Components/Contexts/SignalRContext.jsx",
-        lineNumber: 96,
+        lineNumber: 84,
         columnNumber: 9
     }, undefined);
 };
-_s(SignalRContextProvider, "Ab0OKx4TQ9m8g/aYlP5jPqdxvdk=");
+_s(SignalRContextProvider, "xlPWs6EwZw1IDY6Nbom6hrW1DD8=");
 _c = SignalRContextProvider;
 exports.default = SignalRContext;
 var _c;
@@ -28187,8 +28180,8 @@ parcelHelpers.export(exports, "VERSION", ()=>VERSION);
 // The .NET Foundation licenses this file to you under the MIT license.
 var _ilogger = require("./ILogger");
 var _loggers = require("./Loggers");
-var process = require("process");
 var global = arguments[3];
+var process = require("process");
 const VERSION = "6.0.9";
 class Arg {
     static isRequired(val, name) {
@@ -30474,8 +30467,8 @@ function registerExportsForReactRefresh(module1) {
 
 },{}],"lvq8E":[function(require,module,exports) {
 module.exports["container"] = `YMCA-v40VSa-Room-module-container`;
-module.exports["header"] = `YMCA-v40VSa-Room-module-header`;
 module.exports["devices"] = `YMCA-v40VSa-Room-module-devices`;
+module.exports["header"] = `YMCA-v40VSa-Room-module-header`;
 
 },{}],"dx3A3":[function(require,module,exports) {
 module.exports["container"] = `YMCA-ZdBa8G-Building-module-container`;
