@@ -11,7 +11,6 @@ export const History = (props) => {
     let [roomThreeTemp, setroomThreeTemp] = useState([])
     let [roomThreeHum, setroomThreeHum] = useState([])
     let [poolTemp, setPoolTemp] = useState([])
-    let showHistory = props.showHistory ? null : `${styles.hide}`
     const getDevicesBuilding = async (token) => {
         try {
             let response = await fetch(`https://api.smarthut.se/buildinginfo/55350997-9be4-4746-b94d-3b9fad7ea795/true`, {

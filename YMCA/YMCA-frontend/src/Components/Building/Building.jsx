@@ -6,7 +6,6 @@ import * as styles from "./Building.module.css";
 
 const Building = (props) => {
     const [rooms, setRooms] = useState([]);
-    let showClimate = props.showClimate ? `${styles.container}` : `${styles.hide}`
 
     useEffect(() => {
         (async () => {
@@ -63,7 +62,7 @@ const Building = (props) => {
 
     return (
         <>
-            <div className={showClimate}>
+            <div className={styles.container}>
                 {rooms.length > 1 &&
                     rooms.map((room) => {
                         return (

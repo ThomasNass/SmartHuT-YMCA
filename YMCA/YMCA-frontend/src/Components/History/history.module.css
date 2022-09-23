@@ -3,10 +3,6 @@ body {
     padding: 0;
 }
 
-.hide {
-    display: none;
-}
-
 .containerHistory {
     display: flex;
     flex-direction: row;
@@ -59,8 +55,6 @@ body {
     display: flex;
     flex-direction: column;
     margin: 10px;
-
-
 }
 
 
