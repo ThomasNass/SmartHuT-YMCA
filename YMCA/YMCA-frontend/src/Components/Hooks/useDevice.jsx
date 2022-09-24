@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getAlarmLogs, getUnit } from "../../js/script";
+import { getAlarmLogs, getUnit, getUser } from "../../js/script";
 import SignalRContext from "../Contexts/SignalRContext";
 
 const useDevice = (device) => {
@@ -47,13 +47,14 @@ const useDevice = (device) => {
     }, [signalRContext.newTelemetry]);
 
     const resetAlarm = async () => {
+        const user = await getUser();
         const response = await fetch(
             "https://smarthut.azurewebsites.net/api/restorealarm",
             {
                 method: "POST",
                 body: JSON.stringify({
                     deviceId: device.id,
-                    userName: "krki21cn@student.ju.se",
+                    userName: user.email,
                 }),
             }
         );
