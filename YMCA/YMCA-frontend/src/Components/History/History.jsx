@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { HistoryDisplay, HistoryDisplay } from './HistoryDisplay';
 import { getAll, getToken } from '../../js/script.js';
-import styles from './history.module.css';
 
 
-export const History = (props) => {
+const History = () => {
     let [roomOneTemp, setroomOneTemp] = useState([])
     let [roomTwoTemp, setroomTwoTemp] = useState([])
     let [roomTwoHum, setroomTwoHum] = useState([])
@@ -109,7 +108,7 @@ export const History = (props) => {
 
 
     return (
-        <div className={showHistory}>
+        <div>
             <HistoryDisplay room={"Konferensrum 1"} Temp={roomOneTemp.slice(0, 10)} Hum={null} />
             <HistoryDisplay room={"Konferensrum 2"} Temp={roomTwoTemp.slice(0, 10)} Hum={roomTwoHum.slice(0, 10)} />
             <HistoryDisplay room={"Konferensrum 3"} Temp={roomThreeTemp.slice(0, 10)} Hum={roomThreeHum.slice(0, 10)} />
@@ -119,3 +118,5 @@ export const History = (props) => {
     )
 
 }
+
+export default History;

@@ -10,7 +10,6 @@ const Device = (props) => {
         resetAlarm: resetAlarm,
         metricType,
         unit,
-        testAlarm,
     } = useDevice(props.device);
 
     useEffect(() => {

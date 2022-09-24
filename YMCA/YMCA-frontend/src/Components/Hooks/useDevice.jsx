@@ -7,7 +7,7 @@ const useDevice = (device) => {
     const [isAlarm, setIsAlarm] = useState(false);
     const [metricType, setMetricType] = useState("");
     const [unit, setUnit] = useState({});
-    const [status, setStatus] = useState('FÖR HÖG');
+    const [status, setStatus] = useState("FÖR HÖG");
 
     const signalRContext = useContext(SignalRContext);
 
@@ -15,8 +15,7 @@ const useDevice = (device) => {
         if (value > device.maxValue) {
             setIsAlarm(true);
             setStatus("FÖR HÖG");
-        }
-        else if (value < device.minValue) {
+        } else if (value < device.minValue) {
             setIsAlarm(true);
             setStatus("FÖR LÅG");
         }
@@ -24,17 +23,16 @@ const useDevice = (device) => {
 
     useEffect(() => {
         (async () => {
-            device.metricType == 1
-                ? setMetricType("Temperatur")
-                : setMetricType("Luftfuktighet");
-
             const humidityState = await getAlarmLogs(device.id);
             setIsAlarm(humidityState);
-
-            (async () => {
-                setUnit(await getUnit(device.unitId));
-            })();
+            
+            setUnit(await getUnit(device.unitId));
         })();
+
+        device.metricType == 1
+            ? setMetricType("Temperatur")
+            : setMetricType("Luftfuktighet");
+
     }, []);
 
     useEffect(() => {
@@ -65,7 +63,7 @@ const useDevice = (device) => {
 
     useEffect(() => {
         signalRContext.adjustAlarmCount(isAlarm);
-    }, [isAlarm])
+    }, [isAlarm]);
 
     useEffect(() => {
         device.id.toLowerCase() === signalRContext.resetId.toLowerCase()
@@ -73,17 +71,13 @@ const useDevice = (device) => {
             : isAlarm;
     }, [signalRContext.resetId]);
 
-    const testAlarm = () => {
-        setIsAlarm(true);
-    };
-
     return {
         currentValue,
         isAlarm: isAlarm,
         metricType,
         resetAlarm,
         unit,
-        testAlarm,
+        status,
     };
 };
 
