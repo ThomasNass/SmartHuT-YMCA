@@ -12,6 +12,17 @@
     color: white;
     border: none;
     padding: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: var(--darker-blue);
+    transform: translateY(2px);
+}
+
+.button:hover {
+    background-color: var(--darker-blue);
 }
 
 .options {
