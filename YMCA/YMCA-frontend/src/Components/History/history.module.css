@@ -7,6 +7,11 @@ body {
     display: none;
 }
 
+
+.containerOfContainer{
+    margin-bottom: 150px;
+}
+
 .containerHistory {
     display: flex;
     flex-direction: row;

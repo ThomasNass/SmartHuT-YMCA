@@ -110,6 +110,7 @@ export const History = (props) => {
 
 
     return (
+       
         <div className={showHistory}>
             <HistoryDisplay room={"Konferensrum 1"} Temp={roomOneTemp.slice(0, 10)} Hum={null} />
             <HistoryDisplay room={"Konferensrum 2"} Temp={roomTwoTemp.slice(0, 10)} Hum={roomTwoHum.slice(0, 10)} />

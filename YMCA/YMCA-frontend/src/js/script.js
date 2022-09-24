@@ -134,7 +134,7 @@ const negotiate = async () => {
                 'X-MS-SIGNALR-USERID': user.email
             }
         }).catch((error) => console.log(error))
-
+    
     const data = await response.json();
 
     return data;

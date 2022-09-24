@@ -10,15 +10,21 @@ function Navbar(props) {
   const switchToggled = (0 == props.alarmCount ? true : false)
   const isAlarmStyle = switchToggled ? `${style.nav}` : `${style.nav} ${style.alarm} `;
 
+  const SignOutNow = async (e) => {
+    e.preventDefault();
+    try {
+        window.location = "user/signout"
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 
 
   return (
-    <div>
-
-
-
+    <div className={style.navbarContainer}>
       <nav className={isAlarmStyle}>
-        <div className={style.navbutton}>
+        <div className={style.navbutton} onClick={SignOutNow}>
           <CgLogOff className={style.icon} />
           <p className={style.text}>Logga ut</p>
         </div>

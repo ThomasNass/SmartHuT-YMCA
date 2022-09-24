@@ -2,6 +2,7 @@
     margin: 0 0 0px 0;
 }
 
+
 /* botten navbar*/
 .nav {
     position: fixed;
@@ -12,7 +13,6 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     background-color: rgb(30, 128, 247);
     display: flex;
-
     justify-content: space-around;
 }
 
