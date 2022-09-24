@@ -125,7 +125,7 @@ const initializeSignalRConnection = async (accessToken, url) => {
     return connection;
 }
 
-const negotiate = async () => {
+export const negotiate = async () => {
     const user = await getUser();
 
     const response = await fetch("https://smarthut.azurewebsites.net/api/negotiate",
@@ -134,7 +134,7 @@ const negotiate = async () => {
                 'X-MS-SIGNALR-USERID': user.email
             }
         }).catch((error) => console.log(error))
-    
+
     const data = await response.json();
 
     return data;

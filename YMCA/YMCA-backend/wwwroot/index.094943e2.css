@@ -1,14 +1,18 @@
+:root {
+  --blue: #3082c4;
+  --red: red;
+  --orange: #f90;
+  --box-shadow: 0px 2px 2px black;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
 
 html {
   height: 100%;
-}
-
-.no-display {
-  display: none;
 }
 
 ﻿body {
@@ -76,12 +80,39 @@ html {
   font-size: 35px;
 }
 
+.YMCA-ctfr6W-Device-module-container {
+  gap: .5em;
+  display: grid;
+}
 
+.YMCA-ctfr6W-Device-module-paragraph {
+  text-align: center;
+}
+
+.YMCA-ctfr6W-Device-module-button {
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 1em;
+}
+
+.YMCA-ctfr6W-Device-module-options {
+  text-align: center;
+}
+
+.YMCA-ctfr6W-Device-module-icon {
+  color: var(--orange);
+  vertical-align: top;
+  filter: drop-shadow(var(--box-shadow));
+  padding: 0;
+}
 
 .YMCA-v40VSa-Room-module-container {
-  border: 2px solid #000;
-  flex-direction: column;
-  display: flex;
+  outline: 1px solid;
+  grid-template-rows: minmax(100px, auto);
+  gap: 1em;
+  padding: 1em 0;
+  display: grid;
 }
 
 .YMCA-v40VSa-Room-module-header {
@@ -93,8 +124,15 @@ html {
   display: grid;
 }
 
+.YMCA-v40VSa-Room-module-icon {
+  color: var(--orange);
+  filter: drop-shadow(var(--box-shadow));
+  vertical-align: top;
+  padding: 0;
+}
+
 .YMCA-ZdBa8G-Building-module-container {
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   display: grid;
 }
 
@@ -109,6 +147,10 @@ body {
 
 .YMCA-8A7HnG-history-module-hide {
   display: none;
+}
+
+.YMCA-8A7HnG-history-module-containerOfContainer {
+  margin-bottom: 150px;
 }
 
 .YMCA-8A7HnG-history-module-containerHistory {
