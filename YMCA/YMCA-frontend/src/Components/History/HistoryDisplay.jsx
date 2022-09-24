@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './history.module.css';
 export const HistoryDisplay = (props) => {
 
@@ -30,7 +31,10 @@ export const HistoryDisplay = (props) => {
             )
         }
     }
-
+        useEffect(()=>{
+            Tem(props.Temp)
+            Humi(props.Hum)
+        },[])
     return (
 
         <div className={styles.containerHistory}>

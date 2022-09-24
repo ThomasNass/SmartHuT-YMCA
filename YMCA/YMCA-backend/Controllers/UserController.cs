@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace API.AuthTest.Controllers
 {
@@ -19,6 +22,20 @@ namespace API.AuthTest.Controllers
             };
 
             return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("signout")]
+        public async Task logOut()
+        {
+            var prop = new AuthenticationProperties()
+            {
+                RedirectUri = "/index.html"   //Make a redirect 
+
+            };
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme, prop);
+            await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,prop);
+
         }
     }
 }

@@ -21,6 +21,8 @@ const App = () => {
         setShowHistory(true)
     }
 
+   
+
     return (
         <>
             {(signalRContext.alarmCount < 1) ? <Head /> : <Warninghead alarmCount={signalRContext.alarmCount} />}
