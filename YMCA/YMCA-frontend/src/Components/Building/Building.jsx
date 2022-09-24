@@ -3,10 +3,12 @@ import { getBuildingDevices } from "../../js/script";
 import Room from "./Room/Room";
 import * as styles from "./Building.module.css";
 
-
 const Building = (props) => {
     const [rooms, setRooms] = useState([]);
-    let showClimate = props.showClimate ? `${styles.container}` : `${styles.hide}`
+    
+    let showClimate = props.showClimate
+        ? `${styles.container}`
+        : `${styles.hide}`;
 
     useEffect(() => {
         (async () => {
@@ -25,9 +27,7 @@ const Building = (props) => {
                     }
                     return room;
                 })
-                .sort((a, b) =>
-                    b.isAlarm - a.isAlarm
-                )
+                .sort((a, b) => b.isAlarm - a.isAlarm);
         });
     };
 
@@ -56,7 +56,7 @@ const Building = (props) => {
                 devices: filteredDevices.map((device) => {
                     return { ...device, isAlarm: false };
                 }),
-                isAlarm: false
+                isAlarm: false,
             };
         });
     };

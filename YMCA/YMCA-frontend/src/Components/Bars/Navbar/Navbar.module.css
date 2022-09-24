@@ -1,0 +1,20 @@
+.navbar {
+    background-color: var(--blue);
+    display: grid;
+    grid-template-columns: minmax(300px, 40em);
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.alarm {
+    background-color: var(--red);
+}
+
+.icon {
+    color: white;
+    font-size: 1.2em;
+}

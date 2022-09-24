@@ -4,14 +4,15 @@ import { getAll, getToken } from '../../js/script.js';
 import styles from './history.module.css';
 
 
-export const History = (props) => {
+const History = (props) => {
     let [roomOneTemp, setroomOneTemp] = useState([])
     let [roomTwoTemp, setroomTwoTemp] = useState([])
     let [roomTwoHum, setroomTwoHum] = useState([])
     let [roomThreeTemp, setroomThreeTemp] = useState([])
     let [roomThreeHum, setroomThreeHum] = useState([])
     let [poolTemp, setPoolTemp] = useState([])
-    let showHistory = props.showHistory ? null : `${styles.hide}`
+
+    let showHistory = props.showClimate ? `${styles.hide}` : null;
 
     const GetTheLog = async (deviceId, token) => {
         try {
@@ -107,3 +108,5 @@ export const History = (props) => {
     )
 
 }
+
+export default History;
