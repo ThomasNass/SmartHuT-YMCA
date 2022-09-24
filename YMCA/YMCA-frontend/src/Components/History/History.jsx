@@ -12,20 +12,6 @@ export const History = (props) => {
     let [roomThreeHum, setroomThreeHum] = useState([])
     let [poolTemp, setPoolTemp] = useState([])
     let showHistory = props.showHistory ? null : `${styles.hide}`
-    const getDevicesBuilding = async (token) => {
-        try {
-            let response = await fetch(`https://api.smarthut.se/buildinginfo/55350997-9be4-4746-b94d-3b9fad7ea795/true`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            });
-            let data = await response.json();
-            return data.devices;
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
 
     const GetTheLog = async (deviceId, token) => {
         try {
@@ -110,7 +96,7 @@ export const History = (props) => {
 
 
     return (
-       
+
         <div className={showHistory}>
             <HistoryDisplay room={"Konferensrum 1"} Temp={roomOneTemp.slice(0, 10)} Hum={null} />
             <HistoryDisplay room={"Konferensrum 2"} Temp={roomTwoTemp.slice(0, 10)} Hum={roomTwoHum.slice(0, 10)} />
