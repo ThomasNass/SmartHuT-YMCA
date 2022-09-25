@@ -34,4 +34,20 @@
     vertical-align: top;
     padding: 0;
     filter: drop-shadow(var(--box-shadow));
+    animation: glowing 800ms infinite;
+}
+
+@keyframes glowing {
+    0% {
+        color: var(--orange);
+
+    }
+
+    50% {
+        color: var(--brighter-orange);
+    }
+
+    100% {
+        color: var(--orange);
+    }
 }
