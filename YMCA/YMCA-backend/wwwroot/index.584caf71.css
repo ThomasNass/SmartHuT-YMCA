@@ -6,10 +6,10 @@
   --brighter-orange: #ffe600;
   --yellow: #ff0;
   --box-shadow: 0px 2px 2px black;
+  --background-color: whitesmoke;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -17,7 +17,7 @@
 
 body {
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--background-color);
 }
 
 #root {
@@ -155,13 +155,27 @@ body {
 }
 
 .YMCA-ZdBa8G-Building-module-container {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
+  --grid-layout-gap: 1px;
+  --grid-column-count: 4;
+  --grid-item--min-width: 300px;
+  --gap-count: calc(var(--grid-column-count)  - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr) );
+  grid-gap: var(--grid-layout-gap);
+  outline: 2px solid var(--background-color);
   display: grid;
 }
 
 .YMCA-ZdBa8G-Building-module-hide {
   display: none;
+}
+
+@media only screen and (min-width: 1800px) {
+  .YMCA-ZdBa8G-Building-module-container {
+    max-width: 75%;
+    margin: auto;
+  }
 }
 
 .YMCA-gzjnAa-Content-module-container {

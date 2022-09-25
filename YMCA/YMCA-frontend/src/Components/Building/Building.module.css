@@ -1,9 +1,26 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px;
+    /* Variabler */
+  --grid-layout-gap: 1px;  /* Avstånd mellan kolumner och rader */
+  --grid-column-count: 4;  /* Max antal kolumner */
+  --grid-item--min-width: 300px;  /* Minsta möjliga storlek på kolumn */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  grid-gap: var(--grid-layout-gap);
+
+  outline: 2px solid var(--background-color);
 }
 
 .hide {
     display: none;
+}
+
+@media only screen and (min-width: 1800px) {
+    .container {
+        max-width: 75%;
+        margin: auto;
+    }
 }
