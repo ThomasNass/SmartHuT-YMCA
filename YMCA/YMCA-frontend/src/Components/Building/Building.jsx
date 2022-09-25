@@ -49,7 +49,7 @@ const Building = (props) => {
 
             const filteredDevices = devices
                 .filter((device) => device.name.includes(roomName))
-                .sort((a, b) => a.name - b.name);
+                .reverse();
 
             return {
                 name: roomName,

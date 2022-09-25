@@ -24,7 +24,7 @@ const Room = (props) => {
 
     useEffect(() => {
         setIsAlarm(room.isAlarm);
-        setDevices(props.room.devices);
+        setDevices(props.room.devices.sort((a, b) => a.name - b.name));
         setRoom(props.room);
     }, []);
 
