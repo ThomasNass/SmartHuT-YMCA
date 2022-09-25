@@ -7,6 +7,7 @@ const Room = (props) => {
     const [room, setRoom] = useState({});
     const [devices, setDevices] = useState([]);
     const [isAlarm, setIsAlarm] = useState(false);
+    const [fixedName, setFixedName] = useState()
 
     const onAlarmChangeHandler = (deviceId, isAlarm) => {
         changeDeviceAlarmState(deviceId, isAlarm);
@@ -27,6 +28,26 @@ const Room = (props) => {
         setRoom(props.room);
     }, []);
 
+    useEffect(() => {
+        switch (room.name) {
+            case "Conference room 1":
+                setFixedName("Konferensrum 1");
+                break;
+            case "Conference room 2":
+                setFixedName("Konferensrum 2");
+                break;
+            case "Conference room 3":
+                setFixedName("Konferensrum 3");
+                break;
+            case "swimming pool 1":
+                setFixedName("Pool");
+                break;
+            default:
+                setFixedName("Ej definierat");
+                break;
+        }
+    }, [room]);
+
     const changeDeviceAlarmState = (deviceId, newIsAlarm) => {
         setDevices((prevDevices) =>
             prevDevices.map((d) => {
@@ -39,13 +60,12 @@ const Room = (props) => {
         );
     };
 
-
     return (
         <>
             <div className={styles.container}>
                 <h1 className={styles.header}>
-                    {props.room.name}
-                    {isAlarm && <IoWarning className={styles.icon} /> }
+                    {fixedName}
+                    {isAlarm && <IoWarning className={styles.icon} />}
                 </h1>
                 <div className={styles.devices}>
                     {props.room &&

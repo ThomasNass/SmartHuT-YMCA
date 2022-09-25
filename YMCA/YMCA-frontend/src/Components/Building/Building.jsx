@@ -5,7 +5,7 @@ import * as styles from "./Building.module.css";
 
 const Building = (props) => {
     const [rooms, setRooms] = useState([]);
-    
+
     let showClimate = props.showClimate
         ? `${styles.container}`
         : `${styles.hide}`;
