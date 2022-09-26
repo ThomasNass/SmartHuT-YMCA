@@ -9,6 +9,7 @@
 
 .alarm {
     background-color: var(--red);
+    animation: alarming 800ms infinite;
 }
 
 .icon {
@@ -31,5 +32,19 @@
 
     100% {
         color: var(--orange);
+    }
+}
+
+@keyframes alarming {
+    0% {
+        background-color: var(--darker-red);
+    }
+
+    50% {
+        background-color: var(--red);
+    }
+
+    100% {
+        background-color: var(--darker-red);
     }
 }

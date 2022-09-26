@@ -12,9 +12,24 @@
 
 .alarm {
     background-color: var(--red);
+    animation: alarming 800ms infinite;
 }
 
 .icon {
     color: white;
     font-size: 1.2em;
+}
+
+@keyframes alarming {
+    0% {
+        background-color: rgb(167, 2, 2);
+    }
+
+    50% {
+        background-color: rgb(255, 0, 0);
+    }
+
+    100% {
+        background-color: rgb(167, 2, 2);
+    }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import * as styles from "./Head.module.css";
-import { IoWarning } from "react-icons/io5";
 
 const Head = (props) => {
     const isAlarm = props.alarmCount > 0;
@@ -15,7 +14,7 @@ const Head = (props) => {
         <>
             <div className={style}>
                 {text}
-                {isAlarm && <IoWarning className={styles.icon} />}
+
             </div>
         </>
     );
