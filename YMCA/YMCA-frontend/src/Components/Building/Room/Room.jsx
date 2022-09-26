@@ -7,7 +7,7 @@ const Room = (props) => {
     const [room, setRoom] = useState({});
     const [devices, setDevices] = useState([]);
     const [isAlarm, setIsAlarm] = useState(false);
-    const [fixedName, setFixedName] = useState()
+    const [fixedName, setFixedName] = useState();
 
     const onAlarmChangeHandler = (deviceId, isAlarm) => {
         changeDeviceAlarmState(deviceId, isAlarm);
@@ -24,7 +24,7 @@ const Room = (props) => {
 
     useEffect(() => {
         setIsAlarm(room.isAlarm);
-        setDevices(props.room.devices.sort((a, b) => a.name - b.name));
+        setDevices(props.room.devices);
         setRoom(props.room);
     }, []);
 
@@ -63,10 +63,10 @@ const Room = (props) => {
     return (
         <>
             <div className={styles.container}>
-                <h1 className={styles.header}>
-                    {fixedName}
+                <div className={styles.wrapper}>
+                    <h1 className={styles.header}>{fixedName}</h1>
                     {isAlarm && <IoWarning className={styles.icon} />}
-                </h1>
+                </div>
                 <div className={styles.devices}>
                     {props.room &&
                         devices.map((device, key) => {

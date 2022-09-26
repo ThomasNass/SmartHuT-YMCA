@@ -1,12 +1,15 @@
 .container {
     display: grid;
-    gap: 1em;
     padding: 1em 0;
     grid-template-rows: minmax(100px, auto);
     outline: 1px solid;
 }
 
 .header {
+    text-align: center;
+}
+
+.wrapper {
     text-align: center;
 }
 
@@ -19,8 +22,9 @@
     color: var(--orange);
     padding: 0;
     filter: drop-shadow(var(--box-shadow));
-    vertical-align: top;
+    font-size: 3em;
     animation: glowing 800ms infinite;
+    margin: auto;
 }
 
 @keyframes glowing {

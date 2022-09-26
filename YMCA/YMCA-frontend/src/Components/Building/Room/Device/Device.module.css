@@ -31,10 +31,11 @@
 
 .icon {
     color: var(--orange);
-    vertical-align: top;
     padding: 0;
+    font-size: 1.5em;
     filter: drop-shadow(var(--box-shadow));
     animation: glowing 800ms infinite;
+    margin: auto;
 }
 
 @keyframes glowing {

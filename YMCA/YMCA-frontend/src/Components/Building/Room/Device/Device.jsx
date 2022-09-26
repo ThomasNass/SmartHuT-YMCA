@@ -22,8 +22,8 @@ const Device = (props) => {
             <p className={styles.paragraph}>
                 {metricType}: {currentValue}
                 {unit.unit}
-                {isAlarm && <IoWarning className={styles.icon} />}
             </p>
+            {isAlarm && <IoWarning className={styles.icon} />}
             {isAlarm && (
                 <div className={styles.options}>
                     <button className={styles.button} onClick={resetAlarm}>

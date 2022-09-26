@@ -95,9 +95,10 @@ body {
 
 .YMCA-ctfr6W-Device-module-icon {
   color: var(--orange);
-  vertical-align: top;
   filter: drop-shadow(var(--box-shadow));
+  margin: auto;
   padding: 0;
+  font-size: 1.5em;
   animation: YMCA-ctfr6W-Device-module-glowing .8s infinite;
 }
 
@@ -118,12 +119,11 @@ body {
 .YMCA-v40VSa-Room-module-container {
   outline: 1px solid;
   grid-template-rows: minmax(100px, auto);
-  gap: 1em;
   padding: 1em 0;
   display: grid;
 }
 
-.YMCA-v40VSa-Room-module-header {
+.YMCA-v40VSa-Room-module-header, .YMCA-v40VSa-Room-module-wrapper {
   text-align: center;
 }
 
@@ -135,8 +135,9 @@ body {
 .YMCA-v40VSa-Room-module-icon {
   color: var(--orange);
   filter: drop-shadow(var(--box-shadow));
-  vertical-align: top;
+  margin: auto;
   padding: 0;
+  font-size: 3em;
   animation: YMCA-v40VSa-Room-module-glowing .8s infinite;
 }
 
@@ -163,7 +164,6 @@ body {
   --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
   grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr) );
   grid-gap: var(--grid-layout-gap);
-  outline: 2px solid var(--background-color);
   display: grid;
 }
 
