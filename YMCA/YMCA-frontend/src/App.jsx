@@ -3,6 +3,7 @@ import Head from "./Components/Bars/Head/Head";
 import SignalRContext from "./Components/Contexts/SignalRContext";
 import Content from "./Components/Content/Content";
 import Navbar from "./Components/Bars/Navbar/Navbar";
+import { Observer } from "./Components/Observer";
 
 const App = () => {
     const signalRContext = useContext(SignalRContext);
@@ -16,10 +17,12 @@ const App = () => {
         <>
             <Head alarmCount={signalRContext.alarmCount} />
             <Content showClimate={showClimate} />
+            <Observer/>
             <Navbar
                 alarmCount={signalRContext.alarmCount}
                 showClimateHandler={showClimateHandle}
             />
+            
         </>
     );
 };
