@@ -2,6 +2,7 @@
   --blue: #3082c4;
   --darker-blue: #28679b;
   --red: red;
+  --darker-red: #a70202;
   --orange: #f90;
   --brighter-orange: #ffe600;
   --yellow: #ff0;
@@ -37,6 +38,7 @@ body {
 
 .YMCA-PVOdWW-Head-module-alarm {
   background-color: var(--red);
+  animation: YMCA-PVOdWW-Head-module-alarming .8s infinite;
 }
 
 .YMCA-PVOdWW-Head-module-icon {
@@ -59,6 +61,20 @@ body {
 
   100% {
     color: var(--orange);
+  }
+}
+
+@keyframes YMCA-PVOdWW-Head-module-alarming {
+  0% {
+    background-color: var(--darker-red);
+  }
+
+  50% {
+    background-color: var(--red);
+  }
+
+  100% {
+    background-color: var(--darker-red);
   }
 }
 
@@ -100,6 +116,10 @@ body {
   padding: 0;
   font-size: 1.5em;
   animation: YMCA-ctfr6W-Device-module-glowing .8s infinite;
+}
+
+.YMCA-ctfr6W-Device-module-wrapper {
+  text-align: center;
 }
 
 @keyframes YMCA-ctfr6W-Device-module-glowing {
@@ -300,11 +320,26 @@ body {
 
 .YMCA-zl2r_a-Navbar-module-alarm {
   background-color: var(--red);
+  animation: YMCA-zl2r_a-Navbar-module-alarming .8s infinite;
 }
 
 .YMCA-zl2r_a-Navbar-module-icon {
   color: #fff;
   font-size: 1.2em;
+}
+
+@keyframes YMCA-zl2r_a-Navbar-module-alarming {
+  0% {
+    background-color: var(--darker-red);
+  }
+
+  50% {
+    background-color: var(--red);
+  }
+
+  100% {
+    background-color: var(--darker-red);
+  }
 }
 
 .YMCA-VaoMYG-NavButton-module-button {

@@ -11,6 +11,7 @@ const Device = (props) => {
         metricType,
         unit,
         testAlarm,
+        status
     } = useDevice(props.device);
 
     useEffect(() => {
@@ -23,7 +24,12 @@ const Device = (props) => {
                 {metricType}: {currentValue}
                 {unit.unit}
             </p>
-            {isAlarm && <IoWarning className={styles.icon} />}
+            {isAlarm && (
+                <div className={styles.wrapper}>
+                    {status}
+                    <IoWarning className={styles.icon} />
+                </div>
+            )}
             {isAlarm && (
                 <div className={styles.options}>
                     <button className={styles.button} onClick={resetAlarm}>

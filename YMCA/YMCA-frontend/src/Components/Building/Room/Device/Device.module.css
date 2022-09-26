@@ -38,6 +38,10 @@
     margin: auto;
 }
 
+.wrapper {
+    text-align: center;
+}
+
 @keyframes glowing {
     0% {
         color: var(--orange);

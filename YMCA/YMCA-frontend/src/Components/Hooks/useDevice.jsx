@@ -7,7 +7,7 @@ const useDevice = (device) => {
     const [isAlarm, setIsAlarm] = useState(false);
     const [metricType, setMetricType] = useState("");
     const [unit, setUnit] = useState({});
-    const [status, setStatus] = useState('FÖR HÖG');
+    const [status, setStatus] = useState('N/A');
 
     const signalRContext = useContext(SignalRContext);
 
@@ -85,6 +85,7 @@ const useDevice = (device) => {
         resetAlarm,
         unit,
         testAlarm,
+        status
     };
 };
 
