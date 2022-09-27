@@ -35,7 +35,7 @@ export const HistoryDisplay = (props) => {
     useEffect(() => {
         Tem(props.Temp);
         Humi(props.Hum);
-    }, [props.Temp]);
+    }, [props.Temp, props.Hum]);
     return (
 
         <div className={styles.containerHistory}>
