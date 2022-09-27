@@ -7,18 +7,18 @@ const useDevice = (device) => {
     const [isAlarm, setIsAlarm] = useState(false);
     const [metricType, setMetricType] = useState("");
     const [unit, setUnit] = useState({});
-    const [status, setStatus] = useState('N/A');
+    const [status, setStatus] = useState('OKÄNT');
 
     const signalRContext = useContext(SignalRContext);
 
     const validateValue = (value) => {
         if (value > device.maxValue) {
             setIsAlarm(true);
-            setStatus("FÖR HÖG");
+            setStatus("FÖR HÖGT");
         }
         else if (value < device.minValue) {
             setIsAlarm(true);
-            setStatus("FÖR LÅG");
+            setStatus("FÖR LÅGT");
         }
     };
 

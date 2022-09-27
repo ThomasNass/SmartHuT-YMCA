@@ -344,6 +344,7 @@ body {
 
 .YMCA-VaoMYG-NavButton-module-button {
   color: #fff;
+  cursor: pointer;
   background-color: #0000;
   border: none;
   flex-direction: column;
