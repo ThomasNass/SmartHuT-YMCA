@@ -37,7 +37,7 @@ const History = (props) => {
             for (let i = 0; i < devicesInRoom.length; i++) {
                 let historyInfo = await GetTheLog(devicesInRoom[i].id, token);
                 for (let j = 0; j < historyInfo.length; j++) {
-                    if (devicesInRoom[i].id == historyInfo[j].deviceId) {
+                    if (devicesInRoom[i].id == historyInfo[j].deviceId && historyInfo[j].state) {
                         var date = new Date(historyInfo[j].timeStamp);
                         justTime =
                             "Kl:" +
