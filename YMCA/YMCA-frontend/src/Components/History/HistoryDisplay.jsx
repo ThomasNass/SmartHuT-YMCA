@@ -31,10 +31,11 @@ export const HistoryDisplay = (props) => {
             )
         }
     }
-        useEffect(()=>{
-            Tem(props.Temp)
-            Humi(props.Hum)
-        },[])
+
+    useEffect(() => {
+        Tem(props.Temp);
+        Humi(props.Hum);
+    }, [props.Temp]);
     return (
 
         <div className={styles.containerHistory}>
