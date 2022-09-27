@@ -8,7 +8,7 @@ const Content = (props) => {
         <>
             <div className={styles.container}>
                 <Building showClimate={props.showClimate} />
-                <History showClimate={props.showClimate} />
+                {!props.showClimate &&<History showClimate={props.showClimate} />}
             </div>
         </>
     );
