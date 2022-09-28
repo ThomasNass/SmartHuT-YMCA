@@ -5,19 +5,21 @@ const localHost = `${window.location.protocol}//${window.location.host}`;
 export const getUser = async () => {
     try {
         const response = await fetch(`${localHost}/User`);
+        
         const data = await response.json();
-
-        status401Redirect(response);
 
         return data;
     }
     catch (e) {
         console.log(e);
+        alert('Sessionen är över, du loggas nu ut')
+        window.location = `${localHost}/user/signout/`;
     }
 }
 
 export const status401Redirect = (response) => {
     if (response.status == 401) {
+        alert('Sessionen är över, du loggas nu ut')
         window.location = `${localHost}/user/signout/`;
     }
 }

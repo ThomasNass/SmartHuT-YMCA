@@ -61,6 +61,7 @@ const useDevice = (device) => {
                 }
             );
 
+
             status401Redirect(response);
 
             const data = response;
