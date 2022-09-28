@@ -16,8 +16,8 @@ const App = () => {
     return (
         <>
             <Head alarmCount={signalRContext.alarmCount} />
-            <Content showClimate={showClimate} />
             <Observer/>
+            <Content showClimate={showClimate} />
             <Navbar
                 alarmCount={signalRContext.alarmCount}
                 showClimateHandler={showClimateHandle}

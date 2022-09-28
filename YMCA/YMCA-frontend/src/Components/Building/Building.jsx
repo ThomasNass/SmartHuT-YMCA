@@ -13,6 +13,9 @@ const Building = (props) => {
     useEffect(() => {
         (async () => {
             const devices = await getBuildingDevices();
+
+            
+
             const filteredRoom = createRoomObjects(devices);
             setRooms(filteredRoom);
         })();

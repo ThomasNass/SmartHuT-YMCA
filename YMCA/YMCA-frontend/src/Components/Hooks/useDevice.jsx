@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getAlarmLogs, getUnit, getUser } from "../../js/script";
+import { IoConstructOutline } from "react-icons/io5";
+import { getAlarmLogs, getUnit, getUser, status401Redirect } from "../../js/script";
 import SignalRContext from "../Contexts/SignalRContext";
 
 const useDevice = (device) => {
@@ -7,7 +8,7 @@ const useDevice = (device) => {
     const [isAlarm, setIsAlarm] = useState(false);
     const [metricType, setMetricType] = useState("");
     const [unit, setUnit] = useState({});
-    const [status, setStatus] = useState('OKÄNT');
+    const [status, setStatus] = useState("OKÄNT");
 
     const signalRContext = useContext(SignalRContext);
 
@@ -15,8 +16,7 @@ const useDevice = (device) => {
         if (value > device.maxValue) {
             setIsAlarm(true);
             setStatus("FÖR HÖGT");
-        }
-        else if (value < device.minValue) {
+        } else if (value < device.minValue) {
             setIsAlarm(true);
             setStatus("FÖR LÅGT");
         }
@@ -47,26 +47,34 @@ const useDevice = (device) => {
     }, [signalRContext.newTelemetry]);
 
     const resetAlarm = async () => {
-        const user = await getUser();
-        const response = await fetch(
-            "https://smarthut.azurewebsites.net/api/restorealarm",
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    deviceId: device.id,
-                    userName: user.email,
-                }),
-            }
-        );
-        const data = response;
-        setIsAlarm(false);
-        console.log(data);
-        return data;
+        try {
+            const user = await getUser();
+
+            const response = await fetch(
+                "https://smarthut.azurewebsites.net/api/restorealarm",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        deviceId: device.id,
+                        userName: user.email,
+                    }),
+                }
+            );
+
+            status401Redirect(response);
+
+            const data = response;
+            setIsAlarm(false);
+            
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     useEffect(() => {
         signalRContext.adjustAlarmCount(isAlarm);
-    }, [isAlarm])
+    }, [isAlarm]);
 
     useEffect(() => {
         device.id.toLowerCase() === signalRContext.resetId.toLowerCase()
@@ -85,7 +93,7 @@ const useDevice = (device) => {
         resetAlarm,
         unit,
         testAlarm,
-        status
+        status,
     };
 };
 
